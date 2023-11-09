@@ -67,8 +67,8 @@ class CarInterface(CarInterfaceBase):
         ret.spFlags |= HyundaiFlagsSP.SP_ENHANCED_SCC.value
         ret.radarUnavailable = False
 
-    ret.steerActuatorDelay = 0.1  # Default delay
-    ret.steerLimitTimer = 0.4
+    ret.steerActuatorDelay = 0.01  # Default delay
+    ret.steerLimitTimer = 0.8
     CarInterfaceBase.configure_torque_tune(candidate, ret.lateralTuning)
 
     if candidate in (CAR.AZERA_6TH_GEN, CAR.AZERA_HEV_6TH_GEN):
@@ -93,7 +93,7 @@ class CarInterface(CarInterfaceBase):
     elif candidate == CAR.PALISADE:
       ret.mass = 1999.
       ret.wheelbase = 2.90
-      ret.steerRatio = 16.3 * 1.25
+      ret.steerRatio = 17.3 * 1.25
       ret.tireStiffnessFactor = 1.0081302973865127
     elif candidate in (CAR.ELANTRA, CAR.ELANTRA_GT_I30):
       ret.mass = 1275.
