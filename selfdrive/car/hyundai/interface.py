@@ -93,7 +93,7 @@ class CarInterface(CarInterfaceBase):
     elif candidate == CAR.PALISADE:
       ret.mass = 1999.
       ret.wheelbase = 2.90
-      ret.steerRatio = 17.3
+      ret.steerRatio = 16.8
       ret.tireStiffnessFactor = .56
     elif candidate in (CAR.ELANTRA, CAR.ELANTRA_GT_I30):
       ret.mass = 1275.
