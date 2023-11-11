@@ -7,8 +7,8 @@ from selfdrive.controls.lib.drive_helpers import LIMIT_ADAPT_ACC, LIMIT_MIN_SPEE
 from openpilot.selfdrive.modeld.constants import ModelConstants
 
 
-_ACTIVE_LIMIT_MIN_ACC = -0.5  # m/s^2 Maximum deceleration allowed while active.
-_ACTIVE_LIMIT_MAX_ACC = 0.5   # m/s^2 Maximum acelration allowed while active.
+_ACTIVE_LIMIT_MIN_ACC = -0.25  # m/s^2 Maximum deceleration allowed while active.
+_ACTIVE_LIMIT_MAX_ACC = 0.25   # m/s^2 Maximum acelration allowed while active.
 
 
 _DEBUG = False
