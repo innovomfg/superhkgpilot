@@ -11,7 +11,7 @@ _ACTIVE_LIMIT_MIN_ACC = -0.25  # m/s^2 Maximum deceleration allowed while active
 _ACTIVE_LIMIT_MAX_ACC = 0.25   # m/s^2 Maximum acelration allowed while active.
 
 
-_DEBUG = False
+_DEBUG = True
 
 TurnSpeedControlState = custom.LongitudinalPlanSP.SpeedLimitControlState
 
