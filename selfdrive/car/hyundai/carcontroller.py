@@ -16,9 +16,9 @@ LongCtrlState = car.CarControl.Actuators.LongControlState
 
 # EPS faults if you apply torque while the steering angle is above 90 degrees for more than 1 second
 # All slightly below EPS thresholds to avoid fault
-MAX_ANGLE = 87
-MAX_ANGLE_FRAMES = 89
-MAX_ANGLE_CONSECUTIVE_FRAMES = 4
+MAX_ANGLE = 94
+MAX_ANGLE_FRAMES = 95
+MAX_ANGLE_CONSECUTIVE_FRAMES = 6
 
 
 def process_hud_alert(enabled, fingerprint, hud_control):
