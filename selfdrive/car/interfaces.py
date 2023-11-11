@@ -25,9 +25,9 @@ EventName = car.CarEvent.EventName
 TorqueFromLateralAccelCallbackType = Callable[[float, car.CarParams.LateralTorqueTuning, float, float, bool], float]
 
 MAX_CTRL_SPEED = (V_CRUISE_MAX + 4) * CV.KPH_TO_MS
-ACCEL_MAX = 3.0
-ACCEL_MIN = -4.5
-FRICTION_THRESHOLD = 0.6
+ACCEL_MAX = 4.0
+ACCEL_MIN = -6.5
+FRICTION_THRESHOLD = 0.75
 
 TORQUE_PARAMS_PATH = os.path.join(BASEDIR, 'selfdrive/car/torque_data/params.yaml')
 TORQUE_OVERRIDE_PATH = os.path.join(BASEDIR, 'selfdrive/car/torque_data/override.yaml')
