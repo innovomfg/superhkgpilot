@@ -25,9 +25,9 @@ EventName = car.CarEvent.EventName
 TorqueFromLateralAccelCallbackType = Callable[[float, car.CarParams.LateralTorqueTuning, float, float, bool], float]
 
 MAX_CTRL_SPEED = (V_CRUISE_MAX + 4) * CV.KPH_TO_MS
-ACCEL_MAX = 4.0
-ACCEL_MIN = -2.5
-FRICTION_THRESHOLD = 0.8
+ACCEL_MAX = 2.0
+ACCEL_MIN = -3.5
+FRICTION_THRESHOLD = 0.3
 
 TORQUE_PARAMS_PATH = os.path.join(BASEDIR, 'selfdrive/car/torque_data/params.yaml')
 TORQUE_OVERRIDE_PATH = os.path.join(BASEDIR, 'selfdrive/car/torque_data/override.yaml')
@@ -206,9 +206,9 @@ class CarInterfaceBase(ABC):
     ret.longitudinalTuning.kiBP = [0.]
     ret.longitudinalTuning.kiV = [1.]
     # TODO estimate car specific lag, use .15s for now
-    ret.longitudinalActuatorDelayLowerBound = 0.05
-    ret.longitudinalActuatorDelayUpperBound = 0.10
-    ret.steerLimitTimer = 5.0
+    ret.longitudinalActuatorDelayLowerBound = 0.15
+    ret.longitudinalActuatorDelayUpperBound = 0.15
+    ret.steerLimitTimer = 1.0
     return ret
 
   @staticmethod
