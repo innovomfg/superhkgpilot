@@ -68,7 +68,7 @@ class CarInterface(CarInterfaceBase):
         ret.radarUnavailable = False
 
     ret.steerActuatorDelay = 0.1  # Default delay
-    ret.steerLimitTimer = 0.2
+    ret.steerLimitTimer = 0.4
     CarInterfaceBase.configure_torque_tune(candidate, ret.lateralTuning)
 
     if candidate in (CAR.AZERA_6TH_GEN, CAR.AZERA_HEV_6TH_GEN):
