@@ -14,7 +14,7 @@ Ecu = car.CarParams.Ecu
 
 class CarControllerParams:
   ACCEL_MIN = -3.5 # m/s
-  ACCEL_MAX = 2.0 # m/s
+  ACCEL_MAX = 3.5 # m/s
 
   def __init__(self, CP, vEgoRaw=100.):
     self.STEER_DELTA_UP = 3
@@ -22,7 +22,7 @@ class CarControllerParams:
     self.STEER_DRIVER_ALLOWANCE = 50
     self.STEER_DRIVER_MULTIPLIER = 2
     self.STEER_DRIVER_FACTOR = 1
-    self.STEER_THRESHOLD = 150
+    self.STEER_THRESHOLD = 200
     self.STEER_STEP = 1  # 100 Hz
 
     if CP.carFingerprint in CANFD_CAR:
@@ -39,11 +39,11 @@ class CarControllerParams:
     elif CP.carFingerprint in (CAR.GENESIS_G80, CAR.GENESIS_G90, CAR.ELANTRA, CAR.ELANTRA_GT_I30, CAR.IONIQ,
                                CAR.IONIQ_EV_LTD, CAR.SANTA_FE_PHEV_2022, CAR.SONATA_LF, CAR.KIA_FORTE, CAR.KIA_NIRO_PHEV,
                                CAR.KIA_OPTIMA_H, CAR.KIA_OPTIMA_H_G4_FL, CAR.KIA_SORENTO):
-      self.STEER_MAX = 255
+      self.STEER_MAX = 384
 
     # these cars have significantly more torque than most HKG; limit to 70% of max
     elif CP.flags & HyundaiFlags.ALT_LIMITS:
-      self.STEER_MAX = 270
+      self.STEER_MAX = 384
       self.STEER_DELTA_UP = 2
       self.STEER_DELTA_DOWN = 3
 
@@ -585,7 +585,7 @@ EV_CAR = {CAR.IONIQ_EV_2020, CAR.IONIQ_EV_LTD, CAR.KONA_EV, CAR.KIA_NIRO_EV, CAR
 
 # these cars require a special panda safety mode due to missing counters and checksums in the messages
 LEGACY_SAFETY_MODE_CAR = {CAR.HYUNDAI_GENESIS, CAR.IONIQ_EV_LTD, CAR.KIA_OPTIMA_G4,
-                          CAR.VELOSTER, CAR.GENESIS_G70, CAR.GENESIS_G80, CAR.KIA_CEED, CAR.ELANTRA, CAR.IONIQ_HEV_2022,
+                          CAR.VELOSTER, CAR.GENESIS_G70, CAR.KIA_CEED, CAR.ELANTRA, CAR.IONIQ_HEV_2022,
                           CAR.KIA_OPTIMA_H, CAR.ELANTRA_GT_I30}
 
 # these cars have not been verified to work with longitudinal yet - radar disable, sending correct messages, etc.
@@ -611,7 +611,7 @@ DBC = {
   CAR.GENESIS_G70: dbc_dict('hyundai_kia_generic', None),
   CAR.GENESIS_G70_2020: dbc_dict('hyundai_kia_generic', 'hyundai_kia_mando_front_radar_generated'),
   CAR.GENESIS_G70_2021_NON_SCC: dbc_dict('hyundai_kia_generic', None),
-  CAR.GENESIS_G80: dbc_dict('hyundai_kia_generic', None),
+  CAR.GENESIS_G80: dbc_dict('hyundai_kia_generic', 'hyundai_kia_mando_front_radar_generated'),
   CAR.GENESIS_G90: dbc_dict('hyundai_kia_generic', None),
   CAR.HYUNDAI_GENESIS: dbc_dict('hyundai_kia_generic', None),
   CAR.IONIQ_PHEV_2019: dbc_dict('hyundai_kia_generic', None),

@@ -84,8 +84,8 @@ class CarInterface(CarInterfaceBase):
       if 0x53E in fingerprint[2]:
         ret.spFlags |= HyundaiFlagsSP.SP_LKAS12.value
 
-    ret.steerActuatorDelay = 0.1  # Default delay
-    ret.steerLimitTimer = 0.4
+    ret.steerActuatorDelay = 0.05  # Default delay
+    ret.steerLimitTimer = 0.8
     CarInterfaceBase.configure_torque_tune(candidate, ret.lateralTuning)
 
     if candidate in (CAR.AZERA_6TH_GEN, CAR.AZERA_HEV_6TH_GEN):
@@ -112,10 +112,10 @@ class CarInterface(CarInterfaceBase):
       ret.wheelbase = 2.804
       ret.steerRatio = 13.27 * 1.15   # 15% higher at the center seems reasonable
     elif candidate == CAR.PALISADE:
-      ret.mass = 1999.
+      ret.mass = 1910.
       ret.wheelbase = 2.90
-      ret.steerRatio = 15.6 * 1.15
-      ret.tireStiffnessFactor = 0.63
+      ret.steerRatio = 19.6 * 1.15
+      ret.tireStiffnessFactor = 0.43
     elif candidate == CAR.BAYON_1ST_GEN_NON_SCC:
       ret.mass = 1150.
       ret.wheelbase = 2.58
@@ -306,10 +306,10 @@ class CarInterface(CarInterfaceBase):
 
     ret.stoppingControl = True
     ret.startingState = True
-    ret.vEgoStarting = 0.1
-    ret.startAccel = 1.0
-    ret.longitudinalActuatorDelayLowerBound = 0.5
-    ret.longitudinalActuatorDelayUpperBound = 0.5
+    ret.vEgoStarting = 0.5
+    ret.startAccel = 2.0
+    ret.longitudinalActuatorDelayLowerBound = 0.05
+    ret.longitudinalActuatorDelayUpperBound = 0.05
 
     # *** feature detection ***
     if candidate in CANFD_CAR:
