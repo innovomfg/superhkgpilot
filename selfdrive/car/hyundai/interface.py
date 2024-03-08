@@ -114,7 +114,7 @@ class CarInterface(CarInterfaceBase):
     elif candidate == CAR.PALISADE:
       ret.mass = 1910.
       ret.wheelbase = 2.90
-      ret.steerRatio = 15.6 * 1.15
+      ret.steerRatio = 11.6 * 1.15
       ret.tireStiffnessFactor = 01.0
     elif candidate == CAR.BAYON_1ST_GEN_NON_SCC:
       ret.mass = 1150.
