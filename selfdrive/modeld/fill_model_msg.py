@@ -3,7 +3,10 @@ import capnp
 import numpy as np
 from cereal import log
 from openpilot.selfdrive.modeld.constants import ModelConstants, Plan, Meta
+<<<<<<< HEAD
 from openpilot.selfdrive.modeld.custom_model_metadata import ModelCapabilities
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
 SEND_RAW_PRED = os.getenv('SEND_RAW_PRED')
 
@@ -43,6 +46,7 @@ def fill_xyvat(builder, t, x, y, v, a, x_std=None, y_std=None, v_std=None, a_std
   if a_std is not None:
     builder.aStd = a_std.tolist()
 
+<<<<<<< HEAD
 def fill_xyz_poly(builder, degree, x, y, z):
   xyz = np.stack([x, y, z], axis=1)
   coeffs = np.polynomial.polynomial.polyfit(ModelConstants.T_IDXS, xyz, deg=degree)
@@ -79,6 +83,22 @@ def fill_model_msg(base_msg: capnp._DynamicStructBuilder, extended_msg: capnp._D
   modelV2.frameDropPerc = frame_drop_perc
   modelV2.timestampEof = timestamp_eof
   model_use_nav = custom_model_valid and custom_model_capabilities & ModelCapabilities.NoO
+=======
+def fill_model_msg(msg: capnp._DynamicStructBuilder, net_output_data: dict[str, np.ndarray], publish_state: PublishState,
+                   vipc_frame_id: int, vipc_frame_id_extra: int, frame_id: int, frame_drop: float,
+                   timestamp_eof: int, timestamp_llk: int, model_execution_time: float,
+                   nav_enabled: bool, valid: bool,
+                   model_use_lateral_planner: bool, model_use_nav: bool) -> None:
+  frame_age = frame_id - vipc_frame_id if frame_id > vipc_frame_id else 0
+  msg.valid = valid
+
+  modelV2 = msg.modelV2
+  modelV2.frameId = vipc_frame_id
+  modelV2.frameIdExtra = vipc_frame_id_extra
+  modelV2.frameAge = frame_age
+  modelV2.frameDropPerc = frame_drop * 100
+  modelV2.timestampEof = timestamp_eof
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
   if model_use_nav:
     modelV2.locationMonoTimeDEPRECATED = timestamp_llk
   modelV2.modelExecutionTime = model_execution_time
@@ -97,10 +117,13 @@ def fill_model_msg(base_msg: capnp._DynamicStructBuilder, extended_msg: capnp._D
   orientation_rate = modelV2.orientationRate
   fill_xyzt(orientation_rate, ModelConstants.T_IDXS, *net_output_data['plan'][0,:,Plan.ORIENTATION_RATE].T)
 
+<<<<<<< HEAD
   # poly path
   poly_path = driving_model_data.path
   fill_xyz_poly(poly_path, ModelConstants.POLY_PATH_DEGREE, *net_output_data['plan'][0,:,Plan.POSITION].T)
 
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
   # lateral planning
   if model_use_lateral_planner:
     solution = modelV2.lateralPlannerSolutionDEPRECATED
@@ -137,12 +160,15 @@ def fill_model_msg(base_msg: capnp._DynamicStructBuilder, extended_msg: capnp._D
   modelV2.laneLineStds = net_output_data['lane_lines_stds'][0,:,0,0].tolist()
   modelV2.laneLineProbs = net_output_data['lane_lines_prob'][0,1::2].tolist()
 
+<<<<<<< HEAD
   lane_line_meta = driving_model_data.laneLineMeta
   lane_line_meta.leftY = modelV2.laneLines[1].y[0]
   lane_line_meta.leftProb = modelV2.laneLineProbs[1]
   lane_line_meta.rightY = modelV2.laneLines[2].y[0]
   lane_line_meta.rightProb = modelV2.laneLineProbs[2]
 
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
   # road edges
   modelV2.init('roadEdges', 2)
   for i in range(2):

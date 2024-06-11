@@ -29,7 +29,10 @@ struct InitData {
   osVersion @18 :Text;
 
   dongleId @2 :Text;
+<<<<<<< HEAD
   bootlogId @22 :Text;
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
   deviceType @3 :DeviceType;
   version @4 :Text;
@@ -137,6 +140,11 @@ struct FrameData {
   requestId @28 :UInt32;
   encodeId @1 :UInt32;
 
+<<<<<<< HEAD
+=======
+  frameType @7 :FrameType;
+
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
   # Timestamps
   timestampEof @2 :UInt64;
   timestampSof @8 :UInt64;
@@ -156,7 +164,11 @@ struct FrameData {
 
   temperaturesC @24 :List(Float32);
 
+<<<<<<< HEAD
   enum FrameTypeDEPRECATED {
+=======
+  enum FrameType {
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
     unknown @0;
     neo @1;
     chffrAndroid @2;
@@ -173,7 +185,10 @@ struct FrameData {
 
   frameLengthDEPRECATED @3 :Int32;
   globalGainDEPRECATED @5 :Int32;
+<<<<<<< HEAD
   frameTypeDEPRECATED @7 :FrameTypeDEPRECATED;
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
   androidCaptureResultDEPRECATED @9 :AndroidCaptureResult;
   lensPosDEPRECATED @11 :Int32;
   lensSagDEPRECATED @12 :Float32;
@@ -336,9 +351,15 @@ enum LaneChangeDirection {
 
 struct CanData {
   address @0 :UInt32;
+<<<<<<< HEAD
   dat     @2 :Data;
   src     @3 :UInt8;
   busTimeDEPRECATED @1 :UInt16;
+=======
+  busTime @1 :UInt16;
+  dat     @2 :Data;
+  src     @3 :UInt8;
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 }
 
 struct DeviceState @0xa4d8b5af2aa492eb {
@@ -697,6 +718,10 @@ struct ControlsState @0x97ff69c53601abf1 {
   personality @66 :LongitudinalPersonality;
 
   longControlState @30 :Car.CarControl.Actuators.LongControlState;
+<<<<<<< HEAD
+=======
+  vPid @2 :Float32;
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
   vTargetLead @3 :Float32;
   vCruise @22 :Float32;  # actual set speed
   vCruiseCluster @63 :Float32;  # set speed to display in the UI
@@ -864,6 +889,7 @@ struct ControlsState @0x97ff69c53601abf1 {
   canMonoTimesDEPRECATED @21 :List(UInt64);
   desiredCurvatureRateDEPRECATED @62 :Float32;
   canErrorCounterDEPRECATED @57 :UInt32;
+<<<<<<< HEAD
   vPidDEPRECATED @2 :Float32;
 }
 
@@ -896,6 +922,8 @@ struct DrivingModelData {
     laneChangeState @0 :LaneChangeState;
     laneChangeDirection @1 :LaneChangeDirection;
   }
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 }
 
 # All SI units and in device frame
@@ -1090,11 +1118,14 @@ struct LongitudinalPlan @0xe00b5b3eba12876c {
   accels @32 :List(Float32);
   speeds @33 :List(Float32);
   jerks @34 :List(Float32);
+<<<<<<< HEAD
   aTarget @18 :Float32;
   shouldStop @37: Bool;
   allowThrottle @38: Bool;
   allowBrake @39: Bool;
 
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
   solverExecutionTime @35 :Float32;
 
@@ -1111,6 +1142,10 @@ struct LongitudinalPlan @0xe00b5b3eba12876c {
   aCruiseDEPRECATED @17 :Float32;
   vTargetDEPRECATED @3 :Float32;
   vTargetFutureDEPRECATED @14 :Float32;
+<<<<<<< HEAD
+=======
+  aTargetDEPRECATED @18 :Float32;
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
   vStartDEPRECATED @26 :Float32;
   aStartDEPRECATED @27 :Float32;
   vMaxDEPRECATED @20 :Float32;
@@ -1174,6 +1209,32 @@ struct LateralPlan @0xe1e9318e2ae8b51e {
     u @1 :List(Float32);
   }
 
+<<<<<<< HEAD
+=======
+  enum Desire {
+    none @0;
+    turnLeft @1;
+    turnRight @2;
+    laneChangeLeft @3;
+    laneChangeRight @4;
+    keepLeft @5;
+    keepRight @6;
+  }
+
+  enum LaneChangeState {
+    off @0;
+    preLaneChange @1;
+    laneChangeStarting @2;
+    laneChangeFinishing @3;
+  }
+
+  enum LaneChangeDirection {
+    none @0;
+    left @1;
+    right @2;
+  }
+
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
   # deprecated
   curvatureDEPRECATED @22 :Float32;
   curvatureRateDEPRECATED @23 :Float32;
@@ -1251,6 +1312,7 @@ struct LiveLocationKalman {
   }
 }
 
+<<<<<<< HEAD
 
 struct LivePose {
   # More info on reference frames:
@@ -1283,6 +1345,8 @@ struct LivePose {
   }
 }
 
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 struct ProcLog {
   cpuTimes @0 :List(CPUTimes);
   mem @1 :Mem;
@@ -2310,6 +2374,10 @@ struct Event {
     carControl @23 :Car.CarControl;
     carOutput @127 :Car.CarOutput;
     longitudinalPlan @24 :LongitudinalPlan;
+<<<<<<< HEAD
+=======
+    uiPlan @106 :UiPlan;
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
     ubloxGnss @34 :UbloxGnss;
     ubloxRaw @39 :Data;
     qcomGnss @31 :QcomGnss;
@@ -2324,9 +2392,13 @@ struct Event {
     carParams @69: Car.CarParams;
     driverMonitoringState @71: DriverMonitoringState;
     liveLocationKalman @72 :LiveLocationKalman;
+<<<<<<< HEAD
     livePose @129 :LivePose;
     modelV2 @75 :ModelDataV2;
     drivingModelData @128 :DrivingModelData;
+=======
+    modelV2 @75 :ModelDataV2;
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
     driverStateV2 @92 :DriverStateV2;
 
     # camera stuff, each camera state has a matching encode idx
@@ -2432,6 +2504,9 @@ struct Event {
     sensorEventsDEPRECATED @11 :List(SensorEventData);
     lateralPlanDEPRECATED @64 :LateralPlan;
     navModelDEPRECATED @104 :NavModelData;
+<<<<<<< HEAD
     uiPlanDEPRECATED @106 :UiPlan;
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
   }
 }

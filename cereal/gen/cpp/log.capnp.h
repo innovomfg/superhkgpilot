@@ -50,14 +50,23 @@ CAPNP_DECLARE_SCHEMA(9b513b93a887dbcd);
 CAPNP_DECLARE_SCHEMA(9cfb5d53a4f615a5);
 CAPNP_DECLARE_SCHEMA(d97e3b28239f5580);
 CAPNP_DECLARE_SCHEMA(ea0245f695ae0a33);
+<<<<<<< HEAD
 CAPNP_DECLARE_SCHEMA(a37f0d8558e193fd);
 enum class FrameTypeDEPRECATED_a37f0d8558e193fd: uint16_t {
+=======
+CAPNP_DECLARE_SCHEMA(ddb169f01e102879);
+enum class FrameType_ddb169f01e102879: uint16_t {
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
   UNKNOWN,
   NEO,
   CHFFR_ANDROID,
   FRONT,
 };
+<<<<<<< HEAD
 CAPNP_DECLARE_ENUM(FrameTypeDEPRECATED, a37f0d8558e193fd);
+=======
+CAPNP_DECLARE_ENUM(FrameType, ddb169f01e102879);
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 CAPNP_DECLARE_SCHEMA(d810b1e7705dd69c);
 enum class ImageSensor_d810b1e7705dd69c: uint16_t {
   UNKNOWN,
@@ -296,10 +305,13 @@ CAPNP_DECLARE_SCHEMA(a2e4ea88ac9980f1);
 CAPNP_DECLARE_SCHEMA(ad9d8095c06f7c61);
 CAPNP_DECLARE_SCHEMA(a63a46f0f2889b2d);
 CAPNP_DECLARE_SCHEMA(fd5b914d6b444695);
+<<<<<<< HEAD
 CAPNP_DECLARE_SCHEMA(e8f9ba819993a776);
 CAPNP_DECLARE_SCHEMA(ca1e4710874d12b5);
 CAPNP_DECLARE_SCHEMA(996ef0369d7e5625);
 CAPNP_DECLARE_SCHEMA(a0cfcfa4ed19ac5d);
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 CAPNP_DECLARE_SCHEMA(c3cbae1fd505ae80);
 CAPNP_DECLARE_SCHEMA(c4713f6b0d36abe9);
 CAPNP_DECLARE_SCHEMA(a444ed2b2187af28);
@@ -344,6 +356,35 @@ CAPNP_DECLARE_SCHEMA(8cfeb072f5301000);
 CAPNP_DECLARE_SCHEMA(fc0c9bb05e3927c1);
 CAPNP_DECLARE_SCHEMA(e1e9318e2ae8b51e);
 CAPNP_DECLARE_SCHEMA(fdca7c675b7021c6);
+<<<<<<< HEAD
+=======
+CAPNP_DECLARE_SCHEMA(bb53ef3fcf2a7f0d);
+enum class Desire_bb53ef3fcf2a7f0d: uint16_t {
+  NONE,
+  TURN_LEFT,
+  TURN_RIGHT,
+  LANE_CHANGE_LEFT,
+  LANE_CHANGE_RIGHT,
+  KEEP_LEFT,
+  KEEP_RIGHT,
+};
+CAPNP_DECLARE_ENUM(Desire, bb53ef3fcf2a7f0d);
+CAPNP_DECLARE_SCHEMA(fac297f195ce56d2);
+enum class LaneChangeState_fac297f195ce56d2: uint16_t {
+  OFF,
+  PRE_LANE_CHANGE,
+  LANE_CHANGE_STARTING,
+  LANE_CHANGE_FINISHING,
+};
+CAPNP_DECLARE_ENUM(LaneChangeState, fac297f195ce56d2);
+CAPNP_DECLARE_SCHEMA(f7396311bcbad303);
+enum class LaneChangeDirection_f7396311bcbad303: uint16_t {
+  NONE,
+  LEFT,
+  RIGHT,
+};
+CAPNP_DECLARE_ENUM(LaneChangeDirection, f7396311bcbad303);
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 CAPNP_DECLARE_SCHEMA(ebc5703d1ee7c129);
 CAPNP_DECLARE_SCHEMA(8e4dc8cc4b51fc01);
 enum class Status_8e4dc8cc4b51fc01: uint16_t {
@@ -353,9 +394,12 @@ enum class Status_8e4dc8cc4b51fc01: uint16_t {
 };
 CAPNP_DECLARE_ENUM(Status, 8e4dc8cc4b51fc01);
 CAPNP_DECLARE_SCHEMA(bf23f9ed66dace1c);
+<<<<<<< HEAD
 CAPNP_DECLARE_SCHEMA(c24ca2b57206b44d);
 CAPNP_DECLARE_SCHEMA(f9c93a8733ccd82b);
 CAPNP_DECLARE_SCHEMA(dacbb6c4e0cb5f66);
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 CAPNP_DECLARE_SCHEMA(af85387b3f681406);
 CAPNP_DECLARE_SCHEMA(b0b85613f19e6d28);
 CAPNP_DECLARE_SCHEMA(f189c8c5bf2ce087);
@@ -579,7 +623,11 @@ struct InitData {
   struct IosBuildInfo;
 
   struct _capnpPrivate {
+<<<<<<< HEAD
     CAPNP_DECLARE_STRUCT_HEADER(e71008caeb3fb65c, 2, 19)
+=======
+    CAPNP_DECLARE_STRUCT_HEADER(e71008caeb3fb65c, 2, 18)
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
     #if !CAPNP_LITE
     static constexpr ::capnp::_::RawBrandedSchema const* brand() { return &schema->defaultBrand; }
     #endif  // !CAPNP_LITE
@@ -667,7 +715,11 @@ struct FrameData {
   class Reader;
   class Builder;
   class Pipeline;
+<<<<<<< HEAD
   typedef ::capnp::schemas::FrameTypeDEPRECATED_a37f0d8558e193fd FrameTypeDEPRECATED;
+=======
+  typedef ::capnp::schemas::FrameType_ddb169f01e102879 FrameType;
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
   typedef ::capnp::schemas::ImageSensor_d810b1e7705dd69c ImageSensor;
 
@@ -1159,6 +1211,7 @@ struct ControlsState::LateralControlState {
   };
 };
 
+<<<<<<< HEAD
 struct DrivingModelData {
   DrivingModelData() = delete;
 
@@ -1222,6 +1275,8 @@ struct DrivingModelData::MetaData {
   };
 };
 
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 struct XYZTData {
   XYZTData() = delete;
 
@@ -1453,6 +1508,15 @@ struct LateralPlan {
   class Builder;
   class Pipeline;
   struct SolverState;
+<<<<<<< HEAD
+=======
+  typedef ::capnp::schemas::Desire_bb53ef3fcf2a7f0d Desire;
+
+  typedef ::capnp::schemas::LaneChangeState_fac297f195ce56d2 LaneChangeState;
+
+  typedef ::capnp::schemas::LaneChangeDirection_f7396311bcbad303 LaneChangeDirection;
+
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
   struct _capnpPrivate {
     CAPNP_DECLARE_STRUCT_HEADER(e1e9318e2ae8b51e, 9, 9)
@@ -1510,6 +1574,7 @@ struct LiveLocationKalman::Measurement {
   };
 };
 
+<<<<<<< HEAD
 struct LivePose {
   LivePose() = delete;
 
@@ -1557,6 +1622,8 @@ struct LivePose::FilterState {
   };
 };
 
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 struct ProcLog {
   ProcLog() = delete;
 
@@ -2591,7 +2658,11 @@ struct Event {
     MICROPHONE,
     NAV_MODEL_D_E_P_R_E_C_A_T_E_D,
     MAP_RENDER_STATE,
+<<<<<<< HEAD
     UI_PLAN_D_E_P_R_E_C_A_T_E_D,
+=======
+    UI_PLAN,
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
     CONTROLS_STATE_S_P,
     LONGITUDINAL_PLAN_S_P,
     LATERAL_PLAN_S_P_D_E_P_R_E_C_A_T_E_D,
@@ -2613,8 +2684,11 @@ struct Event {
     CUSTOM_RESERVED_RAW_DATA1,
     CUSTOM_RESERVED_RAW_DATA2,
     CAR_OUTPUT,
+<<<<<<< HEAD
     DRIVING_MODEL_DATA,
     LIVE_POSE,
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
   };
 
   struct _capnpPrivate {
@@ -2908,9 +2982,12 @@ public:
   inline bool hasGitCommitDate() const;
   inline  ::capnp::Text::Reader getGitCommitDate() const;
 
+<<<<<<< HEAD
   inline bool hasBootlogId() const;
   inline  ::capnp::Text::Reader getBootlogId() const;
 
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 private:
   ::capnp::_::StructReader _reader;
   template <typename, ::capnp::Kind>
@@ -3078,6 +3155,7 @@ public:
   inline void adoptGitCommitDate(::capnp::Orphan< ::capnp::Text>&& value);
   inline ::capnp::Orphan< ::capnp::Text> disownGitCommitDate();
 
+<<<<<<< HEAD
   inline bool hasBootlogId();
   inline  ::capnp::Text::Builder getBootlogId();
   inline void setBootlogId( ::capnp::Text::Reader value);
@@ -3085,6 +3163,8 @@ public:
   inline void adoptBootlogId(::capnp::Orphan< ::capnp::Text>&& value);
   inline ::capnp::Orphan< ::capnp::Text> disownBootlogId();
 
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 private:
   ::capnp::_::StructBuilder _builder;
   template <typename, ::capnp::Kind>
@@ -3892,7 +3972,11 @@ public:
   inline bool hasImage() const;
   inline  ::capnp::Data::Reader getImage() const;
 
+<<<<<<< HEAD
   inline  ::cereal::FrameData::FrameTypeDEPRECATED getFrameTypeDEPRECATED() const;
+=======
+  inline  ::cereal::FrameData::FrameType getFrameType() const;
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
   inline  ::uint64_t getTimestampSof() const;
 
@@ -3995,8 +4079,13 @@ public:
   inline void adoptImage(::capnp::Orphan< ::capnp::Data>&& value);
   inline ::capnp::Orphan< ::capnp::Data> disownImage();
 
+<<<<<<< HEAD
   inline  ::cereal::FrameData::FrameTypeDEPRECATED getFrameTypeDEPRECATED();
   inline void setFrameTypeDEPRECATED( ::cereal::FrameData::FrameTypeDEPRECATED value);
+=======
+  inline  ::cereal::FrameData::FrameType getFrameType();
+  inline void setFrameType( ::cereal::FrameData::FrameType value);
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
   inline  ::uint64_t getTimestampSof();
   inline void setTimestampSof( ::uint64_t value);
@@ -4883,7 +4972,11 @@ public:
 
   inline  ::uint32_t getAddress() const;
 
+<<<<<<< HEAD
   inline  ::uint16_t getBusTimeDEPRECATED() const;
+=======
+  inline  ::uint16_t getBusTime() const;
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
   inline bool hasDat() const;
   inline  ::capnp::Data::Reader getDat() const;
@@ -4921,8 +5014,13 @@ public:
   inline  ::uint32_t getAddress();
   inline void setAddress( ::uint32_t value);
 
+<<<<<<< HEAD
   inline  ::uint16_t getBusTimeDEPRECATED();
   inline void setBusTimeDEPRECATED( ::uint16_t value);
+=======
+  inline  ::uint16_t getBusTime();
+  inline void setBusTime( ::uint16_t value);
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
   inline bool hasDat();
   inline  ::capnp::Data::Builder getDat();
@@ -6827,7 +6925,11 @@ public:
 
   inline float getAEgoDEPRECATED() const;
 
+<<<<<<< HEAD
   inline float getVPidDEPRECATED() const;
+=======
+  inline float getVPid() const;
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
   inline float getVTargetLead() const;
 
@@ -6984,8 +7086,13 @@ public:
   inline float getAEgoDEPRECATED();
   inline void setAEgoDEPRECATED(float value);
 
+<<<<<<< HEAD
   inline float getVPidDEPRECATED();
   inline void setVPidDEPRECATED(float value);
+=======
+  inline float getVPid();
+  inline void setVPid(float value);
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
   inline float getVTargetLead();
   inline void setVTargetLead(float value);
@@ -8158,6 +8265,7 @@ private:
 };
 #endif  // !CAPNP_LITE
 
+<<<<<<< HEAD
 class DrivingModelData::Reader {
 public:
   typedef DrivingModelData Reads;
@@ -8564,6 +8672,8 @@ private:
 };
 #endif  // !CAPNP_LITE
 
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 class XYZTData::Reader {
 public:
   typedef XYZTData Reads;
@@ -10228,7 +10338,11 @@ public:
 
   inline float getACruiseDEPRECATED() const;
 
+<<<<<<< HEAD
   inline float getATarget() const;
+=======
+  inline float getATargetDEPRECATED() const;
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
   inline bool getGpsPlannerActiveDEPRECATED() const;
 
@@ -10269,12 +10383,15 @@ public:
 
   inline  ::cereal::LongitudinalPersonality getPersonalityDEPRECATED() const;
 
+<<<<<<< HEAD
   inline bool getShouldStop() const;
 
   inline bool getAllowThrottle() const;
 
   inline bool getAllowBrake() const;
 
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 private:
   ::capnp::_::StructReader _reader;
   template <typename, ::capnp::Kind>
@@ -10370,8 +10487,13 @@ public:
   inline float getACruiseDEPRECATED();
   inline void setACruiseDEPRECATED(float value);
 
+<<<<<<< HEAD
   inline float getATarget();
   inline void setATarget(float value);
+=======
+  inline float getATargetDEPRECATED();
+  inline void setATargetDEPRECATED(float value);
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
   inline bool getGpsPlannerActiveDEPRECATED();
   inline void setGpsPlannerActiveDEPRECATED(bool value);
@@ -10442,6 +10564,7 @@ public:
   inline  ::cereal::LongitudinalPersonality getPersonalityDEPRECATED();
   inline void setPersonalityDEPRECATED( ::cereal::LongitudinalPersonality value);
 
+<<<<<<< HEAD
   inline bool getShouldStop();
   inline void setShouldStop(bool value);
 
@@ -10451,6 +10574,8 @@ public:
   inline bool getAllowBrake();
   inline void setAllowBrake(bool value);
 
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 private:
   ::capnp::_::StructBuilder _builder;
   template <typename, ::capnp::Kind>
@@ -10724,11 +10849,19 @@ public:
 
   inline bool getPosenetValidDEPRECATED() const;
 
+<<<<<<< HEAD
   inline  ::cereal::Desire getDesire() const;
 
   inline  ::cereal::LaneChangeState getLaneChangeState() const;
 
   inline  ::cereal::LaneChangeDirection getLaneChangeDirection() const;
+=======
+  inline  ::cereal::LateralPlan::Desire getDesire() const;
+
+  inline  ::cereal::LateralPlan::LaneChangeState getLaneChangeState() const;
+
+  inline  ::cereal::LateralPlan::LaneChangeDirection getLaneChangeDirection() const;
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
   inline bool hasDPathPoints() const;
   inline  ::capnp::List<float,  ::capnp::Kind::PRIMITIVE>::Reader getDPathPoints() const;
@@ -10862,6 +10995,7 @@ public:
   inline bool getPosenetValidDEPRECATED();
   inline void setPosenetValidDEPRECATED(bool value);
 
+<<<<<<< HEAD
   inline  ::cereal::Desire getDesire();
   inline void setDesire( ::cereal::Desire value);
 
@@ -10870,6 +11004,16 @@ public:
 
   inline  ::cereal::LaneChangeDirection getLaneChangeDirection();
   inline void setLaneChangeDirection( ::cereal::LaneChangeDirection value);
+=======
+  inline  ::cereal::LateralPlan::Desire getDesire();
+  inline void setDesire( ::cereal::LateralPlan::Desire value);
+
+  inline  ::cereal::LateralPlan::LaneChangeState getLaneChangeState();
+  inline void setLaneChangeState( ::cereal::LateralPlan::LaneChangeState value);
+
+  inline  ::cereal::LateralPlan::LaneChangeDirection getLaneChangeDirection();
+  inline void setLaneChangeDirection( ::cereal::LateralPlan::LaneChangeDirection value);
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
   inline bool hasDPathPoints();
   inline  ::capnp::List<float,  ::capnp::Kind::PRIMITIVE>::Builder getDPathPoints();
@@ -11451,6 +11595,7 @@ private:
 };
 #endif  // !CAPNP_LITE
 
+<<<<<<< HEAD
 class LivePose::Reader {
 public:
   typedef LivePose Reads;
@@ -11796,6 +11941,8 @@ private:
 };
 #endif  // !CAPNP_LITE
 
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 class ProcLog::Reader {
 public:
   typedef ProcLog Reads;
@@ -20068,9 +20215,15 @@ public:
   inline bool hasMapRenderState() const;
   inline  ::cereal::MapRenderState::Reader getMapRenderState() const;
 
+<<<<<<< HEAD
   inline bool isUiPlanDEPRECATED() const;
   inline bool hasUiPlanDEPRECATED() const;
   inline  ::cereal::UiPlan::Reader getUiPlanDEPRECATED() const;
+=======
+  inline bool isUiPlan() const;
+  inline bool hasUiPlan() const;
+  inline  ::cereal::UiPlan::Reader getUiPlan() const;
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
   inline bool isControlsStateSP() const;
   inline bool hasControlsStateSP() const;
@@ -20156,6 +20309,7 @@ public:
   inline bool hasCarOutput() const;
   inline  ::cereal::CarOutput::Reader getCarOutput() const;
 
+<<<<<<< HEAD
   inline bool isDrivingModelData() const;
   inline bool hasDrivingModelData() const;
   inline  ::cereal::DrivingModelData::Reader getDrivingModelData() const;
@@ -20164,6 +20318,8 @@ public:
   inline bool hasLivePose() const;
   inline  ::cereal::LivePose::Reader getLivePose() const;
 
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 private:
   ::capnp::_::StructReader _reader;
   template <typename, ::capnp::Kind>
@@ -21031,6 +21187,7 @@ public:
   inline void adoptMapRenderState(::capnp::Orphan< ::cereal::MapRenderState>&& value);
   inline ::capnp::Orphan< ::cereal::MapRenderState> disownMapRenderState();
 
+<<<<<<< HEAD
   inline bool isUiPlanDEPRECATED();
   inline bool hasUiPlanDEPRECATED();
   inline  ::cereal::UiPlan::Builder getUiPlanDEPRECATED();
@@ -21038,6 +21195,15 @@ public:
   inline  ::cereal::UiPlan::Builder initUiPlanDEPRECATED();
   inline void adoptUiPlanDEPRECATED(::capnp::Orphan< ::cereal::UiPlan>&& value);
   inline ::capnp::Orphan< ::cereal::UiPlan> disownUiPlanDEPRECATED();
+=======
+  inline bool isUiPlan();
+  inline bool hasUiPlan();
+  inline  ::cereal::UiPlan::Builder getUiPlan();
+  inline void setUiPlan( ::cereal::UiPlan::Reader value);
+  inline  ::cereal::UiPlan::Builder initUiPlan();
+  inline void adoptUiPlan(::capnp::Orphan< ::cereal::UiPlan>&& value);
+  inline ::capnp::Orphan< ::cereal::UiPlan> disownUiPlan();
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
   inline bool isControlsStateSP();
   inline bool hasControlsStateSP();
@@ -21207,6 +21373,7 @@ public:
   inline void adoptCarOutput(::capnp::Orphan< ::cereal::CarOutput>&& value);
   inline ::capnp::Orphan< ::cereal::CarOutput> disownCarOutput();
 
+<<<<<<< HEAD
   inline bool isDrivingModelData();
   inline bool hasDrivingModelData();
   inline  ::cereal::DrivingModelData::Builder getDrivingModelData();
@@ -21223,6 +21390,8 @@ public:
   inline void adoptLivePose(::capnp::Orphan< ::cereal::LivePose>&& value);
   inline ::capnp::Orphan< ::cereal::LivePose> disownLivePose();
 
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 private:
   ::capnp::_::StructBuilder _builder;
   template <typename, ::capnp::Kind>
@@ -22170,6 +22339,7 @@ inline ::capnp::Orphan< ::capnp::Text> InitData::Builder::disownGitCommitDate() 
       ::capnp::bounded<17>() * ::capnp::POINTERS));
 }
 
+<<<<<<< HEAD
 inline bool InitData::Reader::hasBootlogId() const {
   return !_reader.getPointerField(
       ::capnp::bounded<18>() * ::capnp::POINTERS).isNull();
@@ -22204,6 +22374,8 @@ inline ::capnp::Orphan< ::capnp::Text> InitData::Builder::disownBootlogId() {
       ::capnp::bounded<18>() * ::capnp::POINTERS));
 }
 
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 inline bool InitData::PandaInfo::Reader::getHasPanda() const {
   return _reader.getDataField<bool>(
       ::capnp::bounded<0>() * ::capnp::ELEMENTS);
@@ -23595,6 +23767,7 @@ inline ::capnp::Orphan< ::capnp::Data> FrameData::Builder::disownImage() {
       ::capnp::bounded<0>() * ::capnp::POINTERS));
 }
 
+<<<<<<< HEAD
 inline  ::cereal::FrameData::FrameTypeDEPRECATED FrameData::Reader::getFrameTypeDEPRECATED() const {
   return _reader.getDataField< ::cereal::FrameData::FrameTypeDEPRECATED>(
       ::capnp::bounded<14>() * ::capnp::ELEMENTS);
@@ -23606,6 +23779,19 @@ inline  ::cereal::FrameData::FrameTypeDEPRECATED FrameData::Builder::getFrameTyp
 }
 inline void FrameData::Builder::setFrameTypeDEPRECATED( ::cereal::FrameData::FrameTypeDEPRECATED value) {
   _builder.setDataField< ::cereal::FrameData::FrameTypeDEPRECATED>(
+=======
+inline  ::cereal::FrameData::FrameType FrameData::Reader::getFrameType() const {
+  return _reader.getDataField< ::cereal::FrameData::FrameType>(
+      ::capnp::bounded<14>() * ::capnp::ELEMENTS);
+}
+
+inline  ::cereal::FrameData::FrameType FrameData::Builder::getFrameType() {
+  return _builder.getDataField< ::cereal::FrameData::FrameType>(
+      ::capnp::bounded<14>() * ::capnp::ELEMENTS);
+}
+inline void FrameData::Builder::setFrameType( ::cereal::FrameData::FrameType value) {
+  _builder.setDataField< ::cereal::FrameData::FrameType>(
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
       ::capnp::bounded<14>() * ::capnp::ELEMENTS, value);
 }
 
@@ -25167,16 +25353,28 @@ inline void CanData::Builder::setAddress( ::uint32_t value) {
       ::capnp::bounded<0>() * ::capnp::ELEMENTS, value);
 }
 
+<<<<<<< HEAD
 inline  ::uint16_t CanData::Reader::getBusTimeDEPRECATED() const {
+=======
+inline  ::uint16_t CanData::Reader::getBusTime() const {
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
   return _reader.getDataField< ::uint16_t>(
       ::capnp::bounded<2>() * ::capnp::ELEMENTS);
 }
 
+<<<<<<< HEAD
 inline  ::uint16_t CanData::Builder::getBusTimeDEPRECATED() {
   return _builder.getDataField< ::uint16_t>(
       ::capnp::bounded<2>() * ::capnp::ELEMENTS);
 }
 inline void CanData::Builder::setBusTimeDEPRECATED( ::uint16_t value) {
+=======
+inline  ::uint16_t CanData::Builder::getBusTime() {
+  return _builder.getDataField< ::uint16_t>(
+      ::capnp::bounded<2>() * ::capnp::ELEMENTS);
+}
+inline void CanData::Builder::setBusTime( ::uint16_t value) {
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
   _builder.setDataField< ::uint16_t>(
       ::capnp::bounded<2>() * ::capnp::ELEMENTS, value);
 }
@@ -28474,16 +28672,28 @@ inline void ControlsState::Builder::setAEgoDEPRECATED(float value) {
       ::capnp::bounded<1>() * ::capnp::ELEMENTS, value);
 }
 
+<<<<<<< HEAD
 inline float ControlsState::Reader::getVPidDEPRECATED() const {
+=======
+inline float ControlsState::Reader::getVPid() const {
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
   return _reader.getDataField<float>(
       ::capnp::bounded<2>() * ::capnp::ELEMENTS);
 }
 
+<<<<<<< HEAD
 inline float ControlsState::Builder::getVPidDEPRECATED() {
   return _builder.getDataField<float>(
       ::capnp::bounded<2>() * ::capnp::ELEMENTS);
 }
 inline void ControlsState::Builder::setVPidDEPRECATED(float value) {
+=======
+inline float ControlsState::Builder::getVPid() {
+  return _builder.getDataField<float>(
+      ::capnp::bounded<2>() * ::capnp::ELEMENTS);
+}
+inline void ControlsState::Builder::setVPid(float value) {
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
   _builder.setDataField<float>(
       ::capnp::bounded<2>() * ::capnp::ELEMENTS, value);
 }
@@ -30619,6 +30829,7 @@ inline ::capnp::Orphan< ::cereal::ControlsState::LateralCurvatureState> Controls
       ::capnp::bounded<5>() * ::capnp::POINTERS));
 }
 
+<<<<<<< HEAD
 inline  ::uint32_t DrivingModelData::Reader::getFrameId() const {
   return _reader.getDataField< ::uint32_t>(
       ::capnp::bounded<0>() * ::capnp::ELEMENTS);
@@ -31015,6 +31226,8 @@ inline void DrivingModelData::MetaData::Builder::setLaneChangeDirection( ::cerea
       ::capnp::bounded<1>() * ::capnp::ELEMENTS, value);
 }
 
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 inline bool XYZTData::Reader::hasX() const {
   return !_reader.getPointerField(
       ::capnp::bounded<0>() * ::capnp::POINTERS).isNull();
@@ -34078,16 +34291,28 @@ inline void LongitudinalPlan::Builder::setACruiseDEPRECATED(float value) {
       ::capnp::bounded<12>() * ::capnp::ELEMENTS, value);
 }
 
+<<<<<<< HEAD
 inline float LongitudinalPlan::Reader::getATarget() const {
+=======
+inline float LongitudinalPlan::Reader::getATargetDEPRECATED() const {
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
   return _reader.getDataField<float>(
       ::capnp::bounded<13>() * ::capnp::ELEMENTS);
 }
 
+<<<<<<< HEAD
 inline float LongitudinalPlan::Builder::getATarget() {
   return _builder.getDataField<float>(
       ::capnp::bounded<13>() * ::capnp::ELEMENTS);
 }
 inline void LongitudinalPlan::Builder::setATarget(float value) {
+=======
+inline float LongitudinalPlan::Builder::getATargetDEPRECATED() {
+  return _builder.getDataField<float>(
+      ::capnp::bounded<13>() * ::capnp::ELEMENTS);
+}
+inline void LongitudinalPlan::Builder::setATargetDEPRECATED(float value) {
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
   _builder.setDataField<float>(
       ::capnp::bounded<13>() * ::capnp::ELEMENTS, value);
 }
@@ -34416,6 +34641,7 @@ inline void LongitudinalPlan::Builder::setPersonalityDEPRECATED( ::cereal::Longi
       ::capnp::bounded<40>() * ::capnp::ELEMENTS, value);
 }
 
+<<<<<<< HEAD
 inline bool LongitudinalPlan::Reader::getShouldStop() const {
   return _reader.getDataField<bool>(
       ::capnp::bounded<12>() * ::capnp::ELEMENTS);
@@ -34458,6 +34684,8 @@ inline void LongitudinalPlan::Builder::setAllowBrake(bool value) {
       ::capnp::bounded<14>() * ::capnp::ELEMENTS, value);
 }
 
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 inline bool LongitudinalPlan::GpsTrajectory::Reader::hasX() const {
   return !_reader.getPointerField(
       ::capnp::bounded<0>() * ::capnp::POINTERS).isNull();
@@ -34959,6 +35187,7 @@ inline void LateralPlan::Builder::setPosenetValidDEPRECATED(bool value) {
       ::capnp::bounded<165>() * ::capnp::ELEMENTS, value);
 }
 
+<<<<<<< HEAD
 inline  ::cereal::Desire LateralPlan::Reader::getDesire() const {
   return _reader.getDataField< ::cereal::Desire>(
       ::capnp::bounded<11>() * ::capnp::ELEMENTS);
@@ -34998,6 +35227,47 @@ inline  ::cereal::LaneChangeDirection LateralPlan::Builder::getLaneChangeDirecti
 }
 inline void LateralPlan::Builder::setLaneChangeDirection( ::cereal::LaneChangeDirection value) {
   _builder.setDataField< ::cereal::LaneChangeDirection>(
+=======
+inline  ::cereal::LateralPlan::Desire LateralPlan::Reader::getDesire() const {
+  return _reader.getDataField< ::cereal::LateralPlan::Desire>(
+      ::capnp::bounded<11>() * ::capnp::ELEMENTS);
+}
+
+inline  ::cereal::LateralPlan::Desire LateralPlan::Builder::getDesire() {
+  return _builder.getDataField< ::cereal::LateralPlan::Desire>(
+      ::capnp::bounded<11>() * ::capnp::ELEMENTS);
+}
+inline void LateralPlan::Builder::setDesire( ::cereal::LateralPlan::Desire value) {
+  _builder.setDataField< ::cereal::LateralPlan::Desire>(
+      ::capnp::bounded<11>() * ::capnp::ELEMENTS, value);
+}
+
+inline  ::cereal::LateralPlan::LaneChangeState LateralPlan::Reader::getLaneChangeState() const {
+  return _reader.getDataField< ::cereal::LateralPlan::LaneChangeState>(
+      ::capnp::bounded<16>() * ::capnp::ELEMENTS);
+}
+
+inline  ::cereal::LateralPlan::LaneChangeState LateralPlan::Builder::getLaneChangeState() {
+  return _builder.getDataField< ::cereal::LateralPlan::LaneChangeState>(
+      ::capnp::bounded<16>() * ::capnp::ELEMENTS);
+}
+inline void LateralPlan::Builder::setLaneChangeState( ::cereal::LateralPlan::LaneChangeState value) {
+  _builder.setDataField< ::cereal::LateralPlan::LaneChangeState>(
+      ::capnp::bounded<16>() * ::capnp::ELEMENTS, value);
+}
+
+inline  ::cereal::LateralPlan::LaneChangeDirection LateralPlan::Reader::getLaneChangeDirection() const {
+  return _reader.getDataField< ::cereal::LateralPlan::LaneChangeDirection>(
+      ::capnp::bounded<17>() * ::capnp::ELEMENTS);
+}
+
+inline  ::cereal::LateralPlan::LaneChangeDirection LateralPlan::Builder::getLaneChangeDirection() {
+  return _builder.getDataField< ::cereal::LateralPlan::LaneChangeDirection>(
+      ::capnp::bounded<17>() * ::capnp::ELEMENTS);
+}
+inline void LateralPlan::Builder::setLaneChangeDirection( ::cereal::LateralPlan::LaneChangeDirection value) {
+  _builder.setDataField< ::cereal::LateralPlan::LaneChangeDirection>(
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
       ::capnp::bounded<17>() * ::capnp::ELEMENTS, value);
 }
 
@@ -36237,6 +36507,7 @@ inline void LiveLocationKalman::Measurement::Builder::setValid(bool value) {
       ::capnp::bounded<0>() * ::capnp::ELEMENTS, value);
 }
 
+<<<<<<< HEAD
 inline bool LivePose::Reader::hasOrientationNED() const {
   return !_reader.getPointerField(
       ::capnp::bounded<0>() * ::capnp::POINTERS).isNull();
@@ -36662,6 +36933,8 @@ inline void LivePose::FilterState::Builder::setValid(bool value) {
       ::capnp::bounded<0>() * ::capnp::ELEMENTS, value);
 }
 
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 inline bool ProcLog::Reader::hasCpuTimes() const {
   return !_reader.getPointerField(
       ::capnp::bounded<0>() * ::capnp::POINTERS).isNull();
@@ -53901,6 +54174,7 @@ inline ::capnp::Orphan< ::cereal::MapRenderState> Event::Builder::disownMapRende
       ::capnp::bounded<0>() * ::capnp::POINTERS));
 }
 
+<<<<<<< HEAD
 inline bool Event::Reader::isUiPlanDEPRECATED() const {
   return which() == Event::UI_PLAN_D_E_P_R_E_C_A_T_E_D;
 }
@@ -53919,16 +54193,42 @@ inline bool Event::Builder::hasUiPlanDEPRECATED() {
 }
 inline  ::cereal::UiPlan::Reader Event::Reader::getUiPlanDEPRECATED() const {
   KJ_IREQUIRE((which() == Event::UI_PLAN_D_E_P_R_E_C_A_T_E_D),
+=======
+inline bool Event::Reader::isUiPlan() const {
+  return which() == Event::UI_PLAN;
+}
+inline bool Event::Builder::isUiPlan() {
+  return which() == Event::UI_PLAN;
+}
+inline bool Event::Reader::hasUiPlan() const {
+  if (which() != Event::UI_PLAN) return false;
+  return !_reader.getPointerField(
+      ::capnp::bounded<0>() * ::capnp::POINTERS).isNull();
+}
+inline bool Event::Builder::hasUiPlan() {
+  if (which() != Event::UI_PLAN) return false;
+  return !_builder.getPointerField(
+      ::capnp::bounded<0>() * ::capnp::POINTERS).isNull();
+}
+inline  ::cereal::UiPlan::Reader Event::Reader::getUiPlan() const {
+  KJ_IREQUIRE((which() == Event::UI_PLAN),
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
               "Must check which() before get()ing a union member.");
   return ::capnp::_::PointerHelpers< ::cereal::UiPlan>::get(_reader.getPointerField(
       ::capnp::bounded<0>() * ::capnp::POINTERS));
 }
+<<<<<<< HEAD
 inline  ::cereal::UiPlan::Builder Event::Builder::getUiPlanDEPRECATED() {
   KJ_IREQUIRE((which() == Event::UI_PLAN_D_E_P_R_E_C_A_T_E_D),
+=======
+inline  ::cereal::UiPlan::Builder Event::Builder::getUiPlan() {
+  KJ_IREQUIRE((which() == Event::UI_PLAN),
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
               "Must check which() before get()ing a union member.");
   return ::capnp::_::PointerHelpers< ::cereal::UiPlan>::get(_builder.getPointerField(
       ::capnp::bounded<0>() * ::capnp::POINTERS));
 }
+<<<<<<< HEAD
 inline void Event::Builder::setUiPlanDEPRECATED( ::cereal::UiPlan::Reader value) {
   _builder.setDataField<Event::Which>(
       ::capnp::bounded<4>() * ::capnp::ELEMENTS, Event::UI_PLAN_D_E_P_R_E_C_A_T_E_D);
@@ -53950,6 +54250,29 @@ inline void Event::Builder::adoptUiPlanDEPRECATED(
 }
 inline ::capnp::Orphan< ::cereal::UiPlan> Event::Builder::disownUiPlanDEPRECATED() {
   KJ_IREQUIRE((which() == Event::UI_PLAN_D_E_P_R_E_C_A_T_E_D),
+=======
+inline void Event::Builder::setUiPlan( ::cereal::UiPlan::Reader value) {
+  _builder.setDataField<Event::Which>(
+      ::capnp::bounded<4>() * ::capnp::ELEMENTS, Event::UI_PLAN);
+  ::capnp::_::PointerHelpers< ::cereal::UiPlan>::set(_builder.getPointerField(
+      ::capnp::bounded<0>() * ::capnp::POINTERS), value);
+}
+inline  ::cereal::UiPlan::Builder Event::Builder::initUiPlan() {
+  _builder.setDataField<Event::Which>(
+      ::capnp::bounded<4>() * ::capnp::ELEMENTS, Event::UI_PLAN);
+  return ::capnp::_::PointerHelpers< ::cereal::UiPlan>::init(_builder.getPointerField(
+      ::capnp::bounded<0>() * ::capnp::POINTERS));
+}
+inline void Event::Builder::adoptUiPlan(
+    ::capnp::Orphan< ::cereal::UiPlan>&& value) {
+  _builder.setDataField<Event::Which>(
+      ::capnp::bounded<4>() * ::capnp::ELEMENTS, Event::UI_PLAN);
+  ::capnp::_::PointerHelpers< ::cereal::UiPlan>::adopt(_builder.getPointerField(
+      ::capnp::bounded<0>() * ::capnp::POINTERS), kj::mv(value));
+}
+inline ::capnp::Orphan< ::cereal::UiPlan> Event::Builder::disownUiPlan() {
+  KJ_IREQUIRE((which() == Event::UI_PLAN),
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
               "Must check which() before get()ing a union member.");
   return ::capnp::_::PointerHelpers< ::cereal::UiPlan>::disown(_builder.getPointerField(
       ::capnp::bounded<0>() * ::capnp::POINTERS));
@@ -55089,6 +55412,7 @@ inline ::capnp::Orphan< ::cereal::CarOutput> Event::Builder::disownCarOutput() {
       ::capnp::bounded<0>() * ::capnp::POINTERS));
 }
 
+<<<<<<< HEAD
 inline bool Event::Reader::isDrivingModelData() const {
   return which() == Event::DRIVING_MODEL_DATA;
 }
@@ -55197,6 +55521,8 @@ inline ::capnp::Orphan< ::cereal::LivePose> Event::Builder::disownLivePose() {
       ::capnp::bounded<0>() * ::capnp::POINTERS));
 }
 
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 }  // namespace
 
 CAPNP_END_HEADER

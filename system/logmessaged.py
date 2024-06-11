@@ -31,7 +31,11 @@ def main() -> NoReturn:
 
       if len(record) > 2*1024*1024:
         print("WARNING: log too big to publish", len(record))
+<<<<<<< HEAD
         print(record[:100])
+=======
+        print(print(record[:100]))
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
         continue
 
       # then we publish them

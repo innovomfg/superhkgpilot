@@ -45,12 +45,18 @@ public:
   bool are_inputs_ok();
   void observation_timings_invalid_reset();
 
+<<<<<<< HEAD
   void build_location_message(
     MessageBuilder& msg_builder, bool inputsOK, bool sensorsOK, bool gpsOK, bool msgValid);
   void build_pose_message(
   MessageBuilder& msg_builder, MessageBuilder& location_msg_builder, bool inputsOK, bool sensorsOK, bool msgValid);
   void build_live_location(cereal::LiveLocationKalman::Builder& fix);
   void build_live_pose(cereal::LivePose::Builder& livePose, cereal::LiveLocationKalman::Reader& liveLocation);
+=======
+  kj::ArrayPtr<capnp::byte> get_message_bytes(MessageBuilder& msg_builder,
+    bool inputsOK, bool sensorsOK, bool gpsOK, bool msgValid);
+  void build_live_location(cereal::LiveLocationKalman::Builder& fix);
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
   Eigen::VectorXd get_position_geodetic();
   Eigen::VectorXd get_state();

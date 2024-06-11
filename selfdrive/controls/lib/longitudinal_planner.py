@@ -3,7 +3,11 @@ import math
 import numpy as np
 from openpilot.common.numpy_fast import clip, interp
 from openpilot.common.params import Params
+<<<<<<< HEAD
 from cereal import car, log, custom
+=======
+from cereal import car
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
 import cereal.messaging as messaging
 from openpilot.common.conversions import Conversions as CV
@@ -12,7 +16,10 @@ from openpilot.common.realtime import DT_MDL
 from openpilot.selfdrive.modeld.constants import ModelConstants
 from openpilot.selfdrive.controls.lib.sunnypilot.common import Source
 from openpilot.selfdrive.controls.lib.sunnypilot.speed_limit_controller import SpeedLimitController
+<<<<<<< HEAD
 from openpilot.selfdrive.car.hyundai.values import HyundaiFlags
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 from openpilot.selfdrive.car.interfaces import ACCEL_MIN, ACCEL_MAX
 from openpilot.selfdrive.controls.lib.longcontrol import LongCtrlState
 from openpilot.selfdrive.controls.lib.longitudinal_mpc_lib.long_mpc import LongitudinalMpc
@@ -20,8 +27,12 @@ from openpilot.selfdrive.controls.lib.longitudinal_mpc_lib.long_mpc import T_IDX
 from openpilot.selfdrive.controls.lib.drive_helpers import V_CRUISE_MAX, CONTROL_N, get_speed_error
 from openpilot.selfdrive.controls.lib.vision_turn_controller import VisionTurnController
 from openpilot.selfdrive.controls.lib.turn_speed_controller import TurnSpeedController
+<<<<<<< HEAD
 from openpilot.selfdrive.controls.lib.sunnypilot.accel_controller import AccelController
 from openpilot.selfdrive.controls.lib.sunnypilot.dynamic_experimental_controller import DynamicExperimentalController
+=======
+from openpilot.selfdrive.controls.lib.dynamic_experimental_controller import DynamicExperimentalController
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 from openpilot.selfdrive.controls.lib.events import Events
 from openpilot.common.swaglog import cloudlog
 
@@ -29,14 +40,20 @@ LON_MPC_STEP = 0.2  # first step is 0.2s
 A_CRUISE_MIN = -1.2
 A_CRUISE_MAX_VALS = [1.6, 1.2, 0.8, 0.6]
 A_CRUISE_MAX_BP = [0., 10.0, 25., 40.]
+<<<<<<< HEAD
 CONTROL_N_T_IDX = ModelConstants.T_IDXS[:CONTROL_N]
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
 # Lookup table for turns
 _A_TOTAL_MAX_V = [1.7, 3.2]
 _A_TOTAL_MAX_BP = [20., 40.]
 
 
+<<<<<<< HEAD
 MpcSource = custom.MpcSource
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 EventName = car.CarEvent.EventName
 
 
@@ -49,6 +66,10 @@ def limit_accel_in_turns(v_ego, angle_steers, a_target, CP):
   This function returns a limited long acceleration allowed, depending on the existing lateral acceleration
   this should avoid accelerating when losing the target in turns
   """
+<<<<<<< HEAD
+=======
+
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
   # FIXME: This function to calculate lateral accel is incorrect and should use the VehicleModel
   # The lookup table for turns should also be updated if we do this
   a_total_max = interp(v_ego, _A_TOTAL_MAX_BP, _A_TOTAL_MAX_V)
@@ -58,6 +79,7 @@ def limit_accel_in_turns(v_ego, angle_steers, a_target, CP):
   return [a_target[0], min(a_target[1], a_x_allowed)]
 
 
+<<<<<<< HEAD
 def get_accel_from_plan(CP, speeds, accels):
   if len(speeds) == CONTROL_N:
     v_target_now = interp(DT_MDL, CONTROL_N_T_IDX, speeds)
@@ -76,6 +98,8 @@ def get_accel_from_plan(CP, speeds, accels):
   return a_target, should_stop
 
 
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 class LongitudinalPlanner:
   def __init__(self, CP, init_v=0.0, init_a=0.0, dt=DT_MDL):
     self.CP = CP
@@ -84,8 +108,12 @@ class LongitudinalPlanner:
     self.dt = dt
 
     self.a_desired = init_a
+<<<<<<< HEAD
     v_ego_sec = 0.6 if CP.carName == "hyundai" and not CP.flags & (HyundaiFlags.HYBRID | HyundaiFlags.EV) else 2.0
     self.v_desired_filter = FirstOrderFilter(init_v, v_ego_sec, self.dt)
+=======
+    self.v_desired_filter = FirstOrderFilter(init_v, 2.0, self.dt)
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
     self.v_model_error = 0.0
 
     self.v_desired_trajectory = np.zeros(CONTROL_N)
@@ -102,13 +130,17 @@ class LongitudinalPlanner:
     self.events = Events()
     self.turn_speed_controller = TurnSpeedController()
     self.dynamic_experimental_controller = DynamicExperimentalController()
+<<<<<<< HEAD
     self.accel_controller = AccelController()
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
   def read_param(self):
     try:
       self.dynamic_experimental_controller.set_enabled(self.params.get_bool("DynamicExperimentalControl"))
     except AttributeError:
       self.dynamic_experimental_controller = DynamicExperimentalController()
+<<<<<<< HEAD
       self.accel_controller = AccelController()
 
   @staticmethod
@@ -116,6 +148,14 @@ class LongitudinalPlanner:
     if (len(model_msg.position.x) == ModelConstants.IDX_N and
       len(model_msg.velocity.x) == ModelConstants.IDX_N and
       len(model_msg.acceleration.x) == ModelConstants.IDX_N):
+=======
+
+  @staticmethod
+  def parse_model(model_msg, model_error):
+    if (len(model_msg.position.x) == 33 and
+       len(model_msg.velocity.x) == 33 and
+       len(model_msg.acceleration.x) == 33):
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
       x = np.interp(T_IDXS_MPC, ModelConstants.T_IDXS, model_msg.position.x) - model_error * T_IDXS_MPC
       v = np.interp(T_IDXS_MPC, ModelConstants.T_IDXS, model_msg.velocity.x) - model_error
       a = np.interp(T_IDXS_MPC, ModelConstants.T_IDXS, model_msg.acceleration.x)
@@ -132,6 +172,7 @@ class LongitudinalPlanner:
       self.read_param()
     self.param_read_counter += 1
     if self.dynamic_experimental_controller.is_enabled() and sm['controlsState'].experimentalMode:
+<<<<<<< HEAD
       self.dynamic_experimental_controller.set_mpc_fcw_crash_cnt(self.mpc.crash_cnt)
       self.dynamic_experimental_controller.update(self.CP.radarUnavailable, sm['carState'], sm['radarState'].leadOne, sm['modelV2'], sm['controlsState'], sm['navInstruction'].maneuverDistance)
       self.mpc.mode = self.dynamic_experimental_controller.get_mpc_mode()
@@ -139,6 +180,12 @@ class LongitudinalPlanner:
       self.mpc.mode = 'blended' if sm['controlsState'].experimentalMode else 'acc'
 
 
+=======
+      self.mpc.mode = self.dynamic_experimental_controller.get_mpc_mode(self.CP.radarUnavailable, sm['carState'], sm['radarState'].leadOne, sm['modelV2'], sm['controlsState'], sm['navInstruction'].maneuverDistance)
+    else:
+      self.mpc.mode = 'blended' if sm['controlsState'].experimentalMode else 'acc'
+
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
     v_ego = sm['carState'].vEgo
     v_cruise_kph = min(sm['controlsState'].vCruise, V_CRUISE_MAX)
     v_cruise = v_cruise_kph * CV.KPH_TO_MS
@@ -159,6 +206,7 @@ class LongitudinalPlanner:
       accel_limits = [ACCEL_MIN, ACCEL_MAX]
       accel_limits_turns = [ACCEL_MIN, ACCEL_MAX]
 
+<<<<<<< HEAD
     overtaking_accel_engaged = sm['controlsStateSP'].overtakingAccelerationAssist
     # override accel using Accel Controller
     if self.accel_controller.is_enabled(accel_personality=custom.AccelerationPersonality.sport if overtaking_accel_engaged else
@@ -175,6 +223,8 @@ class LongitudinalPlanner:
         accel_limits = [ACCEL_MIN, ACCEL_MAX]
         accel_limits_turns = [ACCEL_MIN, ACCEL_MAX]
 
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
     if reset_state:
       self.v_desired_filter.x = v_ego
       # Clip aEgo to cruise limits to prevent large accelerations when becoming active
@@ -197,6 +247,7 @@ class LongitudinalPlanner:
     accel_limits_turns[0] = min(accel_limits_turns[0], self.a_desired + 0.05)
     accel_limits_turns[1] = max(accel_limits_turns[1], self.a_desired - 0.05)
 
+<<<<<<< HEAD
     self.mpc.set_weights(prev_accel_constraint, personality=custom.LongitudinalPersonalitySP.overtake if overtaking_accel_engaged else sm['controlsStateSP'].personality)
     self.mpc.set_accel_limits(accel_limits_turns[0], accel_limits_turns[1])
     self.mpc.set_cur_state(self.v_desired_filter.x, self.a_desired)
@@ -207,6 +258,19 @@ class LongitudinalPlanner:
     self.v_desired_trajectory = np.interp(CONTROL_N_T_IDX, T_IDXS_MPC, self.mpc.v_solution)
     self.a_desired_trajectory = np.interp(CONTROL_N_T_IDX, T_IDXS_MPC, self.mpc.a_solution)
     self.j_desired_trajectory = np.interp(CONTROL_N_T_IDX, T_IDXS_MPC[:-1], self.mpc.j_solution)
+=======
+    self.mpc.set_weights(prev_accel_constraint, personality=sm['controlsState'].personality)
+    self.mpc.set_accel_limits(accel_limits_turns[0], accel_limits_turns[1])
+    self.mpc.set_cur_state(self.v_desired_filter.x, self.a_desired)
+    x, v, a, j = self.parse_model(sm['modelV2'], self.v_model_error)
+    self.mpc.update(sm['radarState'], v_cruise, x, v, a, j, personality=sm['controlsState'].personality)
+
+    self.v_desired_trajectory_full = np.interp(ModelConstants.T_IDXS, T_IDXS_MPC, self.mpc.v_solution)
+    self.a_desired_trajectory_full = np.interp(ModelConstants.T_IDXS, T_IDXS_MPC, self.mpc.a_solution)
+    self.v_desired_trajectory = self.v_desired_trajectory_full[:CONTROL_N]
+    self.a_desired_trajectory = self.a_desired_trajectory_full[:CONTROL_N]
+    self.j_desired_trajectory = np.interp(ModelConstants.T_IDXS[:CONTROL_N], T_IDXS_MPC[:-1], self.mpc.j_solution)
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
     # TODO counter is only needed because radar is glitchy, remove once radar is gone
     self.fcw = self.mpc.crash_cnt > 2 and not sm['carState'].standstill
@@ -215,7 +279,11 @@ class LongitudinalPlanner:
 
     # Interpolate 0.05 seconds and save as starting point for next iteration
     a_prev = self.a_desired
+<<<<<<< HEAD
     self.a_desired = float(interp(self.dt, CONTROL_N_T_IDX, self.a_desired_trajectory))
+=======
+    self.a_desired = float(interp(self.dt, ModelConstants.T_IDXS[:CONTROL_N], self.a_desired_trajectory))
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
     self.v_desired_filter.x = self.v_desired_filter.x + self.dt * (self.a_desired + a_prev) / 2.0
 
     self.e2e_events(sm)
@@ -228,7 +296,10 @@ class LongitudinalPlanner:
     longitudinalPlan = plan_send.longitudinalPlan
     longitudinalPlan.modelMonoTime = sm.logMonoTime['modelV2']
     longitudinalPlan.processingDelay = (plan_send.logMonoTime / 1e9) - sm.logMonoTime['modelV2']
+<<<<<<< HEAD
     longitudinalPlan.solverExecutionTime = self.mpc.solve_time
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
     longitudinalPlan.speeds = self.v_desired_trajectory.tolist()
     longitudinalPlan.accels = self.a_desired_trajectory.tolist()
@@ -238,11 +309,15 @@ class LongitudinalPlanner:
     longitudinalPlan.longitudinalPlanSource = self.mpc.source
     longitudinalPlan.fcw = self.fcw
 
+<<<<<<< HEAD
     a_target, should_stop = get_accel_from_plan(self.CP, longitudinalPlan.speeds, longitudinalPlan.accels)
     longitudinalPlan.aTarget = a_target
     longitudinalPlan.shouldStop = should_stop
     longitudinalPlan.allowBrake = True
     longitudinalPlan.allowThrottle = True
+=======
+    longitudinalPlan.solverExecutionTime = self.mpc.solve_time
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
     pm.send('longitudinalPlan', plan_send)
 
@@ -271,8 +346,12 @@ class LongitudinalPlanner:
     longitudinalPlanSP.turnSpeedControlState = self.turn_speed_controller.state
     longitudinalPlanSP.turnSpeed = float(self.turn_speed_controller.v_target)
 
+<<<<<<< HEAD
     longitudinalPlanSP.mpcSource = MpcSource.blended if self.mpc.mode == 'blended' else MpcSource.acc
     longitudinalPlanSP.dynamicExperimentalControl = self.dynamic_experimental_controller.is_enabled()
+=======
+    longitudinalPlanSP.e2eBlended = self.mpc.mode
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
     pm.send('longitudinalPlanSP', plan_sp_send)
 

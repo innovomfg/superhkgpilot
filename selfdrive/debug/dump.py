@@ -4,6 +4,10 @@ import argparse
 import json
 import codecs
 
+<<<<<<< HEAD
+=======
+from hexdump import hexdump
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 from cereal import log
 from cereal.services import SERVICE_LIST
 from openpilot.tools.lib.live_logreader import raw_live_logreader
@@ -11,6 +15,7 @@ from openpilot.tools.lib.live_logreader import raw_live_logreader
 
 codecs.register_error("strict", codecs.backslashreplace_errors)
 
+<<<<<<< HEAD
 def hexdump(msg):
   m = str.upper(msg.hex())
   m = [m[i:i+2] for i in range(0,len(m),2)]
@@ -23,6 +28,8 @@ def hexdump(msg):
     print(f'{addr} {raw} {space} {asci}')
 
 
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 if __name__ == "__main__":
 
   parser = argparse.ArgumentParser(description='Dump communication sockets. See cereal/services.py for a complete list of available sockets.')

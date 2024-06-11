@@ -3,10 +3,16 @@ import os
 from cereal import car
 from openpilot.common.params import Params
 from openpilot.system.hardware import PC, TICI
+<<<<<<< HEAD
 from openpilot.selfdrive.modeld.custom_model_metadata import CustomModelMetadata, ModelCapabilities
 from openpilot.system.manager.process import PythonProcess, NativeProcess, DaemonProcess
 from openpilot.system.mapd_manager import MAPD_PATH, COMMON_DIR
 from openpilot.system.manager.sunnylink import sunnylink_need_register, sunnylink_ready, use_sunnylink_uploader
+=======
+from openpilot.selfdrive.sunnypilot import get_model_generation
+from openpilot.system.manager.process import PythonProcess, NativeProcess, DaemonProcess
+from openpilot.system.mapd_manager import MAPD_PATH, COMMON_DIR
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
 WEBCAM = os.getenv("USE_WEBCAM") is not None
 
@@ -44,6 +50,7 @@ def only_onroad(started: bool, params, CP: car.CarParams) -> bool:
 def only_offroad(started, params, CP: car.CarParams) -> bool:
   return not started
 
+<<<<<<< HEAD
 def use_gitlab_runner(started, params, CP: car.CarParams) -> bool:
   return not PC and params.get_bool("EnableGitlabRunner") and only_offroad(started, params, CP)
 
@@ -62,6 +69,11 @@ def sunnylink_need_register_shim(started, params, CP: car.CarParams) -> bool:
 def use_sunnylink_uploader_shim(started, params, CP: car.CarParams) -> bool:
   """Shim for use_sunnylink_uploader to match the process manager signature."""
   return use_sunnylink_uploader(params)
+=======
+def model_use_nav(started, params, CP: car.CarParams) -> bool:
+  custom_model, model_gen = get_model_generation(params)
+  return started and custom_model and model_gen not in (0, 4)
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
 procs = [
   DaemonProcess("manage_athenad", "system.athena.manage_athenad", "AthenadPid"),
@@ -84,7 +96,11 @@ procs = [
   NativeProcess("ui", "selfdrive/ui", ["./ui"], always_run, watchdog_max_dt=(5 if not PC else None)),
   PythonProcess("soundd", "selfdrive.ui.soundd", only_onroad),
   NativeProcess("locationd", "selfdrive/locationd", ["./locationd"], only_onroad),
+<<<<<<< HEAD
   NativeProcess("pandad", "selfdrive/pandad", ["./pandad"], always_run, enabled=False),
+=======
+  NativeProcess("boardd", "selfdrive/boardd", ["./boardd"], always_run, enabled=False),
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
   PythonProcess("calibrationd", "selfdrive.locationd.calibrationd", only_onroad),
   PythonProcess("torqued", "selfdrive.locationd.torqued", only_onroad),
   PythonProcess("controlsd", "selfdrive.controls.controlsd", only_onroad),
@@ -94,15 +110,25 @@ procs = [
   PythonProcess("qcomgpsd", "system.qcomgpsd.qcomgpsd", qcomgps, enabled=TICI),
   #PythonProcess("ugpsd", "system.ugpsd", only_onroad, enabled=TICI),
   PythonProcess("navd", "selfdrive.navd.navd", only_onroad),
+<<<<<<< HEAD
   PythonProcess("pandad", "selfdrive.pandad.pandad", always_run),
+=======
+  PythonProcess("pandad", "selfdrive.boardd.pandad", always_run),
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
   PythonProcess("paramsd", "selfdrive.locationd.paramsd", only_onroad),
   NativeProcess("ubloxd", "system/ubloxd", ["./ubloxd"], ublox, enabled=TICI),
   PythonProcess("pigeond", "system.ubloxd.pigeond", ublox, enabled=TICI),
   PythonProcess("plannerd", "selfdrive.controls.plannerd", only_onroad),
   PythonProcess("radard", "selfdrive.controls.radard", only_onroad),
+<<<<<<< HEAD
   PythonProcess("hardwared", "system.hardware.hardwared", always_run),
   PythonProcess("tombstoned", "system.tombstoned", always_run, enabled=not PC),
   NativeProcess("updated", "system/updated", ["./updated.py"], only_offroad, enabled=not PC),
+=======
+  PythonProcess("thermald", "system.thermald.thermald", always_run),
+  PythonProcess("tombstoned", "system.tombstoned", always_run, enabled=not PC),
+  PythonProcess("updated", "system.updated.updated", only_offroad, enabled=not PC),
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
   PythonProcess("uploader", "system.loggerd.uploader", always_run),
   PythonProcess("statsd", "system.statsd", always_run),
 
@@ -118,6 +144,7 @@ procs = [
   NativeProcess("bridge", "cereal/messaging", ["./bridge"], notcar),
   PythonProcess("webrtcd", "system.webrtc.webrtcd", notcar),
   PythonProcess("webjoystick", "tools.bodyteleop.web", notcar),
+<<<<<<< HEAD
 
   # sunnylink <3
   DaemonProcess("manage_sunnylinkd", "system.athena.manage_sunnylinkd", "SunnylinkdPid"),
@@ -129,5 +156,25 @@ if os.path.exists("./gitlab_runner.sh"):
 
 if os.path.exists("../loggerd/sunnylink_uploader.py"):
   procs += [PythonProcess("sunnylink_uploader", "system.loggerd.sunnylink_uploader", use_sunnylink_uploader_shim)]
+=======
+]
+
+if Params().get_bool("SunnylinkEnabled"):
+  if os.path.exists("../athena/manage_sunnylinkd.py"):
+    procs += [
+      DaemonProcess("manage_sunnylinkd", "system.athena.manage_sunnylinkd", "SunnylinkdPid"),
+    ]
+  if os.path.exists("../../system/loggerd/sunnylink_uploader.py"):
+    procs += [
+      PythonProcess("sunnylink_uploader", "system.loggerd.sunnylink_uploader", always_run),
+    ]
+
+if os.path.exists("./gitlab_runner.sh") and not PC:
+  # Only devs!
+  procs += [
+    NativeProcess("gitlab_runner_start", "system/manager", ["./gitlab_runner.sh", "start"], only_offroad, sigkill=False),
+    NativeProcess("gitlab_runner_stop", "system/manager", ["./gitlab_runner.sh", "stop"], only_onroad, sigkill=False)
+  ]
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
 managed_processes = {p.name: p for p in procs}

@@ -1,6 +1,7 @@
 [project]
 name = "openpilot"
 requires-python = ">= 3.11"
+<<<<<<< HEAD
 license = {text = "MIT License"}
 version = "0.1.0"
 description = "an open source driver assistance system"
@@ -115,10 +116,15 @@ dev = [
   # this is only pinned since 5.15.11 is broken
   "pyqt5 ==5.15.2; platform_machine == 'x86_64'", # no aarch64 wheels for macOS/linux
 ]
+=======
+readme = "README.md"
+license = {text = "MIT License"}
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
 [project.urls]
 Homepage = "https://comma.ai"
 
+<<<<<<< HEAD
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
@@ -132,6 +138,11 @@ allow-direct-references = true
 [tool.pytest.ini_options]
 minversion = "6.0"
 addopts = "--ignore=openpilot/ --ignore=opendbc/ --ignore=panda/ --ignore=rednose_repo/ --ignore=tinygrad_repo/ --ignore=teleoprtc_repo/ --ignore=msgq/  -Werror --strict-config --strict-markers --durations=10 -n auto --dist=loadgroup"
+=======
+[tool.pytest.ini_options]
+minversion = "6.0"
+addopts = "--ignore=openpilot/ --ignore=cereal/ --ignore=opendbc/ --ignore=panda/ --ignore=rednose_repo/ --ignore=tinygrad_repo/ --ignore=teleoprtc_repo/ -Werror --strict-config --strict-markers --durations=10 -n auto --dist=loadgroup"
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 cpp_files = "test_*"
 cpp_harness = "selfdrive/test/cpp_harness.py"
 python_files = "test_*.py"
@@ -142,17 +153,32 @@ markers = [
 ]
 testpaths = [
   "common",
+<<<<<<< HEAD
   "selfdrive/pandad",
+=======
+  "selfdrive/boardd",
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
   "selfdrive/car",
   "selfdrive/controls",
   "selfdrive/locationd",
   "selfdrive/monitoring",
+<<<<<<< HEAD
   "selfdrive/test/longitudinal_maneuvers",
   "selfdrive/test/process_replay/test_fuzzy.py",
   "system/updated",
   "system/athena",
   "system/camerad",
   "system/hardware",
+=======
+  "selfdrive/navd/tests",
+  "selfdrive/test/longitudinal_maneuvers",
+  "selfdrive/test/process_replay/test_fuzzy.py",
+  "system/updated",
+  "system/thermald",
+  "system/athena",
+  "system/camerad",
+  "system/hardware/tici",
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
   "system/loggerd",
   "system/proclogd",
   "system/tests",
@@ -160,6 +186,7 @@ testpaths = [
   "system/webrtc",
   "tools/lib/tests",
   "tools/replay",
+<<<<<<< HEAD
   "tools/cabana",
   "cereal/messaging/tests",
 ]
@@ -171,6 +198,11 @@ quiet-level = 3
 ignore-words-list = "bu,ro,te,ue,alo,hda,ois,nam,nams,ned,som,parm,setts,inout,warmup,bumb,nd,sie,preints,whit,indexIn"
 builtin = "clear,rare,informal,usage,code,names,en-GB_to_en-US"
 
+=======
+  "tools/cabana"
+]
+
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 [tool.mypy]
 python_version = "3.11"
 plugins = [
@@ -204,6 +236,115 @@ warn_return_any=true
 # allow implicit optionals for default args
 implicit_optional = true
 
+<<<<<<< HEAD
+=======
+
+[tool.poetry]
+name = "openpilot"
+version = "0.1.0"
+description = "an open source driver assistance system"
+authors = ["Vehicle Researcher <user@comma.ai>"]
+license = "MIT"
+readme = "README.md"
+repository = "https://github.com/commaai/openpilot"
+documentation = "https://docs.comma.ai"
+
+
+[tool.poetry.dependencies]
+python = "~3.11"
+aiohttp = "*"
+aiortc = "*"
+cffi = "*"
+crcmod = "*"
+Cython = "*"
+json-rpc = "*"
+libusb1 = "*"
+numpy = "*"
+onnx = ">=1.14.0"
+onnxruntime = { version = ">=1.16.3", platform = "linux", markers = "platform_machine == 'aarch64'" }
+onnxruntime-gpu = { version = ">=1.16.3", platform = "linux", markers = "platform_machine == 'x86_64'" }
+psutil = "*"
+pyaudio = "*"
+pycapnp = "*"
+pycryptodome = "*"
+PyJWT = "*"
+pyserial = "*"
+pyzmq = "*"
+requests = "*"
+scons = "*"
+sentry-sdk = "*"
+smbus2 = "*"
+sounddevice = "*"
+spidev = { version = "*", platform = "linux" }
+sympy = "*"
+websocket_client = "*"
+
+# acados deps
+casadi = "*"
+future-fstrings = "*"
+
+# these should be removed
+markdown-it-py = "*"
+timezonefinder = "*"
+setproctitle = "*"
+
+[tool.poetry.group.dev.dependencies]
+av = "*"
+azure-identity = "*"
+azure-storage-blob = "*"
+breathe = "*"
+control = "*"
+coverage = "*"
+dictdiffer = "*"
+flaky = "*"
+hypothesis = "~6.47"
+inputs = "*"
+Jinja2 = "*"
+lru-dict = "*"
+matplotlib = "*"
+# No release for this fix https://github.com/metadriverse/metadrive/issues/632. Pinned to this commit until next release
+metadrive-simulator = {git = "https://github.com/metadriverse/metadrive.git", rev ="233a3a1698be7038ec3dd050ca10b547b4b3324c", markers = "platform_machine != 'aarch64'" } # no linux/aarch64 wheels for certain dependencies
+mpld3 = "*"
+mypy = "*"
+myst-parser = "*"
+natsort = "*"
+opencv-python-headless = "*"
+parameterized = "^0.8"
+pprofile = "*"
+polyline = "*"
+pre-commit = "*"
+pyautogui = "*"
+pyopencl = "==2023.1.4"  # 2024.1 is broken on arm64
+pygame = "*"
+pywinctl = "*"
+pyprof2calltree = "*"
+pytest = "*"
+pytest-cov = "*"
+pytest-cpp = "*"
+pytest-subtests = "*"
+pytest-xdist = "*"
+pytest-timeout = "*"
+pytest-randomly = "*"
+pytest-asyncio = "*"
+pytest-mock = "*"
+rerun-sdk = "*"
+ruff = "*"
+sphinx = "*"
+sphinx-rtd-theme = "*"
+sphinx-sitemap = "*"
+tabulate = "*"
+types-requests = "*"
+types-tabulate = "*"
+tqdm = "*"
+
+# this is only pinned since 5.15.11 is broken
+pyqt5 = { version = "==5.15.2", markers = "platform_machine == 'x86_64'" } # no aarch64 wheels for macOS/linux
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 # https://beta.ruff.rs/docs/configuration/#using-pyprojecttoml
 [tool.ruff]
 indent-width = 2
@@ -213,8 +354,12 @@ lint.select = [
   "UP",  # pyupgrade
   "TRY302", "TRY400", "TRY401", # try/excepts
   "RUF008", "RUF100",
+<<<<<<< HEAD
   "TID251",
   "PLR1704",
+=======
+  "TID251"
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 ]
 lint.ignore = [
   "E741",
@@ -227,7 +372,11 @@ lint.ignore = [
   "UP038",   # (x, y) -> x|y for isinstance
 ]
 line-length = 160
+<<<<<<< HEAD
 target-version ="py311"
+=======
+target-version="py311"
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 exclude = [
   "body",
   "cereal",
@@ -239,8 +388,12 @@ exclude = [
   "teleoprtc_repo",
   "third_party",
 ]
+<<<<<<< HEAD
 lint.flake8-implicit-str-concat.allow-multiline = false
 
+=======
+lint.flake8-implicit-str-concat.allow-multiline=false
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 [tool.ruff.lint.flake8-tidy-imports.banned-api]
 "selfdrive".msg = "Use openpilot.selfdrive"
 "common".msg = "Use openpilot.common"
@@ -252,6 +405,9 @@ lint.flake8-implicit-str-concat.allow-multiline = false
 
 [tool.coverage.run]
 concurrency = ["multiprocessing", "thread"]
+<<<<<<< HEAD
 
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 [tool.ruff.format]
 quote-style = "preserve"

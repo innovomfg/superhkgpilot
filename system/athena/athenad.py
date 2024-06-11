@@ -3,6 +3,10 @@ from __future__ import annotations
 
 import platform
 import base64
+<<<<<<< HEAD
+=======
+import bz2
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 import hashlib
 import io
 import json
@@ -16,7 +20,10 @@ import tempfile
 import threading
 import time
 import gzip
+<<<<<<< HEAD
 import zstandard as zstd
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 from dataclasses import asdict, dataclass, replace
 from datetime import datetime
 from functools import partial
@@ -37,7 +44,10 @@ from openpilot.common.file_helpers import CallbackReader
 from openpilot.common.params import Params
 from openpilot.common.realtime import set_core_affinity
 from openpilot.system.hardware import HARDWARE, PC
+<<<<<<< HEAD
 from openpilot.system.loggerd.uploader import LOG_COMPRESSION_LEVEL
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 from openpilot.system.loggerd.xattr_cache import getxattr, setxattr
 from openpilot.common.swaglog import cloudlog
 from openpilot.system.version import get_build_metadata
@@ -106,9 +116,14 @@ cancelled_uploads: set[str] = set()
 cur_upload_items: dict[int, UploadItem | None] = {}
 
 
+<<<<<<< HEAD
 # TODO-SP: adapt zst for sunnylink
 def strip_zst_extension(fn: str) -> str:
   if fn.endswith('.zst'):
+=======
+def strip_bz2_extension(fn: str) -> str:
+  if fn.endswith('.bz2'):
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
     return fn[:-4]
   return fn
 
@@ -288,16 +303,26 @@ def _do_upload(upload_item: UploadItem, callback: Callable = None) -> requests.R
   path = upload_item.path
   compress = False
 
+<<<<<<< HEAD
   # If file does not exist, but does exist without the .zst extension we will compress on the fly
   if not os.path.exists(path) and os.path.exists(strip_zst_extension(path)):
     path = strip_zst_extension(path)
+=======
+  # If file does not exist, but does exist without the .bz2 extension we will compress on the fly
+  if not os.path.exists(path) and os.path.exists(strip_bz2_extension(path)):
+    path = strip_bz2_extension(path)
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
     compress = True
 
   with open(path, "rb") as f:
     content = f.read()
     if compress:
       cloudlog.event("athena.upload_handler.compress", fn=path, fn_orig=upload_item.path)
+<<<<<<< HEAD
       content = zstd.compress(content, LOG_COMPRESSION_LEVEL)
+=======
+      content = bz2.compress(content)
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
   with io.BytesIO(content) as data:
     return requests.put(upload_item.url,
@@ -393,7 +418,11 @@ def uploadFilesToUrls(files_data: list[UploadFileDict]) -> UploadFilesToUrlRespo
       continue
 
     path = os.path.join(Paths.log_root(), file.fn)
+<<<<<<< HEAD
     if not os.path.exists(path) and not os.path.exists(strip_zst_extension(path)):
+=======
+    if not os.path.exists(path) and not os.path.exists(strip_bz2_extension(path)):
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
       failed.append(file.fn)
       continue
 
@@ -419,7 +448,10 @@ def uploadFilesToUrls(files_data: list[UploadFileDict]) -> UploadFilesToUrlRespo
 
   resp: UploadFilesToUrlResponse = {"enqueued": len(items), "items": items}
   if failed:
+<<<<<<< HEAD
     cloudlog.event("athena.uploadFilesToUrls.failed", failed=failed, error=True)
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
     resp["failed"] = failed
 
   return resp
@@ -637,7 +669,10 @@ def log_handler(end_event: threading.Event, log_attr_name=LOG_ATTR_NAME) -> None
   is_sunnylink = log_attr_name != LOG_ATTR_NAME
   if PC:
     cloudlog.debug("athena.log_handler: Not supported on PC")
+<<<<<<< HEAD
     time.sleep(1)
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
     return
 
   log_files = []
@@ -812,7 +847,11 @@ def ws_manage(ws: WebSocket, end_event: threading.Event) -> None:
   onroad_prev = None
   sock = ws.sock
 
+<<<<<<< HEAD
   while not end_event.wait(5):
+=======
+  while True:
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
     onroad = params.get_bool("IsOnroad")
     if onroad != onroad_prev:
       onroad_prev = onroad
@@ -830,6 +869,12 @@ def ws_manage(ws: WebSocket, end_event: threading.Event) -> None:
         sock.setsockopt(socket.IPPROTO_TCP, socket.TCP_KEEPINTVL, 7 if onroad else 10)
         sock.setsockopt(socket.IPPROTO_TCP, socket.TCP_KEEPCNT, 2 if onroad else 3)
 
+<<<<<<< HEAD
+=======
+    if end_event.wait(5):
+      break
+
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
 def backoff(retries: int) -> int:
   return random.randrange(0, min(128, int(2 ** retries)))

@@ -62,11 +62,14 @@ class CarState(CarStateBase):
     self.escc_aeb_dec_cmd = 0
     self._speed_limit_clu = 0
 
+<<<<<<< HEAD
   def get_main_enabled(self, ret) -> bool:
     if self.prev_main_buttons != 1 and self.main_buttons[-1] == 1:
       self.mainEnabled = not self.mainEnabled
     return ret.cruiseState.available and self.mainEnabled
 
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
   def update(self, cp, cp_cam):
     if self.CP.carFingerprint in CANFD_CAR:
       return self.update_canfd(cp, cp_cam)
@@ -117,11 +120,16 @@ class CarState(CarStateBase):
     # cruise state
     if self.CP.openpilotLongitudinalControl:
       # These are not used for engage/disengage since openpilot keeps track of state using the buttons
+<<<<<<< HEAD
       ret.cruiseState.available = cp.vl["TCS13"]["ACCEnable"] == 0
+=======
+      ret.cruiseState.available = cp.vl["TCS13"]["ACCEnable"] == 0 and self.mainEnabled
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
       ret.cruiseState.enabled = cp.vl["TCS13"]["ACC_REQ"] == 1
       ret.cruiseState.standstill = False
       ret.cruiseState.nonAdaptive = False
     elif self.CP.carFingerprint in NON_SCC_CAR:
+<<<<<<< HEAD
       cruise_available_msg = "E_CRUISE_CONTROL" if self.CP.flags & (HyundaiFlags.HYBRID | HyundaiFlags.EV) else "EMS16"
       cruise_enabled_msg = "E_CRUISE_CONTROL" if self.CP.flags & (HyundaiFlags.HYBRID | HyundaiFlags.EV) else "LVR12"
       cruise_speed_msg = "ELECT_GEAR" if self.CP.flags & (HyundaiFlags.HYBRID | HyundaiFlags.EV) else "LVR12"
@@ -129,6 +137,11 @@ class CarState(CarStateBase):
       ret.cruiseState.available = cp.vl[cruise_available_msg]["CRUISE_LAMP_M"] != 0
       ret.cruiseState.enabled = cp.vl[cruise_enabled_msg]["CF_Lvr_CruiseSet"] != 0
       ret.cruiseState.speed = cp.vl[cruise_speed_msg][cruise_speed_sig] * speed_conv
+=======
+      ret.cruiseState.available = cp.vl['EMS16']['CRUISE_LAMP_M'] != 0
+      ret.cruiseState.enabled = cp.vl["LVR12"]['CF_Lvr_CruiseSet'] != 0
+      ret.cruiseState.speed = cp.vl["LVR12"]["CF_Lvr_CruiseSet"] * speed_conv
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
       ret.cruiseState.standstill = False
       ret.cruiseState.nonAdaptive = False
     else:
@@ -144,7 +157,10 @@ class CarState(CarStateBase):
     ret.brakeHoldActive = cp.vl["TCS15"]["AVH_LAMP"] == 2  # 0 OFF, 1 ERROR, 2 ACTIVE, 3 READY
     ret.parkingBrake = cp.vl["TCS13"]["PBRAKE_ACT"] == 1
     ret.espDisabled = cp.vl["TCS11"]["TCS_PAS"] == 1
+<<<<<<< HEAD
     ret.espActive = cp.vl["TCS11"]["ABS_ACT"] == 1
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
     ret.brakeLightsDEPRECATED = bool(cp.vl["TCS13"]["BrakeLight"])
     ret.accFaulted = cp.vl["TCS13"]["ACCEnable"] != 0  # 0 ACC CONTROL ENABLED, 1-3 ACC CONTROL DISABLED
 
@@ -212,12 +228,24 @@ class CarState(CarStateBase):
     self.cruise_buttons.extend(cp.vl_all["CLU11"]["CF_Clu_CruiseSwState"])
     self.main_buttons.extend(cp.vl_all["CLU11"]["CF_Clu_CruiseSwMain"])
     if self.CP.openpilotLongitudinalControl:
+<<<<<<< HEAD
       ret.cruiseState.available = self.get_main_enabled(ret)
+=======
+      if self.prev_main_buttons != 1:
+        if self.main_buttons[-1] == 1:
+          self.mainEnabled = not self.mainEnabled
+      ret.cruiseState.available = ret.cruiseState.available and self.mainEnabled
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
     self.prev_mads_enabled = self.mads_enabled
     self.prev_lfa_enabled = self.lfa_enabled
     if self.CP.spFlags & HyundaiFlagsSP.SP_CAN_LFA_BTN:
       self.lfa_enabled = cp.vl["BCM_PO_11"]["LFA_Pressed"]
 
+<<<<<<< HEAD
+=======
+    self.mads_enabled = False if not self.control_initialized else ret.cruiseState.available
+
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
     if self.CP.spFlags & HyundaiFlagsSP.SP_NAV_MSG or self.CP.spFlags & HyundaiFlagsSP.SP_LKAS12:
       self._update_traffic_signals(cp, cp_cam)
       ret.cruiseState.speedLimit = self._calculate_speed_limit() * speed_conv
@@ -282,7 +310,10 @@ class CarState(CarStateBase):
       ret.cruiseState.standstill = False
     else:
       cp_cruise_info = cp_cam if self.CP.flags & HyundaiFlags.CANFD_CAMERA_SCC else cp
+<<<<<<< HEAD
       ret.cruiseState.available = cp_cruise_info.vl["SCC_CONTROL"]["MainMode_ACC"] == 1
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
       ret.cruiseState.enabled = cp_cruise_info.vl["SCC_CONTROL"]["ACCMode"] in (1, 2)
       ret.cruiseState.standstill = cp_cruise_info.vl["SCC_CONTROL"]["CRUISE_STANDSTILL"] == 1
       ret.cruiseState.speed = cp_cruise_info.vl["SCC_CONTROL"]["VSetDis"] * speed_factor
@@ -299,8 +330,11 @@ class CarState(CarStateBase):
     self.prev_main_buttons = self.main_buttons[-1]
     self.cruise_buttons.extend(cp.vl_all[self.cruise_btns_msg_canfd]["CRUISE_BUTTONS"])
     self.main_buttons.extend(cp.vl_all[self.cruise_btns_msg_canfd]["ADAPTIVE_CRUISE_MAIN_BTN"])
+<<<<<<< HEAD
     if self.CP.openpilotLongitudinalControl:
       ret.cruiseState.available = self.get_main_enabled(ret)
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
     self.prev_mads_enabled = self.mads_enabled
     self.prev_lfa_enabled = self.lfa_enabled
     self.lfa_enabled = cp.vl[self.cruise_btns_msg_canfd]["LFA_BTN"]
@@ -372,8 +406,11 @@ class CarState(CarStateBase):
 
     if CP.flags & (HyundaiFlags.HYBRID | HyundaiFlags.EV):
       messages.append(("ELECT_GEAR", 20))
+<<<<<<< HEAD
       if CP.carFingerprint in NON_SCC_CAR:
         messages.append(("E_CRUISE_CONTROL", 10))
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
     elif CP.carFingerprint in CAN_GEARS["use_cluster_gears"]:
       pass
     elif CP.carFingerprint in CAN_GEARS["use_tcu_gears"]:

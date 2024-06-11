@@ -7,7 +7,11 @@
 #include <vector>
 
 #include "cereal/messaging/messaging.h"
+<<<<<<< HEAD
 #include "msgq/visionipc/visionipc.h"
+=======
+#include "cereal/visionipc/visionipc.h"
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 #include "common/queue.h"
 #include "system/camerad/cameras/camera_common.h"
 #include "system/loggerd/loggerd.h"

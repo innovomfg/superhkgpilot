@@ -11,11 +11,18 @@ import time
 import threading
 from collections import defaultdict
 from pathlib import Path
+<<<<<<< HEAD
+=======
+from markdown_it import MarkdownIt
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
 from openpilot.common.basedir import BASEDIR
 from openpilot.common.params import Params
 from openpilot.common.time import system_time_valid
+<<<<<<< HEAD
 from openpilot.common.markdown import parse_markdown
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 from openpilot.common.swaglog import cloudlog
 from openpilot.selfdrive.controls.lib.alertmanager import set_offroad_alert
 from openpilot.system.hardware import AGNOS, HARDWARE
@@ -60,7 +67,11 @@ class WaitTimeHelper:
     self.ready_event.wait(timeout=t)
 
 def write_time_to_param(params, param) -> None:
+<<<<<<< HEAD
   t = datetime.datetime.now(datetime.UTC).replace(tzinfo=None)
+=======
+  t = datetime.datetime.utcnow()
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
   params.put(param, t.isoformat().encode('utf8'))
 
 def read_time_from_param(params, param) -> datetime.datetime | None:
@@ -89,7 +100,11 @@ def parse_release_notes(basedir: str) -> bytes:
     with open(os.path.join(basedir, "CHANGELOGS.md"), "rb") as f:
       r = f.read().split(b'\n\n', 1)[0]  # Slice latest release notes
     try:
+<<<<<<< HEAD
       return bytes(parse_markdown(r.decode("utf-8")), encoding="utf-8")
+=======
+      return bytes(MarkdownIt().render(r.decode("utf-8")), encoding="utf-8")
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
     except Exception:
       return r + b"\n"
   except FileNotFoundError:
@@ -279,7 +294,11 @@ class Updater:
     if len(self.branches):
       self.params.put("UpdaterAvailableBranches", ','.join(self.branches.keys()))
 
+<<<<<<< HEAD
     last_update = datetime.datetime.now(datetime.UTC).replace(tzinfo=None)
+=======
+    last_update = datetime.datetime.utcnow()
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
     if update_success:
       write_time_to_param(self.params, "LastUpdateTime")
     else:
@@ -323,7 +342,11 @@ class Updater:
     for alert in ("Offroad_UpdateFailed", "Offroad_ConnectivityNeeded", "Offroad_ConnectivityNeededPrompt"):
       set_offroad_alert(alert, False)
 
+<<<<<<< HEAD
     now = datetime.datetime.now(datetime.UTC).replace(tzinfo=None)
+=======
+    now = datetime.datetime.utcnow()
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
     dt = now - last_update
     build_metadata = get_build_metadata()
     if failed_count > 15 and exception is not None and self.has_internet:
@@ -429,7 +452,11 @@ def main() -> None:
       cloudlog.event("update installed")
 
     if not params.get("InstallDate"):
+<<<<<<< HEAD
       t = datetime.datetime.now(datetime.UTC).replace(tzinfo=None).isoformat()
+=======
+      t = datetime.datetime.utcnow().isoformat()
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
       params.put("InstallDate", t.encode('utf8'))
 
     updater = Updater()
@@ -469,7 +496,11 @@ def main() -> None:
 
         # download update
         last_fetch = read_time_from_param(params, "UpdaterLastFetchTime")
+<<<<<<< HEAD
         timed_out = last_fetch is None or (datetime.datetime.now(datetime.UTC).replace(tzinfo=None) - last_fetch > datetime.timedelta(days=3))
+=======
+        timed_out = last_fetch is None or (datetime.datetime.utcnow() - last_fetch > datetime.timedelta(days=3))
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
         user_requested_fetch = wait_helper.user_request == UserRequest.FETCH
         if params.get_bool("NetworkMetered") and not timed_out and not user_requested_fetch:
           cloudlog.info("skipping fetch, connection metered")

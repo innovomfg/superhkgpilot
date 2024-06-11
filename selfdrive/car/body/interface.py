@@ -1,6 +1,11 @@
 import math
 from cereal import car
+<<<<<<< HEAD
 from openpilot.selfdrive.car import DT_CTRL, get_safety_config
+=======
+from openpilot.common.realtime import DT_CTRL
+from openpilot.selfdrive.car import get_safety_config
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 from openpilot.selfdrive.car.interfaces import CarInterfaceBase
 from openpilot.selfdrive.car.body.values import SPEED_FROM_RPM
 

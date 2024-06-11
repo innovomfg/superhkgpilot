@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 from collections import namedtuple
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 from dataclasses import dataclass, field
 from enum import IntFlag
 
@@ -9,7 +12,10 @@ from openpilot.selfdrive.car.docs_definitions import CarHarness, CarDocs, CarPar
 from openpilot.selfdrive.car.fw_query_definitions import FwQueryConfig, Request, StdQueries
 
 Ecu = car.CarParams.Ecu
+<<<<<<< HEAD
 Button = namedtuple('Button', ['event_type', 'can_addr', 'can_msg', 'values'])
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
 
 # Steer torque limits
@@ -28,6 +34,17 @@ class CarControllerParams:
     pass
 
 
+<<<<<<< HEAD
+=======
+BUTTON_STATES = {
+  "accelCruise": False,
+  "decelCruise": False,
+  "cancel": False,
+  "resumeCruise": False,
+}
+
+
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 @dataclass
 class MazdaCarDocs(CarDocs):
   package: str = "All"
@@ -92,6 +109,7 @@ class Buttons:
   CANCEL = 4
 
 
+<<<<<<< HEAD
 BUTTONS = [
   Button(car.CarState.ButtonEvent.Type.accelCruise, "CRZ_BTNS", "SET_P", [1]),
   Button(car.CarState.ButtonEvent.Type.decelCruise, "CRZ_BTNS", "SET_M", [1]),
@@ -100,6 +118,8 @@ BUTTONS = [
 ]
 
 
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 FW_QUERY_CONFIG = FwQueryConfig(
   requests=[
     # TODO: check data to ensure ABS does not skip ISO-TP frames on bus 0

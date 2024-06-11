@@ -7,5 +7,8 @@ cffi
 scons
 pre-commit
 Cython
+<<<<<<< HEAD
 pytest
 pytest-xdist
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)

@@ -15,7 +15,11 @@ V_CRUISE_MAX = 145
 V_CRUISE_UNSET = 255
 V_CRUISE_INITIAL = 40
 V_CRUISE_INITIAL_EXPERIMENTAL_MODE = 105
+<<<<<<< HEAD
 IMPERIAL_INCREMENT = round(CV.MPH_TO_KPH, 1)  # round here to avoid rounding errors incrementing set speed
+=======
+IMPERIAL_INCREMENT = 1.6  # should be CV.MPH_TO_KPH, but this causes rounding errors
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
 MIN_SPEED = 1.0
 CONTROL_N = 17
@@ -65,10 +69,13 @@ VOLKSWAGEN_V_CRUISE_MIN = {
   True: 30,
   False: int(20 * CV.MPH_TO_KPH),
 }
+<<<<<<< HEAD
 GM_V_CRUISE_MIN = {
   True: 30,
   False: int(20 * CV.MPH_TO_KPH),
 }
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
 SpeedLimitControlState = custom.LongitudinalPlanSP.SpeedLimitControlState
 
@@ -79,7 +86,11 @@ class VCruiseHelper:
     self.v_cruise_kph = V_CRUISE_UNSET
     self.v_cruise_cluster_kph = V_CRUISE_UNSET
     self.v_cruise_kph_last = 0
+<<<<<<< HEAD
     self.button_timers = {ButtonType.decelCruise: 0, ButtonType.accelCruise: 0, ButtonType.gapAdjustCruise: 0}
+=======
+    self.button_timers = {ButtonType.decelCruise: 0, ButtonType.accelCruise: 0}
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
     self.button_change_states = {btn: {"standstill": False, "enabled": False} for btn in self.button_timers}
 
     self.is_metric_prev = None
@@ -88,6 +99,7 @@ class VCruiseHelper:
     self.slc_state_prev = SpeedLimitControlState.inactive
     self.slc_speed_limit_offsetted = 0
 
+<<<<<<< HEAD
     # sp: PCM speed override
     self.sp_override_v_cruise_kph = V_CRUISE_UNSET
     self.sp_override_cruise_speed_last = V_CRUISE_UNSET
@@ -95,13 +107,20 @@ class VCruiseHelper:
 
     self.experimental_mode_update = False
 
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
   @property
   def v_cruise_initialized(self):
     return self.v_cruise_kph != V_CRUISE_UNSET
 
+<<<<<<< HEAD
   def update_v_cruise(self, CS, enabled, is_metric, reverse_acc, sp_override_speed, long_plan_sp):
     self.v_cruise_kph_last = self.v_cruise_kph
     self.slc_state_prev = self.slc_state
+=======
+  def update_v_cruise(self, CS, enabled, is_metric, reverse_acc, long_plan_sp):
+    self.v_cruise_kph_last = self.v_cruise_kph
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
     self.slc_state = long_plan_sp.speedLimitControlState
 
     if not self.CP.pcmCruiseSpeed:
@@ -113,6 +132,7 @@ class VCruiseHelper:
         self._update_v_cruise_non_pcm(CS, enabled, is_metric, reverse_acc)
         self._update_v_cruise_slc(long_plan_sp)
         self.v_cruise_cluster_kph = self.v_cruise_kph
+<<<<<<< HEAD
       else:
         if enabled and sp_override_speed and CS.cruiseState.speed * CV.MS_TO_KPH < sp_override_speed:
           if self.sp_override_v_cruise_kph == V_CRUISE_UNSET:
@@ -140,6 +160,15 @@ class VCruiseHelper:
       self.v_cruise_kph = V_CRUISE_UNSET
       self.v_cruise_cluster_kph = V_CRUISE_UNSET
       self.experimental_mode_update = False
+=======
+        self.update_button_timers(CS, enabled)
+      else:
+        self.v_cruise_kph = CS.cruiseState.speed * CV.MS_TO_KPH
+        self.v_cruise_cluster_kph = CS.cruiseState.speedCluster * CV.MS_TO_KPH
+    else:
+      self.v_cruise_kph = V_CRUISE_UNSET
+      self.v_cruise_cluster_kph = V_CRUISE_UNSET
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
   def _update_v_cruise_non_pcm(self, CS, enabled, is_metric, reverse_acc):
     # handle button presses. TODO: this should be in state_control, but a decelCruise press
@@ -169,7 +198,11 @@ class VCruiseHelper:
           long_press = True
           break
 
+<<<<<<< HEAD
     if button_type is None or button_type == ButtonType.gapAdjustCruise:
+=======
+    if button_type is None:
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
       return
 
     resume_button = ButtonType.accelCruise
@@ -234,8 +267,11 @@ class VCruiseHelper:
         initial = MAZDA_V_CRUISE_MIN[is_metric]
       elif self.CP.carName == "volkswagen":
         initial = VOLKSWAGEN_V_CRUISE_MIN[is_metric]
+<<<<<<< HEAD
       elif self.CP.carName == "gm":
         initial = GM_V_CRUISE_MIN[is_metric]
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
     # 250kph or above probably means we never had a set speed
     if any(b.type in resume_buttons for b in CS.buttonEvents) and self.v_cruise_kph_last < 250:
@@ -254,6 +290,11 @@ class VCruiseHelper:
     if self.slc_state == SpeedLimitControlState.active and self.slc_state_prev == SpeedLimitControlState.preActive:
       self.v_cruise_kph = clip(round(self.slc_speed_limit_offsetted, 1), self.v_cruise_min, V_CRUISE_MAX)
 
+<<<<<<< HEAD
+=======
+    self.slc_state_prev = self.slc_state
+
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
   def _update_v_cruise_min(self, is_metric):
     if is_metric != self.is_metric_prev:
       if self.CP.carName == "honda":
@@ -266,11 +307,37 @@ class VCruiseHelper:
         self.v_cruise_min = MAZDA_V_CRUISE_MIN[is_metric]
       elif self.CP.carName == "volkswagen":
         self.v_cruise_min = VOLKSWAGEN_V_CRUISE_MIN[is_metric]
+<<<<<<< HEAD
       elif self.CP.carName == "gm":
         self.v_cruise_min = GM_V_CRUISE_MIN[is_metric]
     self.is_metric_prev = is_metric
 
 
+=======
+    self.is_metric_prev = is_metric
+
+
+def apply_deadzone(error, deadzone):
+  if error > deadzone:
+    error -= deadzone
+  elif error < - deadzone:
+    error += deadzone
+  else:
+    error = 0.
+  return error
+
+
+def apply_center_deadzone(error, deadzone):
+  if (error > - deadzone) and (error < deadzone):
+    error = 0.
+  return error
+
+
+def rate_limit(new_value, last_value, dw_step, up_step):
+  return clip(new_value, last_value + dw_step, last_value + up_step)
+
+
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 def clip_curvature(v_ego, prev_curvature, new_curvature):
   v_ego = max(MIN_SPEED, v_ego)
   max_curvature_rate = MAX_LATERAL_JERK / (v_ego**2) # inexact calculation, check https://github.com/commaai/openpilot/pull/24755
@@ -307,6 +374,20 @@ def get_lag_adjusted_curvature(CP, v_ego, psis, curvatures):
   return safe_desired_curvature
 
 
+<<<<<<< HEAD
+=======
+def get_friction(lateral_accel_error: float, lateral_accel_deadzone: float, friction_threshold: float,
+                 torque_params: car.CarParams.LateralTorqueTuning, friction_compensation: bool) -> float:
+  friction_interp = interp(
+    apply_center_deadzone(lateral_accel_error, lateral_accel_deadzone),
+    [-friction_threshold, friction_threshold],
+    [-torque_params.friction, torque_params.friction]
+  )
+  friction = float(friction_interp) if friction_compensation else 0.0
+  return friction
+
+
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 def get_speed_error(modelV2: log.ModelDataV2, v_ego: float) -> float:
   # ToDo: Try relative error, and absolute speed
   if len(modelV2.temporalPose.trans):

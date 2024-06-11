@@ -7,7 +7,11 @@ from openpilot.common.filter_simple import FirstOrderFilter
 from openpilot.common.numpy_fast import interp
 from openpilot.selfdrive.car.interfaces import LatControlInputs
 from openpilot.common.params import Params
+<<<<<<< HEAD
 from openpilot.selfdrive.controls.lib.drive_helpers import CONTROL_N
+=======
+from openpilot.selfdrive.controls.lib.drive_helpers import CONTROL_N, apply_deadzone
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 from openpilot.selfdrive.controls.lib.latcontrol import LatControl
 from openpilot.selfdrive.controls.lib.pid import PIDController
 from openpilot.selfdrive.controls.lib.vehicle_model import ACCELERATION_DUE_TO_GRAVITY
@@ -71,7 +75,11 @@ def roll_pitch_adjust(roll, pitch):
 class LatControlTorque(LatControl):
   def __init__(self, CP, CI):
     super().__init__(CP, CI)
+<<<<<<< HEAD
     self.torque_params = CP.lateralTuning.torque.as_builder()
+=======
+    self.torque_params = CP.lateralTuning.torque
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
     self.pid = PIDController(self.torque_params.kp, self.torque_params.ki,
                              k_f=self.torque_params.kf, pos_limit=self.steer_max, neg_limit=-self.steer_max)
     self.torque_from_lateral_accel = CI.torque_from_lateral_accel()
@@ -147,7 +155,11 @@ class LatControlTorque(LatControl):
         return
 
       self.torque_params.latAccelFactor = float(self.param_s.get("TorqueMaxLatAccel", encoding="utf8")) * 0.01
+<<<<<<< HEAD
       self.torque_params.friction = float(self.param_s.get("TorqueFriction", encoding="utf8")) * 0.001
+=======
+      self.torque_params.friction = float(self.param_s.get("TorqueFriction", encoding="utf8")) * 0.01
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
   @property
   def pid_long_sp(self):

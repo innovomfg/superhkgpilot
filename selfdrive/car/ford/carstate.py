@@ -3,7 +3,11 @@ from opendbc.can.can_define import CANDefine
 from opendbc.can.parser import CANParser
 from openpilot.common.conversions import Conversions as CV
 from openpilot.selfdrive.car.ford.fordcan import CanBus
+<<<<<<< HEAD
 from openpilot.selfdrive.car.ford.values import DBC, CarControllerParams, FordFlags, BUTTONS
+=======
+from openpilot.selfdrive.car.ford.values import DBC, CarControllerParams, FordFlags, BUTTON_STATES
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 from openpilot.selfdrive.car.interfaces import CarStateBase
 
 GearShifter = car.CarState.GearShifter
@@ -15,7 +19,11 @@ class CarState(CarStateBase):
     super().__init__(CP)
     can_define = CANDefine(DBC[CP.carFingerprint]["pt"])
     if CP.transmissionType == TransmissionType.automatic:
+<<<<<<< HEAD
       self.shifter_values = can_define.dv["PowertrainData_10"]["TrnRng_D_Rq"]
+=======
+      self.shifter_values = can_define.dv["Gear_Shift_by_Wire_FD1"]["TrnRng_D_RqGsm"]
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
     self.vehicle_sensors_valid = False
 
@@ -24,15 +32,26 @@ class CarState(CarStateBase):
 
     self.lkas_enabled = None
     self.prev_lkas_enabled = None
+<<<<<<< HEAD
     self.v_limit = 0
 
     self.button_states = {button.event_type: False for button in BUTTONS}
 
+=======
+    self.buttonStates = BUTTON_STATES.copy()
+    self.buttonStatesPrev = BUTTON_STATES.copy()
+    self.v_limit = 0
+
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
   def update(self, cp, cp_cam):
     ret = car.CarState.new_message()
 
     self.prev_mads_enabled = self.mads_enabled
     self.prev_lkas_enabled = self.lkas_enabled
+<<<<<<< HEAD
+=======
+    self.buttonStatesPrev = self.buttonStates.copy()
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
     # Occasionally on startup, the ABS module recalibrates the steering pinion offset, so we need to block engagement
     # The vehicle usually recovers out of this state within a minute of normal driving
@@ -82,7 +101,11 @@ class CarState(CarStateBase):
 
     # gear
     if self.CP.transmissionType == TransmissionType.automatic:
+<<<<<<< HEAD
       gear = self.shifter_values.get(cp.vl["PowertrainData_10"]["TrnRng_D_Rq"])
+=======
+      gear = self.shifter_values.get(cp.vl["Gear_Shift_by_Wire_FD1"]["TrnRng_D_RqGsm"])
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
       ret.gearShifter = self.parse_gear_shifter(gear)
     elif self.CP.transmissionType == TransmissionType.manual:
       ret.clutchPressed = cp.vl["Engine_Clutch_Data"]["CluPdlPos_Pc_Meas"] > 0
@@ -91,6 +114,7 @@ class CarState(CarStateBase):
       else:
         ret.gearShifter = GearShifter.drive
 
+<<<<<<< HEAD
     # Buttons
     for button in BUTTONS:
       state = (cp.vl[button.can_addr][button.can_msg] in button.values)
@@ -101,6 +125,8 @@ class CarState(CarStateBase):
         self.button_events.append(event)
       self.button_states[button.event_type] = state
 
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
     # safety
     ret.stockFcw = bool(cp_cam.vl["ACCDATA_3"]["FcwVisblWarn_B_Rq"])
     ret.stockAeb = bool(cp_cam.vl["ACCDATA_2"]["CmbbBrkDecel_B_Rq"])
@@ -126,6 +152,16 @@ class CarState(CarStateBase):
 
     self.lkas_enabled = bool(cp.vl["Steering_Data_FD1"]["TjaButtnOnOffPress"])
 
+<<<<<<< HEAD
+=======
+    self.buttonStates["accelCruise"] = bool(cp.vl["Steering_Data_FD1"]["CcAslButtnSetIncPress"])
+    self.buttonStates["decelCruise"] = bool(cp.vl["Steering_Data_FD1"]["CcAslButtnSetDecPress"])
+    self.buttonStates["cancel"] = bool(cp.vl["Steering_Data_FD1"]["CcAslButtnCnclPress"])
+    self.buttonStates["setCruise"] = bool(cp.vl["Steering_Data_FD1"]["CcAslButtnSetPress"])
+    self.buttonStates["resumeCruise"] = bool(cp.vl["Steering_Data_FD1"]["CcAsllButtnResPress"])
+    self.buttonStates["gapAdjustCruise"] = bool(cp.vl["Steering_Data_FD1"]["AccButtnGapTogglePress"])
+
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
     # Stock steering buttons so that we can passthru blinkers etc.
     self.buttons_stock_values = cp.vl["Steering_Data_FD1"]
     # Stock values from IPMA so that we can retain some stock functionality
@@ -174,7 +210,11 @@ class CarState(CarStateBase):
 
     if CP.transmissionType == TransmissionType.automatic:
       messages += [
+<<<<<<< HEAD
         ("PowertrainData_10", 10),
+=======
+        ("Gear_Shift_by_Wire_FD1", 10),
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
       ]
     elif CP.transmissionType == TransmissionType.manual:
       messages += [

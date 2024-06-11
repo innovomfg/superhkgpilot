@@ -242,7 +242,11 @@ class CarState(CarStateBase):
       ret.brakePressed = (cp.vl["POWERTRAIN_DATA"]["BRAKE_PRESSED"] != 0) or self.brake_switch_active
 
     ret.brake = cp.vl["VSA_STATUS"]["USER_BRAKE"]
+<<<<<<< HEAD
     ret.cruiseState.enabled = cp.vl["POWERTRAIN_DATA"]["ACC_STATUS"] != 0
+=======
+    ret.cruiseState.enabled = self.pcm_cruise_enabled = cp.vl["POWERTRAIN_DATA"]["ACC_STATUS"] != 0
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
     ret.cruiseState.available = bool(cp.vl[self.main_on_sig_msg]["MAIN_ON"])
 
     # Gets rid of Pedal Grinding noise when brake is pressed at slow speeds for some models

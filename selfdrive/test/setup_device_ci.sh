@@ -70,7 +70,10 @@ safe_checkout() {
   git checkout $GIT_COMMIT
   git clean -xdff
   git submodule sync
+<<<<<<< HEAD
   git submodule foreach --recursive "git reset --hard && git clean -xdff"
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
   git submodule update --init --recursive
   git submodule foreach --recursive "git reset --hard && git clean -xdff"
 
@@ -96,7 +99,10 @@ unsafe_checkout() {
   git reset --hard $GIT_COMMIT
   git clean -df
   git submodule sync
+<<<<<<< HEAD
   git submodule foreach --recursive "git reset --hard && git clean -df"
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
   git submodule update --init --recursive
   git submodule foreach --recursive "git reset --hard && git clean -df"
 

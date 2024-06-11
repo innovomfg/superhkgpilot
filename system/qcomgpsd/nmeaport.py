@@ -127,7 +127,11 @@ def main() -> NoReturn:
     print("qcomgpsd is running, please kill openpilot before running this script! (aborted)")
     sys.exit(1)
   except CalledProcessError as e:
+<<<<<<< HEAD
     if e.returncode != 1: # 1 == no process found (pandad not running)
+=======
+    if e.returncode != 1: # 1 == no process found (boardd not running)
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
       raise e
 
   print("power up antenna ...")

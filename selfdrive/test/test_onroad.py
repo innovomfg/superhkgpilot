@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+=======
+#!/usr/bin/env python3
+import bz2
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 import math
 import json
 import os
@@ -8,7 +13,10 @@ import shutil
 import subprocess
 import time
 import numpy as np
+<<<<<<< HEAD
 import zstandard as zstd
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 from collections import Counter, defaultdict
 from functools import cached_property
 from pathlib import Path
@@ -20,10 +28,16 @@ from openpilot.common.basedir import BASEDIR
 from openpilot.common.timeout import Timeout
 from openpilot.common.params import Params
 from openpilot.selfdrive.controls.lib.events import EVENTS, ET
+<<<<<<< HEAD
 from openpilot.selfdrive.test.helpers import set_params_enabled, release_only
 from openpilot.system.hardware import HARDWARE
 from openpilot.system.hardware.hw import Paths
 from openpilot.system.loggerd.uploader import LOG_COMPRESSION_LEVEL
+=======
+from openpilot.system.hardware import HARDWARE
+from openpilot.selfdrive.test.helpers import set_params_enabled, release_only
+from openpilot.system.hardware.hw import Paths
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 from openpilot.tools.lib.logreader import LogReader
 
 """
@@ -37,6 +51,7 @@ PROCS = {
   # Baseline CPU usage by process
   "selfdrive.controls.controlsd": 32.0,
   "selfdrive.car.card": 22.0,
+<<<<<<< HEAD
   "loggerd": 14.0,
   "encoderd": 17.0,
   "camerad": 14.5,
@@ -49,10 +64,25 @@ PROCS = {
   "modeld": 13.0,
   "selfdrive.modeld.dmonitoringmodeld": 8.0,
   "system.hardware.hardwared": 3.87,
+=======
+  "./loggerd": 14.0,
+  "./encoderd": 17.0,
+  "./camerad": 14.5,
+  "./locationd": 11.0,
+  "selfdrive.controls.plannerd": 11.0,
+  "./ui": 18.0,
+  "selfdrive.locationd.paramsd": 9.0,
+  "./sensord": 7.0,
+  "selfdrive.controls.radard": 7.0,
+  "selfdrive.modeld.modeld": 13.0,
+  "selfdrive.modeld.dmonitoringmodeld": 8.0,
+  "system.thermald.thermald": 3.87,
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
   "selfdrive.locationd.calibrationd": 2.0,
   "selfdrive.locationd.torqued": 5.0,
   "selfdrive.ui.soundd": 3.5,
   "selfdrive.monitoring.dmonitoringd": 4.0,
+<<<<<<< HEAD
   "proclogd": 1.54,
   "system.logmessaged": 0.2,
   "system.tombstoned": 0,
@@ -60,6 +90,15 @@ PROCS = {
   "system.micd": 5.0,
   "system.timed": 0,
   "selfdrive.pandad.pandad": 0,
+=======
+  "./proclogd": 1.54,
+  "system.logmessaged": 0.2,
+  "system.tombstoned": 0,
+  "./logcatd": 0,
+  "system.micd": 6.0,
+  "system.timed": 0,
+  "selfdrive.boardd.pandad": 0,
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
   "system.statsd": 0.4,
   "selfdrive.navd.navd": 0.4,
   "system.loggerd.uploader": (0.5, 15.0),
@@ -68,12 +107,21 @@ PROCS = {
 
 PROCS.update({
   "tici": {
+<<<<<<< HEAD
     "pandad": 4.0,
     "ubloxd": 0.02,
     "system.ubloxd.pigeond": 6.0,
   },
   "tizi": {
      "pandad": 19.0,
+=======
+    "./boardd": 4.0,
+    "./ubloxd": 0.02,
+    "system.ubloxd.pigeond": 6.0,
+  },
+  "tizi": {
+     "./boardd": 19.0,
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
     "system.qcomgpsd.qcomgpsd": 1.0,
   }
 }.get(HARDWARE.get_device_type(), {}))
@@ -168,10 +216,17 @@ class TestOnroad:
     cls.log_sizes = {}
     for f in cls.log_path.iterdir():
       assert f.is_file()
+<<<<<<< HEAD
       cls.log_sizes[f] = f.stat().st_size / 1e6
       if f.name in ("qlog", "rlog"):
         with open(f, 'rb') as ff:
           cls.log_sizes[f] = len(zstd.compress(ff.read(), LOG_COMPRESSION_LEVEL)) / 1e6
+=======
+      cls.log_sizes[f]  = f.stat().st_size / 1e6
+      if f.name in ("qlog", "rlog"):
+        with open(f, 'rb') as ff:
+          cls.log_sizes[f] = len(bz2.compress(ff.read())) / 1e6
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
 
   @cached_property
@@ -208,7 +263,11 @@ class TestOnroad:
       if f.name == "qcamera.ts":
         assert 2.15 < sz < 2.35
       elif f.name == "qlog":
+<<<<<<< HEAD
         assert 0.4 < sz < 0.55
+=======
+        assert 0.7 < sz < 1.0
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
       elif f.name == "rlog":
         assert 5 < sz < 50
       elif f.name.endswith('.hevc'):
@@ -248,7 +307,12 @@ class TestOnroad:
     for pl in self.service_msgs['procLog']:
       for x in pl.procLog.procs:
         if len(x.cmdline) > 0:
+<<<<<<< HEAD
           plogs_by_proc[x.name].append(x)
+=======
+          n = list(x.cmdline)[0]
+          plogs_by_proc[n].append(x)
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
     print(plogs_by_proc.keys())
 
     cpu_ok = True
@@ -256,9 +320,14 @@ class TestOnroad:
     for proc_name, expected_cpu in PROCS.items():
 
       err = ""
+<<<<<<< HEAD
       exp = "???"
       cpu_usage = 0.
       x = plogs_by_proc[proc_name[-15:]]
+=======
+      cpu_usage = 0.
+      x = plogs_by_proc[proc_name]
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
       if len(x) > 2:
         cpu_time = cputime_total(x[-1]) - cputime_total(x[0])
         cpu_usage = cpu_time / dt * 100.
@@ -310,7 +379,11 @@ class TestOnroad:
     assert max(mems) - min(mems) <= 3.0
 
   def test_gpu_usage(self):
+<<<<<<< HEAD
     assert self.gpu_procs == {"weston", "ui", "camerad", "modeld"}
+=======
+    assert self.gpu_procs == {"weston", "ui", "camerad", "selfdrive.modeld.modeld"}
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
   def test_camera_processing_time(self):
     result = "\n"

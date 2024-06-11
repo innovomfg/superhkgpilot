@@ -3,7 +3,11 @@ from openpilot.common.conversions import Conversions as CV
 from opendbc.can.can_define import CANDefine
 from opendbc.can.parser import CANParser
 from openpilot.selfdrive.car.interfaces import CarStateBase
+<<<<<<< HEAD
 from openpilot.selfdrive.car.mazda.values import DBC, LKAS_LIMITS, MazdaFlags, BUTTONS
+=======
+from openpilot.selfdrive.car.mazda.values import DBC, LKAS_LIMITS, MazdaFlags, BUTTON_STATES
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
 class CarState(CarStateBase):
   def __init__(self, CP):
@@ -24,7 +28,12 @@ class CarState(CarStateBase):
     self.lkas_enabled = False
     self.prev_lkas_enabled = False
 
+<<<<<<< HEAD
     self.button_states = {button.event_type: False for button in BUTTONS}
+=======
+    self.buttonStates = BUTTON_STATES.copy()
+    self.buttonStatesPrev = BUTTON_STATES.copy()
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
   def update(self, cp, cp_cam):
 
@@ -35,6 +44,10 @@ class CarState(CarStateBase):
 
     self.prev_mads_enabled = self.mads_enabled
     self.prev_lkas_enabled = self.lkas_enabled
+<<<<<<< HEAD
+=======
+    self.buttonStatesPrev = self.buttonStates.copy()
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
     ret.wheelSpeeds = self.get_wheel_speeds(
       cp.vl["WHEEL_SPEEDS"]["FL"],
@@ -54,6 +67,7 @@ class CarState(CarStateBase):
     can_gear = int(cp.vl["GEAR"]["GEAR"])
     ret.gearShifter = self.parse_gear_shifter(self.shifter_values.get(can_gear, None))
 
+<<<<<<< HEAD
     # Buttons
     for button in BUTTONS:
       state = (cp.vl[button.can_addr][button.can_msg] in button.values)
@@ -64,6 +78,8 @@ class CarState(CarStateBase):
         self.button_events.append(event)
       self.button_states[button.event_type] = state
 
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
     ret.genericToggle = bool(cp.vl["BLINK_INFO"]["HIGH_BEAMS"])
     ret.leftBlindspot = cp.vl["BSM"]["LEFT_BS_STATUS"] != 0
     ret.rightBlindspot = cp.vl["BSM"]["RIGHT_BS_STATUS"] != 0
@@ -122,6 +138,14 @@ class CarState(CarStateBase):
 
     self.acc_active_last = ret.cruiseState.enabled
 
+<<<<<<< HEAD
+=======
+    self.buttonStates["accelCruise"] = bool(cp.vl["CRZ_BTNS"]["SET_P"])
+    self.buttonStates["decelCruise"] = bool(cp.vl["CRZ_BTNS"]["SET_M"])
+    self.buttonStates["cancel"] = bool(cp.vl["CRZ_BTNS"]["CAN_OFF"])
+    self.buttonStates["resumeCruise"] = bool(cp.vl["CRZ_BTNS"]["RES"])
+
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
     self.crz_btns_counter = cp.vl["CRZ_BTNS"]["CTR"]
 
     # camera signals

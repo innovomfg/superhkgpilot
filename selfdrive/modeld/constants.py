@@ -63,8 +63,11 @@ class ModelConstants:
   RYG_GREEN = 0.01165
   RYG_YELLOW = 0.06157
 
+<<<<<<< HEAD
   POLY_PATH_DEGREE = 4
 
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 # model outputs slices
 class Plan:
   POSITION = slice(0, 3)

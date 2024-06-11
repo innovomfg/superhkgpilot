@@ -112,7 +112,11 @@ def create_lat_ctl2_msg(packer, CAN: CanBus, mode: int, path_offset: float, path
   }
 
   # calculate checksum
+<<<<<<< HEAD
   dat = packer.make_can_msg("LateralMotionControl2", 0, values)[1]
+=======
+  dat = packer.make_can_msg("LateralMotionControl2", 0, values)[2]
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
   values["LatCtlPath_No_Cs"] = calculate_lat_ctl2_checksum(mode, counter, dat)
 
   return packer.make_can_msg("LateralMotionControl2", CAN.main, values)

@@ -14,7 +14,11 @@ from openpilot.system.version import get_build_metadata
 MAX_CACHE_SIZE = 4e9 if "CI" in os.environ else 2e9
 CACHE_DIR = Path("/data/scons_cache" if AGNOS else "/tmp/scons_cache")
 
+<<<<<<< HEAD
 TOTAL_SCONS_NODES = 2820
+=======
+TOTAL_SCONS_NODES = 2410
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 MAX_BUILD_PROGRESS = 100
 
 def build(spinner: Spinner, dirty: bool = False, minimal: bool = False) -> None:

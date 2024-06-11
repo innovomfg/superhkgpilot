@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+#!/usr/bin/env python3
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 import os
 import math
 import hypothesis.strategies as st
@@ -6,7 +10,12 @@ import importlib
 from parameterized import parameterized
 
 from cereal import car, messaging
+<<<<<<< HEAD
 from openpilot.selfdrive.car import DT_CTRL, gen_empty_fingerprint
+=======
+from openpilot.common.realtime import DT_CTRL
+from openpilot.selfdrive.car import gen_empty_fingerprint
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 from openpilot.selfdrive.car.car_helpers import interfaces
 from openpilot.selfdrive.car.fingerprints import all_known_cars
 from openpilot.selfdrive.car.fw_versions import FW_VERSIONS, FW_QUERY_CONFIGS
@@ -15,7 +24,10 @@ from openpilot.selfdrive.controls.lib.latcontrol_angle import LatControlAngle
 from openpilot.selfdrive.controls.lib.latcontrol_pid import LatControlPID
 from openpilot.selfdrive.controls.lib.latcontrol_torque import LatControlTorque
 from openpilot.selfdrive.controls.lib.longcontrol import LongControl
+<<<<<<< HEAD
 from openpilot.selfdrive.pandad import can_capnp_to_list
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 from openpilot.selfdrive.test.fuzzy_generation import DrawType, FuzzyGenerator
 
 ALL_ECUS = {ecu for ecus in FW_VERSIONS.values() for ecu in ecus.keys()}
@@ -23,7 +35,11 @@ ALL_ECUS |= {ecu for config in FW_QUERY_CONFIGS.values() for ecu in config.extra
 
 ALL_REQUESTS = {tuple(r.request) for config in FW_QUERY_CONFIGS.values() for r in config.requests}
 
+<<<<<<< HEAD
 MAX_EXAMPLES = int(os.environ.get('MAX_EXAMPLES', '60'))
+=======
+MAX_EXAMPLES = int(os.environ.get('MAX_EXAMPLES', '40'))
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
 
 def get_fuzzy_car_interface_args(draw: DrawType) -> dict:
@@ -62,7 +78,10 @@ class TestCarInterfaces:
 
     car_params = CarInterface.get_params(car_name, args['fingerprints'], args['car_fw'],
                                          experimental_long=args['experimental_long'], docs=False)
+<<<<<<< HEAD
     car_params = car_params.as_reader()
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
     car_interface = CarInterface(car_params, CarController, CarState)
     assert car_params
     assert car_interface
@@ -76,6 +95,10 @@ class TestCarInterfaces:
     # Longitudinal sanity checks
     assert len(car_params.longitudinalTuning.kpV) == len(car_params.longitudinalTuning.kpBP)
     assert len(car_params.longitudinalTuning.kiV) == len(car_params.longitudinalTuning.kiBP)
+<<<<<<< HEAD
+=======
+    assert len(car_params.longitudinalTuning.deadzoneV) == len(car_params.longitudinalTuning.deadzoneBP)
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
     # If we're using the interceptor for gasPressed, we should be commanding gas with it
     if car_params.enableGasInterceptorDEPRECATED:
@@ -133,7 +156,11 @@ class TestCarInterfaces:
 
     # Test radar fault
     if not car_params.radarUnavailable and radar_interface.rcp is not None:
+<<<<<<< HEAD
       cans = can_capnp_to_list([messaging.new_message('can', 1).to_bytes() for _ in range(5)])
+=======
+      cans = [messaging.new_message('can', 1).to_bytes() for _ in range(5)]
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
       rr = radar_interface.update(cans)
       assert rr is None or len(rr.errors) > 0
 

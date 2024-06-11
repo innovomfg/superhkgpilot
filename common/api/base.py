@@ -1,7 +1,11 @@
 import jwt
 import requests
 import unicodedata
+<<<<<<< HEAD
 from datetime import datetime, timedelta, UTC
+=======
+from datetime import datetime, timedelta
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 from openpilot.system.hardware.hw import Paths
 from openpilot.system.version import get_version
 
@@ -24,7 +28,11 @@ class BaseApi:
     return self.api_get(endpoint, method=method, timeout=timeout, access_token=access_token, **params)
 
   def _get_token(self, expiry_hours=1, **extra_payload):
+<<<<<<< HEAD
     now = datetime.now(UTC).replace(tzinfo=None)
+=======
+    now = datetime.utcnow()
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
     payload = {
       'identity': self.dongle_id,
       'nbf': now,

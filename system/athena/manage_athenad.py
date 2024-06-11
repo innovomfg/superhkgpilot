@@ -18,7 +18,11 @@ def main():
 
 def manage_athenad(dongle_id_param, pid_param, process_name, target):
   params = Params()
+<<<<<<< HEAD
   dongle_id = params.get(dongle_id_param, encoding='utf-8')
+=======
+  dongle_id = params.get(dongle_id_param).decode('utf-8')
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
   build_metadata = get_build_metadata()
 
   cloudlog.bind_global(dongle_id=dongle_id,

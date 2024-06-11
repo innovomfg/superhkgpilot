@@ -86,6 +86,7 @@
         <source>for &quot;%1&quot;</source>
         <translation>&quot;%1&quot;에 접속하려면 비밀번호가 필요합니다</translation>
     </message>
+<<<<<<< HEAD
 </context>
 <context>
     <name>AdvancedNetworkingSP</name>
@@ -97,6 +98,8 @@
         <source>Enable Tethering</source>
         <translation type="unfinished">테더링 사용</translation>
     </message>
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
     <message>
         <source>Retain hotspot/tethering state</source>
         <translation type="unfinished"></translation>
@@ -106,6 +109,7 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
+<<<<<<< HEAD
         <source>Tethering Password</source>
         <translation type="unfinished">테더링 비밀번호</translation>
     </message>
@@ -166,6 +170,8 @@
         <translation type="unfinished">&quot;%1&quot;에 접속하려면 비밀번호가 필요합니다</translation>
     </message>
     <message>
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
         <source>Ngrok Service</source>
         <translation type="unfinished"></translation>
     </message>
@@ -186,6 +192,7 @@
     </message>
     <message>
         <source>SPEED</source>
+<<<<<<< HEAD
         <translation type="vanished">SPEED</translation>
     </message>
     <message>
@@ -222,11 +229,19 @@
     <message>
         <source>acc</source>
         <translation type="unfinished"></translation>
+=======
+        <translation>SPEED</translation>
+    </message>
+    <message>
+        <source>LIMIT</source>
+        <translation>LIMIT</translation>
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
     </message>
 </context>
 <context>
     <name>AutoLaneChangeTimer</name>
     <message>
+<<<<<<< HEAD
         <source>Auto Lane Change by Blinker</source>
         <translation type="unfinished"></translation>
     </message>
@@ -236,14 +251,19 @@ Please use caution when using this feature. Only use the blinker when traffic an
         <translation type="unfinished"></translation>
     </message>
     <message>
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
         <source>s</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+<<<<<<< HEAD
         <source>Off</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
         <source>Nudge</source>
         <translation type="unfinished"></translation>
     </message>
@@ -251,6 +271,22 @@ Please use caution when using this feature. Only use the blinker when traffic an
         <source>Nudgeless</source>
         <translation type="unfinished"></translation>
     </message>
+<<<<<<< HEAD
+=======
+    <message>
+        <source>Auto Lane Change by Blinker</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Off</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Set a timer to delay the auto lane change operation when the blinker is used. No nudge on the steering wheel is required to auto lane change if a timer is set. Default is Nudge.
+Please use caution when using this feature. Only use the blinker when traffic and road conditions permit.</source>
+        <translation type="unfinished"></translation>
+    </message>
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 </context>
 <context>
     <name>BackupSettings</name>
@@ -331,7 +367,11 @@ Please use caution when using this feature. Only use the blinker when traffic an
     <name>DeclinePage</name>
     <message>
         <source>You must accept the Terms and Conditions in order to use openpilot.</source>
+<<<<<<< HEAD
         <translation type="vanished">openpilot을 사용하려면 이용약관에 동의해야 합니다.</translation>
+=======
+        <translation>openpilot을 사용하려면 이용약관에 동의해야 합니다.</translation>
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
     </message>
     <message>
         <source>Back</source>
@@ -341,10 +381,13 @@ Please use caution when using this feature. Only use the blinker when traffic an
         <source>Decline, uninstall %1</source>
         <translation>거절, %1 제거</translation>
     </message>
+<<<<<<< HEAD
     <message>
         <source>You must accept the Terms and Conditions in order to use sunnypilot.</source>
         <translation type="unfinished"></translation>
     </message>
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 </context>
 <context>
     <name>DestinationWidget</name>
@@ -421,7 +464,11 @@ Please use caution when using this feature. Only use the blinker when traffic an
     </message>
     <message>
         <source>Review the rules, features, and limitations of openpilot</source>
+<<<<<<< HEAD
         <translation>openpilot의 규칙, 기능 및 제한 다시 확인</translation>
+=======
+        <translation type="vanished">openpilot의 규칙, 기능 및 제한 다시 확인</translation>
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
     </message>
     <message>
         <source>Are you sure you want to review the training guide?</source>
@@ -516,6 +563,7 @@ Please use caution when using this feature. Only use the blinker when traffic an
         <translation>동기화</translation>
     </message>
     <message>
+<<<<<<< HEAD
         <source>sunnypilot requires the device to be mounted within 4° left or right and within 5° up or 9° down. sunnypilot is continuously calibrating, resetting is rarely required.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -523,6 +571,8 @@ Please use caution when using this feature. Only use the blinker when traffic an
 <context>
     <name>DevicePanelSP</name>
     <message>
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
         <source>TOGGLE</source>
         <translation type="unfinished"></translation>
     </message>
@@ -543,10 +593,13 @@ Please use caution when using this feature. Only use the blinker when traffic an
         <translation type="unfinished"></translation>
     </message>
     <message>
+<<<<<<< HEAD
         <source>VIEW</source>
         <translation type="unfinished">보기</translation>
     </message>
     <message>
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
         <source>Display error from the tmux session when an error has occurred from a system process.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -555,10 +608,13 @@ Please use caution when using this feature. Only use the blinker when traffic an
         <translation type="unfinished"></translation>
     </message>
     <message>
+<<<<<<< HEAD
         <source>RESET</source>
         <translation type="unfinished">초기화</translation>
     </message>
     <message>
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
         <source>Reset self-service access tokens for Mapbox, Amap, and Google Maps.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -567,10 +623,13 @@ Please use caution when using this feature. Only use the blinker when traffic an
         <translation type="unfinished"></translation>
     </message>
     <message>
+<<<<<<< HEAD
         <source>Reset</source>
         <translation type="unfinished">초기화</translation>
     </message>
     <message>
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
         <source>Reset sunnypilot Settings</source>
         <translation type="unfinished"></translation>
     </message>
@@ -579,7 +638,11 @@ Please use caution when using this feature. Only use the blinker when traffic an
         <translation type="unfinished"></translation>
     </message>
     <message>
+<<<<<<< HEAD
         <source>Toggle Onroad/Offroad</source>
+=======
+        <source>Review the rules, features, and limitations of sunnypilot</source>
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -587,6 +650,21 @@ Please use caution when using this feature. Only use the blinker when traffic an
         <translation type="unfinished"></translation>
     </message>
     <message>
+<<<<<<< HEAD
+=======
+        <source>sunnypilot requires the device to be mounted within 4° left or right and within 5° up or 9° down. sunnypilot is continuously calibrating, resetting is rarely required.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Fleet Manager PIN:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Toggle Onroad/Offroad</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
         <source>Are you sure you want to unforce offroad?</source>
         <translation type="unfinished"></translation>
     </message>
@@ -614,10 +692,13 @@ Please use caution when using this feature. Only use the blinker when traffic an
         <source>Force Offroad</source>
         <translation type="unfinished"></translation>
     </message>
+<<<<<<< HEAD
     <message>
         <source>Fleet Manager PIN:</source>
         <translation type="unfinished"></translation>
     </message>
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 </context>
 <context>
     <name>DisplayPanel</name>
@@ -637,6 +718,17 @@ Please use caution when using this feature. Only use the blinker when traffic an
         <source>Disabled: Wake the brightness of the screen to display critical events.</source>
         <translation type="unfinished"></translation>
     </message>
+<<<<<<< HEAD
+=======
+    <message>
+        <source>Enable Screen Recorder</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable this will display a button on the onroad screen to toggle on or off real-time screen recording with UI elements.</source>
+        <translation type="unfinished"></translation>
+    </message>
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 </context>
 <context>
     <name>DriveStats</name>
@@ -710,6 +802,7 @@ Please use caution when using this feature. Only use the blinker when traffic an
         <translation type="unfinished">뒤로</translation>
     </message>
     <message>
+<<<<<<< HEAD
         <source>Pause Lateral Below Speed with Blinker</source>
         <translation type="unfinished"></translation>
     </message>
@@ -718,6 +811,8 @@ Please use caution when using this feature. Only use the blinker when traffic an
         <translation type="unfinished"></translation>
     </message>
     <message>
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
         <source>Auto Lane Change: Delay with Blind Spot</source>
         <translation type="unfinished"></translation>
     </message>
@@ -733,6 +828,17 @@ Please use caution when using this feature. Only use the blinker when traffic an
         <source>Enable this toggle to block lane change when road edge is detected on the stalk actuated side.</source>
         <translation type="unfinished"></translation>
     </message>
+<<<<<<< HEAD
+=======
+    <message>
+        <source>Pause Lateral Below Speed with Blinker</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Enable this toggle to pause lateral actuation with blinker when traveling below the desired speed selected below.</source>
+        <translation type="unfinished"></translation>
+    </message>
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 </context>
 <context>
     <name>MadsSettings</name>
@@ -818,6 +924,7 @@ Pause Steering: ALC will be paused after the brake pedal is manually pressed.</s
     </message>
 </context>
 <context>
+<<<<<<< HEAD
     <name>MapWindowSP</name>
     <message>
         <source>Map Loading</source>
@@ -833,6 +940,8 @@ Pause Steering: ALC will be paused after the brake pedal is manually pressed.</s
     </message>
 </context>
 <context>
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
     <name>MaxTimeOffroad</name>
     <message>
         <source>Max Time Offroad</source>
@@ -903,9 +1012,12 @@ Pause Steering: ALC will be paused after the brake pedal is manually pressed.</s
         <source>Wrong password</source>
         <translation>비밀번호가 틀렸습니다</translation>
     </message>
+<<<<<<< HEAD
 </context>
 <context>
     <name>NetworkingSP</name>
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
     <message>
         <source>Scan</source>
         <translation type="unfinished"></translation>
@@ -914,6 +1026,7 @@ Pause Steering: ALC will be paused after the brake pedal is manually pressed.</s
         <source>Scanning...</source>
         <translation type="unfinished"></translation>
     </message>
+<<<<<<< HEAD
     <message>
         <source>Advanced</source>
         <translation type="unfinished">고급 설정</translation>
@@ -930,6 +1043,8 @@ Pause Steering: ALC will be paused after the brake pedal is manually pressed.</s
         <source>Wrong password</source>
         <translation type="unfinished">비밀번호가 틀렸습니다</translation>
     </message>
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 </context>
 <context>
     <name>OffroadAlert</name>
@@ -1243,6 +1358,7 @@ Warning: You are on a metered connection!</source>
     </message>
 </context>
 <context>
+<<<<<<< HEAD
     <name>ParamControlSP</name>
     <message>
         <source>Enable</source>
@@ -1254,6 +1370,8 @@ Warning: You are on a metered connection!</source>
     </message>
 </context>
 <context>
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
     <name>PathOffset</name>
     <message>
         <source>Path Offset</source>
@@ -1386,6 +1504,7 @@ Warning: You are on a metered connection!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+<<<<<<< HEAD
         <source>Update downloaded. Ready to reboot.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1398,6 +1517,8 @@ Warning: You are on a metered connection!</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
         <source>Update</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1454,6 +1575,17 @@ This may take up to a minute.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+<<<<<<< HEAD
+=======
+        <source>HKG CAN: Smoother Stopping Performance (Beta)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Smoother stopping behind a stopped car or desired stopping event. This is only applicable to HKG CAN platforms using openpilot longitudinal control.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
         <source>Subaru</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1498,10 +1630,13 @@ This may take up to a minute.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+<<<<<<< HEAD
         <source>Enable Enhanced Blind Spot Monitor</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
         <source>Enable Toyota Stop and Go Hack</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1510,6 +1645,7 @@ This may take up to a minute.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+<<<<<<< HEAD
         <source>Enable Toyota Door Auto Locking</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1528,6 +1664,8 @@ Reboot Required.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
         <source>Volkswagen</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1539,6 +1677,7 @@ Reboot Required.</source>
         <source>sunnypilot supports Volkswagen MQB CC only platforms with this toggle enabled. Only enable this toggle if your car does not have ACC from the factory.</source>
         <translation type="unfinished"></translation>
     </message>
+<<<<<<< HEAD
     <message>
         <source>Start the car to check car compatibility</source>
         <translation type="unfinished"></translation>
@@ -1579,6 +1718,8 @@ Reboot Required.</source>
         <source>Enabling this toggle sets CRUISE MAIN to ON by default when the car starts, without engaging MADS. The user still needs to manually engage MADS.</source>
         <translation type="unfinished"></translation>
     </message>
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 </context>
 <context>
     <name>SettingsWindow</name>
@@ -1602,6 +1743,7 @@ Reboot Required.</source>
         <source>Software</source>
         <translation>소프트웨어</translation>
     </message>
+<<<<<<< HEAD
 </context>
 <context>
     <name>SettingsWindowSP</name>
@@ -1617,11 +1759,14 @@ Reboot Required.</source>
         <source>Network</source>
         <translation type="unfinished">네트워크</translation>
     </message>
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
     <message>
         <source>sunnylink</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+<<<<<<< HEAD
         <source>Toggles</source>
         <translation type="unfinished">토글</translation>
     </message>
@@ -1630,6 +1775,8 @@ Reboot Required.</source>
         <translation type="unfinished">소프트웨어</translation>
     </message>
     <message>
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
         <source>sunnypilot</source>
         <translation type="unfinished"></translation>
     </message>
@@ -1850,6 +1997,7 @@ Reboot Required.</source>
         <source>5G</source>
         <translation>5G</translation>
     </message>
+<<<<<<< HEAD
 </context>
 <context>
     <name>SidebarSP</name>
@@ -1868,11 +2016,17 @@ Reboot Required.</source>
     <message>
         <source>OK</source>
         <translation type="unfinished">OK</translation>
+=======
+    <message>
+        <source>SUNNYLINK</source>
+        <translation type="unfinished"></translation>
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
     </message>
     <message>
         <source>DISABLED</source>
         <translation type="unfinished"></translation>
     </message>
+<<<<<<< HEAD
     <message>
         <source>OFFLINE</source>
         <translation type="unfinished">연결 안됨</translation>
@@ -1893,6 +2047,8 @@ Reboot Required.</source>
         <source>SUNNYLINK</source>
         <translation type="unfinished"></translation>
     </message>
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 </context>
 <context>
     <name>SlcSettings</name>
@@ -2019,6 +2175,13 @@ Reboot Required.</source>
         <source>never</source>
         <translation>업데이트 안함</translation>
     </message>
+<<<<<<< HEAD
+=======
+    <message>
+        <source>Driving Model</source>
+        <translation type="unfinished"></translation>
+    </message>
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 </context>
 <context>
     <name>SoftwarePanelSP</name>
@@ -2031,10 +2194,13 @@ Reboot Required.</source>
         <translation type="unfinished">선택</translation>
     </message>
     <message>
+<<<<<<< HEAD
         <source>PENDING</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
         <source>Downloading Driving model</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2106,6 +2272,13 @@ Reboot Required.</source>
         <source>on Metered</source>
         <translation type="unfinished"></translation>
     </message>
+<<<<<<< HEAD
+=======
+    <message>
+        <source>PENDING</source>
+        <translation type="unfinished"></translation>
+    </message>
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 </context>
 <context>
     <name>SpeedLimitPolicySettings</name>
@@ -2320,6 +2493,33 @@ Reboot Required.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+<<<<<<< HEAD
+=======
+        <source>A reboot is required to</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>start</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>stop</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>all connections and processes from sunnylink.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>If that&apos;s not a problem for you, you can ignore this.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Reboot Now!</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
         <source>Sponsor Status</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2344,10 +2544,13 @@ Reboot Required.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+<<<<<<< HEAD
         <source>sunnylink Dongle ID not found. This may be due to weak internet connection or sunnylink registration issue. Please reboot and try again.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
         <source>Manage Settings</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2670,7 +2873,11 @@ Reboot Required.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+<<<<<<< HEAD
         <source>Formerly known as &lt;b&gt;&quot;NNFF&quot;&lt;/b&gt;, this replaces the lateral &lt;b&gt;&quot;torque&quot;&lt;/b&gt; controller, with one using a neural network trained on each car&apos;s (actually, each separate EPS firmware) driving data for increased controls accuracy.</source>
+=======
+        <source>Formerly known as &lt;b&gt;&quot;NNFF&quot;&lt;/b&gt;, this replaces the lateral &lt;b&gt;&quot;torque&quot;&lt;/b&gt; controller with one using a neural network trained on each car&apos;s (actually, each separate EPS firmware) driving data for increased controls accuracy.</source>
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -2685,6 +2892,7 @@ Reboot Required.</source>
         <source>Default is Laneless. In Auto mode, sunnnypilot dynamically chooses between Laneline or Laneless model based on lane recognition confidence level on road and certain conditions.</source>
         <translation type="unfinished"></translation>
     </message>
+<<<<<<< HEAD
     <message>
         <source>Overtaking Acceleration Assist</source>
         <translation type="unfinished"></translation>
@@ -2709,6 +2917,8 @@ Reboot Required.</source>
         <source>Utilizes limited lateral jerk control for improved steering response, leveraging stock torque lateral controller capabilities. Designed to mimic NNLC behavior without training models or data collection.</source>
         <translation type="unfinished"></translation>
     </message>
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 </context>
 <context>
     <name>TermsPage</name>
@@ -2730,6 +2940,7 @@ Reboot Required.</source>
     </message>
 </context>
 <context>
+<<<<<<< HEAD
     <name>TermsPageSP</name>
     <message>
         <source>Terms &amp; Conditions</source>
@@ -2745,6 +2956,8 @@ Reboot Required.</source>
     </message>
 </context>
 <context>
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
     <name>TogglesPanel</name>
     <message>
         <source>Enable openpilot</source>
@@ -2788,6 +3001,7 @@ Reboot Required.</source>
     </message>
     <message>
         <source>Show ETA in 24h Format</source>
+<<<<<<< HEAD
         <translation type="vanished">24시간 형식으로 도착 예정 시간 표시</translation>
     </message>
     <message>
@@ -2801,6 +3015,21 @@ Reboot Required.</source>
     <message>
         <source>Show map on left side when in split screen view.</source>
         <translation type="vanished">분할 화면 보기에서 지도를 왼쪽에 표시합니다.</translation>
+=======
+        <translation>24시간 형식으로 도착 예정 시간 표시</translation>
+    </message>
+    <message>
+        <source>Use 24h format instead of am/pm</source>
+        <translation>오전/오후 대신 24시간 형식 사용</translation>
+    </message>
+    <message>
+        <source>Show Map on Left Side of UI</source>
+        <translation>UI 왼쪽에 지도 표시</translation>
+    </message>
+    <message>
+        <source>Show map on left side when in split screen view.</source>
+        <translation>분할 화면 보기에서 지도를 왼쪽에 표시합니다.</translation>
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
     </message>
     <message>
         <source>Experimental Mode</source>
@@ -2844,7 +3073,11 @@ Reboot Required.</source>
     </message>
     <message>
         <source>Standard</source>
+<<<<<<< HEAD
         <translation>표준</translation>
+=======
+        <translation type="vanished">표준</translation>
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
     </message>
     <message>
         <source>Relaxed</source>
@@ -2868,7 +3101,11 @@ Reboot Required.</source>
     </message>
     <message>
         <source>Standard is recommended. In aggressive mode, openpilot will follow lead cars closer and be more aggressive with the gas and brake. In relaxed mode openpilot will stay further away from lead cars. On supported cars, you can cycle through these personalities with your steering wheel distance button.</source>
+<<<<<<< HEAD
         <translation>표준 모드를 권장합니다. 공격적 모드의 openpilot은 선두 차량을 더 가까이 따라가고 가감속제어를 사용하여 더욱 공격적으로 움직입니다. 편안한 모드의 openpilot은 선두 차량으로부터 더 멀리 떨어져 있습니다. 지원되는 차량에서는 스티어링 휠 거리 버튼을 사용하여 이러한 특성을 순환할 수 있습니다.</translation>
+=======
+        <translation type="vanished">표준 모드를 권장합니다. 공격적 모드의 openpilot은 선두 차량을 더 가까이 따라가고 가감속제어를 사용하여 더욱 공격적으로 움직입니다. 편안한 모드의 openpilot은 선두 차량으로부터 더 멀리 떨어져 있습니다. 지원되는 차량에서는 스티어링 휠 거리 버튼을 사용하여 이러한 특성을 순환할 수 있습니다.</translation>
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
     </message>
     <message>
         <source>The driving visualization will transition to the road-facing wide-angle camera at low speeds to better show some turns. The Experimental mode logo will also be shown in the top right corner.</source>
@@ -2890,6 +3127,7 @@ Reboot Required.</source>
         <source>Use the sunnypilot system for adaptive cruise control and lane keep driver assistance. Your attention is required at all times to use this feature. Changing this setting takes effect when the car is powered off.</source>
         <translation type="unfinished"></translation>
     </message>
+<<<<<<< HEAD
 </context>
 <context>
     <name>TogglesPanelSP</name>
@@ -2913,6 +3151,8 @@ Reboot Required.</source>
         <source>On this car, sunnypilot defaults to the car&apos;s built-in ACC instead of openpilot&apos;s longitudinal control. Enable this to switch to sunnypilot longitudinal control. Enabling Experimental mode is recommended when enabling sunnypilot longitudinal control alpha.</source>
         <translation type="unfinished"></translation>
     </message>
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
     <message>
         <source>Custom Stock Longitudinal Control</source>
         <translation type="unfinished"></translation>
@@ -2923,14 +3163,18 @@ This feature must be used along with SLC, and/or V-TSC, and/or M-TSC.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+<<<<<<< HEAD
         <source>Experimental Mode</source>
         <translation type="unfinished">실험 모드</translation>
     </message>
     <message>
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
         <source>Enable Dynamic Experimental Control</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+<<<<<<< HEAD
         <source>Enable toggle to allow the model to determine when to use sunnypilot ACC or sunnypilot End to End Longitudinal.</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2975,6 +3219,12 @@ This feature must be used along with SLC, and/or V-TSC, and/or M-TSC.</source>
         <translation type="unfinished">운전자 카메라의 영상 데이터를 업로드하여 운전자 모니터링 알고리즘을 개선합니다.</translation>
     </message>
     <message>
+=======
+        <source>Enable toggle to allow the model to determine when to use openpilot ACC or openpilot End to End Longitudinal.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
         <source>Disable Onroad Uploads</source>
         <translation type="unfinished"></translation>
     </message>
@@ -2983,6 +3233,7 @@ This feature must be used along with SLC, and/or V-TSC, and/or M-TSC.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+<<<<<<< HEAD
         <source>Use Metric System</source>
         <translation type="unfinished">미터법 사용</translation>
     </message>
@@ -3040,6 +3291,9 @@ This feature must be used along with SLC, and/or V-TSC, and/or M-TSC.</source>
     </message>
     <message>
         <source>Eco</source>
+=======
+        <source>Maniac</source>
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3047,6 +3301,7 @@ This feature must be used along with SLC, and/or V-TSC, and/or M-TSC.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+<<<<<<< HEAD
         <source>Acceleration Personality</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3088,6 +3343,9 @@ This feature must be used along with SLC, and/or V-TSC, and/or M-TSC.</source>
     </message>
     <message>
         <source>Enable the sunnypilot longitudinal control (alpha) toggle to allow Experimental mode.</source>
+=======
+        <source>Stock is recommended. In aggressive/maniac mode, openpilot will follow lead cars closer and be more aggressive with the gas and brake. In relaxed mode openpilot will stay further away from lead cars. On supported cars, you can cycle through these personalities with your steering wheel distance button.</source>
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
         <translation type="unfinished"></translation>
     </message>
     <message>
@@ -3294,6 +3552,14 @@ This feature must be used along with SLC, and/or V-TSC, and/or M-TSC.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+<<<<<<< HEAD
+=======
+        <source>Distance
+Speed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
         <source>Display Metrics Below Chevron</source>
         <translation type="unfinished"></translation>
     </message>
@@ -3321,6 +3587,7 @@ This feature must be used along with SLC, and/or V-TSC, and/or M-TSC.</source>
         <source>Display Temperature on Sidebar</source>
         <translation type="unfinished"></translation>
     </message>
+<<<<<<< HEAD
     <message>
         <source>Time</source>
         <translation type="unfinished"></translation>
@@ -3329,6 +3596,8 @@ This feature must be used along with SLC, and/or V-TSC, and/or M-TSC.</source>
         <source>All</source>
         <translation type="unfinished"></translation>
     </message>
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 </context>
 <context>
     <name>WiFiPromptWidget</name>
@@ -3376,6 +3645,7 @@ This feature must be used along with SLC, and/or V-TSC, and/or M-TSC.</source>
         <translation>삭제</translation>
     </message>
 </context>
+<<<<<<< HEAD
 <context>
     <name>WifiUISP</name>
     <message>
@@ -3399,4 +3669,6 @@ This feature must be used along with SLC, and/or V-TSC, and/or M-TSC.</source>
         <translation type="unfinished">삭제</translation>
     </message>
 </context>
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 </TS>

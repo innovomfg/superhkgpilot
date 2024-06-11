@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import pytest
 import os
 import numpy as np
@@ -7,6 +8,17 @@ from .kinematic_kf import KinematicKalman, ObservationKind, States
 GENERATED_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), 'generated'))
 
 class TestKinematic:
+=======
+import os
+import numpy as np
+import unittest
+
+from kinematic_kf import KinematicKalman, ObservationKind, States  # pylint: disable=import-error
+
+GENERATED_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), 'generated'))
+
+class TestKinematic(unittest.TestCase):
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
   def test_kinematic_kf(self):
     np.random.seed(0)
 
@@ -49,10 +61,17 @@ class TestKinematic:
 
     xs, xs_meas, xs_kf, vs_kf, xs_kf_std, vs_kf_std = (np.asarray(a) for a in (xs, xs_meas, xs_kf, vs_kf, xs_kf_std, vs_kf_std))
 
+<<<<<<< HEAD
     assert xs_kf[-1] == pytest.approx(-0.010866289677966417)
     assert xs_kf_std[-1] == pytest.approx(0.04477103863330089)
     assert vs_kf[-1] == pytest.approx(-0.8553720537261753)
     assert vs_kf_std[-1] == pytest.approx(0.6695762270974388)
+=======
+    self.assertAlmostEqual(xs_kf[-1], -0.010866289677966417)
+    self.assertAlmostEqual(xs_kf_std[-1], 0.04477103863330089)
+    self.assertAlmostEqual(vs_kf[-1], -0.8553720537261753)
+    self.assertAlmostEqual(vs_kf_std[-1], 0.6695762270974388)
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
     if "PLOT" in os.environ:
       import matplotlib.pyplot as plt  # pylint: disable=import-error
@@ -80,3 +99,10 @@ class TestKinematic:
       plt.legend()
 
       plt.show()
+<<<<<<< HEAD
+=======
+
+
+if __name__ == "__main__":
+  unittest.main()
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)

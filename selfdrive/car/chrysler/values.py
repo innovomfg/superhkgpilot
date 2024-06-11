@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 from collections import namedtuple
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 from enum import IntFlag
 from dataclasses import dataclass, field
 
@@ -9,7 +12,10 @@ from openpilot.selfdrive.car.docs_definitions import CarHarness, CarDocs, CarPar
 from openpilot.selfdrive.car.fw_query_definitions import FwQueryConfig, Request, p16
 
 Ecu = car.CarParams.Ecu
+<<<<<<< HEAD
 Button = namedtuple('Button', ['event_type', 'can_addr', 'can_msg', 'values'])
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
 
 class ChryslerFlags(IntFlag):
@@ -40,6 +46,7 @@ class ChryslerCarSpecs(CarSpecs):
 
 class CAR(Platforms):
   # Chrysler
+<<<<<<< HEAD
   CHRYSLER_PACIFICA_2018_HYBRID = ChryslerPlatformConfig(
     [ChryslerCarDocs("Chrysler Pacifica Hybrid 2017-18")],
     ChryslerCarSpecs(mass=2242., wheelbase=3.089, steerRatio=16.2),
@@ -51,19 +58,44 @@ class CAR(Platforms):
   CHRYSLER_PACIFICA_2018 = ChryslerPlatformConfig(
     [ChryslerCarDocs("Chrysler Pacifica 2017-18")],
     CHRYSLER_PACIFICA_2018_HYBRID.specs,
+=======
+  CHRYSLER_PACIFICA_2017_HYBRID = ChryslerPlatformConfig(
+    [ChryslerCarDocs("Chrysler Pacifica Hybrid 2017")],
+    ChryslerCarSpecs(mass=2242., wheelbase=3.089, steerRatio=16.2),
+  )
+  CHRYSLER_PACIFICA_2018_HYBRID = ChryslerPlatformConfig(
+    [ChryslerCarDocs("Chrysler Pacifica Hybrid 2018")],
+    CHRYSLER_PACIFICA_2017_HYBRID.specs,
+  )
+  CHRYSLER_PACIFICA_2019_HYBRID = ChryslerPlatformConfig(
+    [ChryslerCarDocs("Chrysler Pacifica Hybrid 2019-23")],
+    CHRYSLER_PACIFICA_2017_HYBRID.specs,
+  )
+  CHRYSLER_PACIFICA_2018 = ChryslerPlatformConfig(
+    [ChryslerCarDocs("Chrysler Pacifica 2017-18")],
+    CHRYSLER_PACIFICA_2017_HYBRID.specs,
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
   )
   CHRYSLER_PACIFICA_2020 = ChryslerPlatformConfig(
     [
       ChryslerCarDocs("Chrysler Pacifica 2019-20"),
       ChryslerCarDocs("Chrysler Pacifica 2021-23", package="All"),
     ],
+<<<<<<< HEAD
     CHRYSLER_PACIFICA_2018_HYBRID.specs,
+=======
+    CHRYSLER_PACIFICA_2017_HYBRID.specs,
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
   )
 
   # Dodge
   DODGE_DURANGO = ChryslerPlatformConfig(
     [ChryslerCarDocs("Dodge Durango 2020-21")],
+<<<<<<< HEAD
     CHRYSLER_PACIFICA_2018_HYBRID.specs,
+=======
+    CHRYSLER_PACIFICA_2017_HYBRID.specs,
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
   )
 
   # Jeep
@@ -111,12 +143,21 @@ class CarControllerParams:
       self.STEER_MAX = 261  # higher than this faults the EPS
 
 
+<<<<<<< HEAD
 BUTTONS = [
   Button(car.CarState.ButtonEvent.Type.accelCruise, "CRUISE_BUTTONS", "ACC_Accel", [1]),
   Button(car.CarState.ButtonEvent.Type.decelCruise, "CRUISE_BUTTONS", "ACC_Decel", [1]),
   Button(car.CarState.ButtonEvent.Type.cancel, "CRUISE_BUTTONS", "ACC_Cancel", [1]),
   Button(car.CarState.ButtonEvent.Type.resumeCruise, "CRUISE_BUTTONS", "ACC_Resume", [1]),
 ]
+=======
+BUTTON_STATES = {
+  "accelCruise": False,
+  "decelCruise": False,
+  "cancel": False,
+  "resumeCruise": False,
+}
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
 
 STEER_THRESHOLD = 120

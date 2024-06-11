@@ -18,12 +18,20 @@ def recv(panda, cnt, addr, nbus):
   while len(ret) < cnt:
     kmsgs += panda.can_recv()
     nmsgs = []
+<<<<<<< HEAD
     for ids, dat, bus in kmsgs:
+=======
+    for ids, ts, dat, bus in kmsgs:
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
       if ids == addr and bus == nbus and len(ret) < cnt:
         ret.append(dat)
       else:
         # leave around
+<<<<<<< HEAD
         nmsgs.append((ids, dat, bus))
+=======
+        nmsgs.append((ids, ts, dat, bus))
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
     kmsgs = nmsgs[-256:]
   return ret
 
@@ -96,7 +104,11 @@ def isotp_send(panda, x, addr, bus=0, recvaddr=None, subaddr=None, rate=None):
       panda.can_send(addr, sends[-1], 0)
     else:
       if rate is None:
+<<<<<<< HEAD
         panda.can_send_many([(addr, s, bus) for s in sends])
+=======
+        panda.can_send_many([(addr, None, s, bus) for s in sends])
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
       else:
         for dat in sends:
           panda.can_send(addr, dat, bus)

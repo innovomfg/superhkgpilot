@@ -5,7 +5,11 @@
 #include <map>
 #include <string>
 
+<<<<<<< HEAD
 #include "cereal/gen/cpp/log.capnp.h"
+=======
+#include "cereal/messaging/messaging.h"
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
 // no-op base hw class
 class HardwareNone {

@@ -14,7 +14,11 @@ from openpilot.selfdrive.controls.lib.desire_helper import DesireHelper
 import cereal.messaging as messaging
 from cereal import log
 
+<<<<<<< HEAD
 LaneChangeState = log.LaneChangeState
+=======
+LaneChangeState = log.LateralPlan.LaneChangeState
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
 
 PATH_COST = 1.0
@@ -119,7 +123,11 @@ class LateralPlanner:
       self.DH.update(sm['carState'], sm['carControl'].latActive, lane_change_prob, model_data=md)
 
       # Turn off lanes during lane change
+<<<<<<< HEAD
       if self.DH.desire == log.Desire.laneChangeRight or self.DH.desire == log.Desire.laneChangeLeft:
+=======
+      if self.DH.desire == log.LateralPlan.Desire.laneChangeRight or self.DH.desire == log.LateralPlan.Desire.laneChangeLeft:
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
         self.LP.lll_prob *= self.DH.lane_change_ll_prob
         self.LP.rll_prob *= self.DH.lane_change_ll_prob
       self.d_path_w_lines_xyz = self.LP.get_d_path(self.v_ego, self.t_idxs, self.path_xyz)

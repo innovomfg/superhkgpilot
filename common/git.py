@@ -1,5 +1,10 @@
+<<<<<<< HEAD
 from functools import cache
 import subprocess
+=======
+import subprocess
+from openpilot.common.utils import cache
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 from openpilot.common.run import run_cmd, run_cmd_default
 
 

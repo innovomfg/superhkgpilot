@@ -37,9 +37,15 @@ def get_preserved_segments(dirs_by_creation: list[str]) -> list[str]:
     except ValueError:
       continue
 
+<<<<<<< HEAD
     # preserve segment and two prior
     for _seg_num in range(max(0, seg_num - 2), seg_num + 1):
       preserved.append(f"{date_str}--{_seg_num}")
+=======
+    # preserve segment and its prior
+    preserved.append(d)
+    preserved.append(f"{date_str}--{seg_num - 1}")
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
   return preserved
 

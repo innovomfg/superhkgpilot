@@ -1,9 +1,24 @@
 #!/usr/bin/env python3
 from typing import Optional
 
+<<<<<<< HEAD
 
 class Service:
   def __init__(self, should_log: bool, frequency: float, decimation: Optional[int] = None):
+=======
+RESERVED_PORT = 8022  # sshd
+STARTING_PORT = 8001
+
+
+def new_port(port: int):
+  port += STARTING_PORT
+  return port + 1 if port >= RESERVED_PORT else port
+
+
+class Service:
+  def __init__(self, port: int, should_log: bool, frequency: float, decimation: Optional[int] = None):
+    self.port = port
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
     self.should_log = should_log
     self.frequency = frequency
     self.decimation = decimation
@@ -16,13 +31,21 @@ _services: dict[str, tuple] = {
   "gyroscope2": (True, 100., 100),
   "accelerometer": (True, 104., 104),
   "accelerometer2": (True, 100., 100),
+<<<<<<< HEAD
   "magnetometer": (True, 25.),
+=======
+  "magnetometer": (True, 25., 25),
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
   "lightSensor": (True, 100., 100),
   "temperatureSensor": (True, 2., 200),
   "temperatureSensor2": (True, 2., 200),
   "gpsNMEA": (True, 9.),
   "deviceState": (True, 2., 1),
+<<<<<<< HEAD
   "can": (True, 100., 2053),  # decimation gives ~3 msgs in a full segment
+=======
+  "can": (True, 100., 1223),  # decimation gives ~5 msgs in a full segment
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
   "controlsState": (True, 100., 10),
   "pandaStates": (True, 10., 1),
   "peripheralState": (True, 2., 1),
@@ -38,7 +61,11 @@ _services: dict[str, tuple] = {
   "carState": (True, 100., 10),
   "carControl": (True, 100., 10),
   "carOutput": (True, 100., 10),
+<<<<<<< HEAD
   "longitudinalPlan": (True, 20., 10),
+=======
+  "longitudinalPlan": (True, 20., 5),
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
   "procLog": (True, 0.5, 15),
   "gpsLocationExternal": (True, 10., 10),
   "gpsLocation": (True, 1., 1),
@@ -47,10 +74,16 @@ _services: dict[str, tuple] = {
   "gnssMeasurements": (True, 10., 10),
   "clocks": (True, 0.1, 1),
   "ubloxRaw": (True, 20.),
+<<<<<<< HEAD
   "livePose": (True, 20., 4),
   "liveLocationKalman": (True, 20.),
   "liveParameters": (True, 20., 5),
   "cameraOdometry": (True, 20., 10),
+=======
+  "liveLocationKalman": (True, 20., 5),
+  "liveParameters": (True, 20., 5),
+  "cameraOdometry": (True, 20., 5),
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
   "lateralPlanDEPRECATED": (True, 20., 5),
   "thumbnail": (True, 0.2, 1),
   "onroadEvents": (True, 1., 1),
@@ -62,8 +95,12 @@ _services: dict[str, tuple] = {
   "driverMonitoringState": (True, 20., 10),
   "wideRoadEncodeIdx": (False, 20., 1),
   "wideRoadCameraState": (True, 20., 20),
+<<<<<<< HEAD
   "drivingModelData": (True, 20., 10),
   "modelV2": (True, 20.),
+=======
+  "modelV2": (True, 20., 40),
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
   "managerState": (True, 2., 1),
   "uploaderState": (True, 0., 1),
   "navInstruction": (True, 1., 10),
@@ -71,7 +108,11 @@ _services: dict[str, tuple] = {
   "navThumbnail": (True, 0.),
   "navModelDEPRECATED": (True, 2., 4.),
   "mapRenderState": (True, 2., 1.),
+<<<<<<< HEAD
   "uiPlanDEPRECATED": (True, 20., 40.),
+=======
+  "uiPlan": (True, 20., 40.),
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
   "qRoadEncodeIdx": (False, 20.),
   "userFlag": (True, 0., 1),
   "microphone": (True, 10., 10),
@@ -101,7 +142,11 @@ _services: dict[str, tuple] = {
   "customReservedRawData1": (True, 0.),
   "customReservedRawData2": (True, 0.),
 }
+<<<<<<< HEAD
 SERVICE_LIST = {name: Service(*vals) for
+=======
+SERVICE_LIST = {name: Service(new_port(idx), *vals) for
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
                 idx, (name, vals) in enumerate(_services.items())}
 
 
@@ -114,13 +159,22 @@ def build_header():
   h += "#include <map>\n"
   h += "#include <string>\n"
 
+<<<<<<< HEAD
   h += "struct service { std::string name; bool should_log; int frequency; int decimation; };\n"
+=======
+  h += "struct service { std::string name; int port; bool should_log; int frequency; int decimation; };\n"
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
   h += "static std::map<std::string, service> services = {\n"
   for k, v in SERVICE_LIST.items():
     should_log = "true" if v.should_log else "false"
     decimation = -1 if v.decimation is None else v.decimation
+<<<<<<< HEAD
     h += '  { "%s", {"%s", %s, %d, %d}},\n' % \
          (k, k, should_log, v.frequency, decimation)
+=======
+    h += '  { "%s", {"%s", %d, %s, %d, %d}},\n' % \
+         (k, k, v.port, should_log, v.frequency, decimation)
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
   h += "};\n"
 
   h += "#endif\n"

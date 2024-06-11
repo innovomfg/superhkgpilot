@@ -4,7 +4,11 @@ from openpilot.common.conversions import Conversions as CV
 from openpilot.selfdrive.car.interfaces import CarStateBase
 from opendbc.can.parser import CANParser
 from openpilot.selfdrive.car.volkswagen.values import DBC, CANBUS, NetworkLocation, TransmissionType, GearShifter, \
+<<<<<<< HEAD
                                             CarControllerParams, VolkswagenFlags, VolkswagenFlagsSP
+=======
+                                            CarControllerParams, VolkswagenFlags, BUTTON_STATES, VolkswagenFlagsSP
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
 
 class CarState(CarStateBase):
@@ -17,6 +21,11 @@ class CarState(CarStateBase):
     self.esp_hold_confirmation = False
     self.upscale_lead_car_signal = False
     self.eps_stock_values = False
+<<<<<<< HEAD
+=======
+    self.buttonStates = BUTTON_STATES.copy()
+    self.buttonStatesPrev = BUTTON_STATES.copy()
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
   def create_button_events(self, pt_cp, buttons):
     button_events = []
@@ -39,6 +48,10 @@ class CarState(CarStateBase):
     ret = car.CarState.new_message()
 
     self.prev_mads_enabled = self.mads_enabled
+<<<<<<< HEAD
+=======
+    self.buttonStatesPrev = self.buttonStates.copy()
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
     # Update vehicle speed and acceleration from ABS wheel speeds.
     ret.wheelSpeeds = self.get_wheel_speeds(
@@ -147,10 +160,25 @@ class CarState(CarStateBase):
       if ret.cruiseState.speed > 90:
         ret.cruiseState.speed = 0
 
+<<<<<<< HEAD
     # Update button states for turn signals and ACC controls, capture all ACC button state/config for passthrough
     ret.leftBlinker = ret.leftBlinkerOn = bool(pt_cp.vl["Blinkmodi_02"]["Comfort_Signal_Left"])
     ret.rightBlinker = ret.rightBlinkerOn = bool(pt_cp.vl["Blinkmodi_02"]["Comfort_Signal_Right"])
     self.button_events = self.create_button_events(pt_cp, self.CCP.BUTTONS)
+=======
+    # Update control button states for turn signals and ACC controls.
+    self.buttonStates["accelCruise"] = bool(pt_cp.vl["GRA_ACC_01"]["GRA_Tip_Hoch"])
+    self.buttonStates["decelCruise"] = bool(pt_cp.vl["GRA_ACC_01"]["GRA_Tip_Runter"])
+    self.buttonStates["cancel"] = bool(pt_cp.vl["GRA_ACC_01"]["GRA_Abbrechen"])
+    self.buttonStates["setCruise"] = bool(pt_cp.vl["GRA_ACC_01"]["GRA_Tip_Setzen"])
+    self.buttonStates["resumeCruise"] = bool(pt_cp.vl["GRA_ACC_01"]["GRA_Tip_Wiederaufnahme"])
+    self.buttonStates["gapAdjustCruise"] = bool(pt_cp.vl["GRA_ACC_01"]["GRA_Verstellung_Zeitluecke"])
+
+    # Update button states for turn signals and ACC controls, capture all ACC button state/config for passthrough
+    ret.leftBlinker = ret.leftBlinkerOn = bool(pt_cp.vl["Blinkmodi_02"]["Comfort_Signal_Left"])
+    ret.rightBlinker = ret.rightBlinkerOn = bool(pt_cp.vl["Blinkmodi_02"]["Comfort_Signal_Right"])
+    ret.buttonEvents = self.create_button_events(pt_cp, self.CCP.BUTTONS)
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
     self.gra_stock_values = pt_cp.vl["GRA_ACC_01"]
 
     # Additional safety checks performed in CarInterface.
@@ -166,6 +194,10 @@ class CarState(CarStateBase):
     ret = car.CarState.new_message()
 
     self.prev_mads_enabled = self.mads_enabled
+<<<<<<< HEAD
+=======
+    self.buttonStatesPrev = self.buttonStates.copy()
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
     # Update vehicle speed and acceleration from ABS wheel speeds.
     ret.wheelSpeeds = self.get_wheel_speeds(
@@ -253,10 +285,25 @@ class CarState(CarStateBase):
     if ret.cruiseState.speed > 70:  # 255 kph in m/s == no current setpoint
       ret.cruiseState.speed = 0
 
+<<<<<<< HEAD
     # Update button states for turn signals and ACC controls, capture all ACC button state/config for passthrough
     ret.leftBlinker, ret.rightBlinker = ret.leftBlinkerOn, ret.rightBlinkerOn = self.update_blinker_from_stalk(300, pt_cp.vl["Gate_Komf_1"]["GK1_Blinker_li"],
                                                                                                                       pt_cp.vl["Gate_Komf_1"]["GK1_Blinker_re"])
     self.button_events = self.create_button_events(pt_cp, self.CCP.BUTTONS)
+=======
+    # Update control button states for turn signals and ACC controls.
+    self.buttonStates["accelCruise"] = bool(pt_cp.vl["GRA_Neu"]["GRA_Up_kurz"])
+    self.buttonStates["decelCruise"] = bool(pt_cp.vl["GRA_Neu"]["GRA_Down_kurz"])
+    self.buttonStates["cancel"] = bool(pt_cp.vl["GRA_Neu"]["GRA_Abbrechen"])
+    self.buttonStates["setCruise"] = bool(pt_cp.vl["GRA_Neu"]["GRA_Neu_Setzen"])
+    self.buttonStates["resumeCruise"] = bool(pt_cp.vl["GRA_Neu"]["GRA_Recall"])
+    self.buttonStates["gapAdjustCruise"] = bool(pt_cp.vl["GRA_Neu"]["GRA_Zeitluecke"])
+
+    # Update button states for turn signals and ACC controls, capture all ACC button state/config for passthrough
+    ret.leftBlinker, ret.rightBlinker = ret.leftBlinkerOn, ret.rightBlinkerOn = self.update_blinker_from_stalk(300, pt_cp.vl["Gate_Komf_1"]["GK1_Blinker_li"],
+                                                                                                                      pt_cp.vl["Gate_Komf_1"]["GK1_Blinker_re"])
+    ret.buttonEvents = self.create_button_events(pt_cp, self.CCP.BUTTONS)
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
     self.gra_stock_values = pt_cp.vl["GRA_Neu"]
 
     # Additional safety checks performed in CarInterface.

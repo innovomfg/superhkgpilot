@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+#!/usr/bin/env python3
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 import capnp
 import contextlib
 import io
@@ -27,6 +31,7 @@ def noop(segment: LogIterable):
 @contextlib.contextmanager
 def setup_source_scenario(mocker, is_internal=False):
   internal_source_mock = mocker.patch("openpilot.tools.lib.logreader.internal_source")
+<<<<<<< HEAD
   internal_source_mock.__name__ = internal_source_mock._mock_name
 
   openpilotci_source_mock = mocker.patch("openpilot.tools.lib.logreader.openpilotci_source")
@@ -35,6 +40,10 @@ def setup_source_scenario(mocker, is_internal=False):
   comma_api_source_mock = mocker.patch("openpilot.tools.lib.logreader.comma_api_source")
   comma_api_source_mock.__name__ = comma_api_source_mock._mock_name
 
+=======
+  openpilotci_source_mock = mocker.patch("openpilot.tools.lib.logreader.openpilotci_source")
+  comma_api_source_mock = mocker.patch("openpilot.tools.lib.logreader.comma_api_source")
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
   if is_internal:
     internal_source_mock.return_value = [QLOG_FILE]
   else:

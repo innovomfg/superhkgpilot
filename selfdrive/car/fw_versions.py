@@ -352,7 +352,11 @@ if __name__ == "__main__":
   pandaStates_sock = messaging.sub_sock('pandaStates')
   sendcan = messaging.pub_sock('sendcan')
 
+<<<<<<< HEAD
   # Set up params for pandad
+=======
+  # Set up params for boardd
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
   params = Params()
   params.remove("FirmwareQueryDone")
   params.put_bool("IsOnroad", False)

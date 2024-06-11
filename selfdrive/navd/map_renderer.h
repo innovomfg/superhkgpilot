@@ -12,7 +12,11 @@
 #include <QOpenGLFunctions>
 #include <QOpenGLFramebufferObject>
 
+<<<<<<< HEAD
 #include "msgq/visionipc/visionipc_server.h"
+=======
+#include "cereal/visionipc/visionipc_server.h"
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 #include "cereal/messaging/messaging.h"
 
 

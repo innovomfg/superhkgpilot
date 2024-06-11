@@ -25,6 +25,7 @@ enum class LongitudinalPersonalitySP_d92113aa7c18cdf6: uint16_t {
   MODERATE,
   STANDARD,
   RELAXED,
+<<<<<<< HEAD
   OVERTAKE,
 };
 CAPNP_DECLARE_ENUM(LongitudinalPersonalitySP, d92113aa7c18cdf6);
@@ -52,6 +53,10 @@ enum class MpcSource_ddeb7e9fc0e0e044: uint16_t {
   BLENDED,
 };
 CAPNP_DECLARE_ENUM(MpcSource, ddeb7e9fc0e0e044);
+=======
+};
+CAPNP_DECLARE_ENUM(LongitudinalPersonalitySP, d92113aa7c18cdf6);
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 CAPNP_DECLARE_SCHEMA(81c2f05a394cf4af);
 CAPNP_DECLARE_SCHEMA(b6a9042bc207bf27);
 CAPNP_DECLARE_SCHEMA(88da8426fae53f07);
@@ -124,12 +129,15 @@ namespace cereal {
 
 typedef ::capnp::schemas::LongitudinalPersonalitySP_d92113aa7c18cdf6 LongitudinalPersonalitySP;
 
+<<<<<<< HEAD
 typedef ::capnp::schemas::AccelerationPersonality_f40bf11ea3a7a163 AccelerationPersonality;
 
 typedef ::capnp::schemas::ModelGeneration_91cbf59645e9e0b9 ModelGeneration;
 
 typedef ::capnp::schemas::MpcSource_ddeb7e9fc0e0e044 MpcSource;
 
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 struct ControlsStateSP {
   ControlsStateSP() = delete;
 
@@ -296,7 +304,11 @@ struct LongitudinalPlanSP {
 
 
   struct _capnpPrivate {
+<<<<<<< HEAD
     CAPNP_DECLARE_STRUCT_HEADER(aedffd8f31e7b55d, 8, 3)
+=======
+    CAPNP_DECLARE_STRUCT_HEADER(aedffd8f31e7b55d, 7, 3)
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
     #if !CAPNP_LITE
     static constexpr ::capnp::_::RawBrandedSchema const* brand() { return &schema->defaultBrand; }
     #endif  // !CAPNP_LITE
@@ -453,12 +465,15 @@ public:
 
   inline  ::cereal::LongitudinalPersonalitySP getPersonality() const;
 
+<<<<<<< HEAD
   inline bool getDynamicPersonality() const;
 
   inline  ::cereal::AccelerationPersonality getAccelPersonality() const;
 
   inline bool getOvertakingAccelerationAssist() const;
 
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 private:
   ::capnp::_::StructReader _reader;
   template <typename, ::capnp::Kind>
@@ -500,6 +515,7 @@ public:
   inline  ::cereal::LongitudinalPersonalitySP getPersonality();
   inline void setPersonality( ::cereal::LongitudinalPersonalitySP value);
 
+<<<<<<< HEAD
   inline bool getDynamicPersonality();
   inline void setDynamicPersonality(bool value);
 
@@ -509,6 +525,8 @@ public:
   inline bool getOvertakingAccelerationAssist();
   inline void setOvertakingAccelerationAssist(bool value);
 
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 private:
   ::capnp::_::StructBuilder _builder;
   template <typename, ::capnp::Kind>
@@ -1255,8 +1273,13 @@ public:
 
   inline float getVisionMaxPredLatAcc() const;
 
+<<<<<<< HEAD
   inline bool hasE2eBlendedDEPRECATED() const;
   inline  ::capnp::Text::Reader getE2eBlendedDEPRECATED() const;
+=======
+  inline bool hasE2eBlended() const;
+  inline  ::capnp::Text::Reader getE2eBlended() const;
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
   inline bool hasEvents() const;
   inline  ::capnp::List< ::cereal::CarEvent,  ::capnp::Kind::STRUCT>::Reader getEvents() const;
@@ -1267,10 +1290,13 @@ public:
 
   inline bool getE2eStatus() const;
 
+<<<<<<< HEAD
   inline  ::cereal::MpcSource getMpcSource() const;
 
   inline bool getDynamicExperimentalControl() const;
 
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 private:
   ::capnp::_::StructReader _reader;
   template <typename, ::capnp::Kind>
@@ -1358,12 +1384,21 @@ public:
   inline float getVisionMaxPredLatAcc();
   inline void setVisionMaxPredLatAcc(float value);
 
+<<<<<<< HEAD
   inline bool hasE2eBlendedDEPRECATED();
   inline  ::capnp::Text::Builder getE2eBlendedDEPRECATED();
   inline void setE2eBlendedDEPRECATED( ::capnp::Text::Reader value);
   inline  ::capnp::Text::Builder initE2eBlendedDEPRECATED(unsigned int size);
   inline void adoptE2eBlendedDEPRECATED(::capnp::Orphan< ::capnp::Text>&& value);
   inline ::capnp::Orphan< ::capnp::Text> disownE2eBlendedDEPRECATED();
+=======
+  inline bool hasE2eBlended();
+  inline  ::capnp::Text::Builder getE2eBlended();
+  inline void setE2eBlended( ::capnp::Text::Reader value);
+  inline  ::capnp::Text::Builder initE2eBlended(unsigned int size);
+  inline void adoptE2eBlended(::capnp::Orphan< ::capnp::Text>&& value);
+  inline ::capnp::Orphan< ::capnp::Text> disownE2eBlended();
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
   inline bool hasEvents();
   inline  ::capnp::List< ::cereal::CarEvent,  ::capnp::Kind::STRUCT>::Builder getEvents();
@@ -1381,12 +1416,15 @@ public:
   inline bool getE2eStatus();
   inline void setE2eStatus(bool value);
 
+<<<<<<< HEAD
   inline  ::cereal::MpcSource getMpcSource();
   inline void setMpcSource( ::cereal::MpcSource value);
 
   inline bool getDynamicExperimentalControl();
   inline void setDynamicExperimentalControl(bool value);
 
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 private:
   ::capnp::_::StructBuilder _builder;
   template <typename, ::capnp::Kind>
@@ -1928,12 +1966,15 @@ public:
 
   inline bool getLaneChangeEdgeBlock() const;
 
+<<<<<<< HEAD
   inline bool getCustomModel() const;
 
   inline  ::cereal::ModelGeneration getModelGeneration() const;
 
   inline  ::uint32_t getModelCapabilities() const;
 
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 private:
   ::capnp::_::StructReader _reader;
   template <typename, ::capnp::Kind>
@@ -1968,6 +2009,7 @@ public:
   inline bool getLaneChangeEdgeBlock();
   inline void setLaneChangeEdgeBlock(bool value);
 
+<<<<<<< HEAD
   inline bool getCustomModel();
   inline void setCustomModel(bool value);
 
@@ -1977,6 +2019,8 @@ public:
   inline  ::uint32_t getModelCapabilities();
   inline void setModelCapabilities( ::uint32_t value);
 
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 private:
   ::capnp::_::StructBuilder _builder;
   template <typename, ::capnp::Kind>
@@ -2282,6 +2326,7 @@ inline void ControlsStateSP::Builder::setPersonality( ::cereal::LongitudinalPers
       ::capnp::bounded<1>() * ::capnp::ELEMENTS, value);
 }
 
+<<<<<<< HEAD
 inline bool ControlsStateSP::Reader::getDynamicPersonality() const {
   return _reader.getDataField<bool>(
       ::capnp::bounded<32>() * ::capnp::ELEMENTS);
@@ -2324,6 +2369,8 @@ inline void ControlsStateSP::Builder::setOvertakingAccelerationAssist(bool value
       ::capnp::bounded<33>() * ::capnp::ELEMENTS, value);
 }
 
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 inline bool ControlsStateSP::LateralTorqueState::Reader::hasNnLog() const {
   return !_reader.getPointerField(
       ::capnp::bounded<0>() * ::capnp::POINTERS).isNull();
@@ -3025,6 +3072,7 @@ inline void LongitudinalPlanSP::Builder::setVisionMaxPredLatAcc(float value) {
       ::capnp::bounded<12>() * ::capnp::ELEMENTS, value);
 }
 
+<<<<<<< HEAD
 inline bool LongitudinalPlanSP::Reader::hasE2eBlendedDEPRECATED() const {
   return !_reader.getPointerField(
       ::capnp::bounded<1>() * ::capnp::POINTERS).isNull();
@@ -3050,11 +3098,42 @@ inline  ::capnp::Text::Builder LongitudinalPlanSP::Builder::initE2eBlendedDEPREC
       ::capnp::bounded<1>() * ::capnp::POINTERS), size);
 }
 inline void LongitudinalPlanSP::Builder::adoptE2eBlendedDEPRECATED(
+=======
+inline bool LongitudinalPlanSP::Reader::hasE2eBlended() const {
+  return !_reader.getPointerField(
+      ::capnp::bounded<1>() * ::capnp::POINTERS).isNull();
+}
+inline bool LongitudinalPlanSP::Builder::hasE2eBlended() {
+  return !_builder.getPointerField(
+      ::capnp::bounded<1>() * ::capnp::POINTERS).isNull();
+}
+inline  ::capnp::Text::Reader LongitudinalPlanSP::Reader::getE2eBlended() const {
+  return ::capnp::_::PointerHelpers< ::capnp::Text>::get(_reader.getPointerField(
+      ::capnp::bounded<1>() * ::capnp::POINTERS));
+}
+inline  ::capnp::Text::Builder LongitudinalPlanSP::Builder::getE2eBlended() {
+  return ::capnp::_::PointerHelpers< ::capnp::Text>::get(_builder.getPointerField(
+      ::capnp::bounded<1>() * ::capnp::POINTERS));
+}
+inline void LongitudinalPlanSP::Builder::setE2eBlended( ::capnp::Text::Reader value) {
+  ::capnp::_::PointerHelpers< ::capnp::Text>::set(_builder.getPointerField(
+      ::capnp::bounded<1>() * ::capnp::POINTERS), value);
+}
+inline  ::capnp::Text::Builder LongitudinalPlanSP::Builder::initE2eBlended(unsigned int size) {
+  return ::capnp::_::PointerHelpers< ::capnp::Text>::init(_builder.getPointerField(
+      ::capnp::bounded<1>() * ::capnp::POINTERS), size);
+}
+inline void LongitudinalPlanSP::Builder::adoptE2eBlended(
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
     ::capnp::Orphan< ::capnp::Text>&& value) {
   ::capnp::_::PointerHelpers< ::capnp::Text>::adopt(_builder.getPointerField(
       ::capnp::bounded<1>() * ::capnp::POINTERS), kj::mv(value));
 }
+<<<<<<< HEAD
 inline ::capnp::Orphan< ::capnp::Text> LongitudinalPlanSP::Builder::disownE2eBlendedDEPRECATED() {
+=======
+inline ::capnp::Orphan< ::capnp::Text> LongitudinalPlanSP::Builder::disownE2eBlended() {
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
   return ::capnp::_::PointerHelpers< ::capnp::Text>::disown(_builder.getPointerField(
       ::capnp::bounded<1>() * ::capnp::POINTERS));
 }
@@ -3135,6 +3214,7 @@ inline void LongitudinalPlanSP::Builder::setE2eStatus(bool value) {
       ::capnp::bounded<162>() * ::capnp::ELEMENTS, value);
 }
 
+<<<<<<< HEAD
 inline  ::cereal::MpcSource LongitudinalPlanSP::Reader::getMpcSource() const {
   return _reader.getDataField< ::cereal::MpcSource>(
       ::capnp::bounded<28>() * ::capnp::ELEMENTS);
@@ -3163,6 +3243,8 @@ inline void LongitudinalPlanSP::Builder::setDynamicExperimentalControl(bool valu
       ::capnp::bounded<163>() * ::capnp::ELEMENTS, value);
 }
 
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 inline float LateralPlanSP::Reader::getLaneWidth() const {
   return _reader.getDataField<float>(
       ::capnp::bounded<0>() * ::capnp::ELEMENTS);
@@ -3821,6 +3903,7 @@ inline void ModelDataV2SP::Builder::setLaneChangeEdgeBlock(bool value) {
       ::capnp::bounded<1>() * ::capnp::ELEMENTS, value);
 }
 
+<<<<<<< HEAD
 inline bool ModelDataV2SP::Reader::getCustomModel() const {
   return _reader.getDataField<bool>(
       ::capnp::bounded<2>() * ::capnp::ELEMENTS);
@@ -3863,6 +3946,8 @@ inline void ModelDataV2SP::Builder::setModelCapabilities( ::uint32_t value) {
       ::capnp::bounded<1>() * ::capnp::ELEMENTS, value);
 }
 
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 }  // namespace
 
 CAPNP_END_HEADER

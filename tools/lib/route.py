@@ -9,9 +9,15 @@ from openpilot.tools.lib.auth_config import get_token
 from openpilot.tools.lib.api import CommaApi
 from openpilot.tools.lib.helpers import RE
 
+<<<<<<< HEAD
 QLOG_FILENAMES = ['qlog', 'qlog.bz2', 'qlog.zst']
 QCAMERA_FILENAMES = ['qcamera.ts']
 LOG_FILENAMES = ['rlog', 'rlog.bz2', 'raw_log.bz2', 'rlog.zst']
+=======
+QLOG_FILENAMES = ['qlog', 'qlog.bz2']
+QCAMERA_FILENAMES = ['qcamera.ts']
+LOG_FILENAMES = ['rlog', 'rlog.bz2', 'raw_log.bz2']
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 CAMERA_FILENAMES = ['fcamera.hevc', 'video.hevc']
 DCAMERA_FILENAMES = ['dcamera.hevc']
 ECAMERA_FILENAMES = ['ecamera.hevc']
@@ -261,6 +267,13 @@ class SegmentRange:
     return self.m.group("dongle_id")
 
   @property
+<<<<<<< HEAD
+=======
+  def timestamp(self) -> str:
+    return self.m.group("timestamp")
+
+  @property
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
   def log_id(self) -> str:
     return self.m.group("log_id")
 

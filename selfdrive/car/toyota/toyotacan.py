@@ -1,5 +1,8 @@
 from cereal import car
+<<<<<<< HEAD
 from openpilot.selfdrive.car import make_can_msg
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
 SteerControlType = car.CarParams.SteerControlType
 
@@ -119,6 +122,7 @@ def create_ui_command(packer, steer, chime, left_line, right_line, left_lane_dep
     ]})
 
   return packer.make_can_msg("LKAS_HUD", 0, values)
+<<<<<<< HEAD
 
 
 def create_set_bsm_debug_mode(lr_blindspot, enabled):
@@ -130,3 +134,5 @@ def create_set_bsm_debug_mode(lr_blindspot, enabled):
 
 def create_bsm_polling_status(lr_blindspot):
   return make_can_msg(0x750, lr_blindspot + b"\x02\x21\x69\x00\x00\x00\x00", 0)
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)

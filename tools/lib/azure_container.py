@@ -1,5 +1,9 @@
 import os
+<<<<<<< HEAD
 from datetime import datetime, timedelta, UTC
+=======
+from datetime import datetime, timedelta
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 from functools import lru_cache
 from pathlib import Path
 from typing import IO
@@ -20,7 +24,11 @@ def get_azure_credential():
 @lru_cache
 def get_container_sas(account_name: str, container_name: str):
   from azure.storage.blob import BlobServiceClient, ContainerSasPermissions, generate_container_sas
+<<<<<<< HEAD
   start_time = datetime.now(UTC).replace(tzinfo=None)
+=======
+  start_time = datetime.utcnow()
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
   expiry_time = start_time + timedelta(hours=1)
   blob_service = BlobServiceClient(
     account_url=f"https://{account_name}.blob.core.windows.net",

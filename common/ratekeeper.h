@@ -9,7 +9,11 @@ public:
   ~RateKeeper() {}
   bool keepTime();
   bool monitorTime();
+<<<<<<< HEAD
   inline uint64_t frame() const { return frame_; }
+=======
+  inline double frame() const { return frame_; }
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
   inline double remaining() const { return remaining_; }
 
 private:

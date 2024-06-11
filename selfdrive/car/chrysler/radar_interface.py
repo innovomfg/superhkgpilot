@@ -39,6 +39,10 @@ def _address_to_track(address):
 class RadarInterface(RadarInterfaceBase):
   def __init__(self, CP):
     super().__init__(CP)
+<<<<<<< HEAD
+=======
+    self.CP = CP
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
     self.rcp = _create_radar_can_parser(CP.carFingerprint)
     self.updated_messages = set()
     self.trigger_msg = LAST_MSG

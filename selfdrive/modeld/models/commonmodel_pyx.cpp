@@ -4,12 +4,21 @@
 {
     "distutils": {
         "depends": [
+<<<<<<< HEAD
             "common/clutil.h",
             "common/mat.h",
             "msgq/visionipc/visionbuf.h",
             "msgq/visionipc/visionipc.h",
             "msgq/visionipc/visionipc_client.h",
             "msgq/visionipc/visionipc_server.h",
+=======
+            "cereal/visionipc/visionbuf.h",
+            "cereal/visionipc/visionipc.h",
+            "cereal/visionipc/visionipc_client.h",
+            "cereal/visionipc/visionipc_server.h",
+            "common/clutil.h",
+            "common/mat.h",
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
             "selfdrive/modeld/models/commonmodel.h"
         ],
         "language": "c++",
@@ -1240,10 +1249,17 @@ static CYTHON_INLINE float __PYX_NAN() {
     
 #include <set>
 #include <stdint.h>
+<<<<<<< HEAD
 #include "msgq/visionipc/visionbuf.h"
 #include "msgq/visionipc/visionipc.h"
 #include "msgq/visionipc/visionipc_server.h"
 #include "msgq/visionipc/visionipc_client.h"
+=======
+#include "cereal/visionipc/visionbuf.h"
+#include "cereal/visionipc/visionipc.h"
+#include "cereal/visionipc/visionipc_server.h"
+#include "cereal/visionipc/visionipc_client.h"
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 #include <stdio.h>
 
     /* Using NumPy API declarations from "numpy/__init__.cython-30.pxd" */
@@ -1548,7 +1564,11 @@ static const char *__pyx_f[] = {
   "<stringsource>",
   "selfdrive/modeld/models/commonmodel_pyx.pyx",
   "__init__.cython-30.pxd",
+<<<<<<< HEAD
   "msgq/visionipc/visionipc_pyx.pxd",
+=======
+  "cereal/visionipc/visionipc_pyx.pxd",
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
   "type.pxd",
 };
 /* #### Code section: utility_code_proto_before_types ### */
@@ -1893,8 +1913,13 @@ static CYTHON_INLINE __pyx_t_double_complex __pyx_t_double_complex_from_parts(do
 /* #### Code section: type_declarations ### */
 
 /*--- Type declarations ---*/
+<<<<<<< HEAD
 struct __pyx_obj_4msgq_9visionipc_13visionipc_pyx_CLContext;
 struct __pyx_obj_4msgq_9visionipc_13visionipc_pyx_VisionBuf;
+=======
+struct __pyx_obj_6cereal_9visionipc_13visionipc_pyx_CLContext;
+struct __pyx_obj_6cereal_9visionipc_13visionipc_pyx_VisionBuf;
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 struct __pyx_obj_9selfdrive_6modeld_6models_15commonmodel_pyx_CLContext;
 struct __pyx_obj_9selfdrive_6modeld_6models_15commonmodel_pyx_CLMem;
 struct __pyx_obj_9selfdrive_6modeld_6models_15commonmodel_pyx_ModelFrame;
@@ -1939,43 +1964,69 @@ typedef npy_clongdouble __pyx_t_5numpy_clongdouble_t;
  */
 typedef npy_cdouble __pyx_t_5numpy_complex_t;
 
+<<<<<<< HEAD
 /* "msgq/visionipc/visionipc_pyx.pxd":7
+=======
+/* "cereal/visionipc/visionipc_pyx.pxd":7
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
  * from .visionipc cimport cl_device_id, cl_context
  * 
  * cdef class CLContext:             # <<<<<<<<<<<<<<
  *   cdef cl_device_id device_id
  *   cdef cl_context context
  */
+<<<<<<< HEAD
 struct __pyx_obj_4msgq_9visionipc_13visionipc_pyx_CLContext {
+=======
+struct __pyx_obj_6cereal_9visionipc_13visionipc_pyx_CLContext {
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
   PyObject_HEAD
   cl_device_id device_id;
   cl_context context;
 };
 
 
+<<<<<<< HEAD
 /* "msgq/visionipc/visionipc_pyx.pxd":11
+=======
+/* "cereal/visionipc/visionipc_pyx.pxd":11
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
  *   cdef cl_context context
  * 
  * cdef class VisionBuf:             # <<<<<<<<<<<<<<
  *   cdef cppVisionBuf * buf
  * 
  */
+<<<<<<< HEAD
 struct __pyx_obj_4msgq_9visionipc_13visionipc_pyx_VisionBuf {
   PyObject_HEAD
   struct __pyx_vtabstruct_4msgq_9visionipc_13visionipc_pyx_VisionBuf *__pyx_vtab;
+=======
+struct __pyx_obj_6cereal_9visionipc_13visionipc_pyx_VisionBuf {
+  PyObject_HEAD
+  struct __pyx_vtabstruct_6cereal_9visionipc_13visionipc_pyx_VisionBuf *__pyx_vtab;
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
   VisionBuf *buf;
 };
 
 
 /* "selfdrive/modeld/models/commonmodel_pyx.pxd":6
+<<<<<<< HEAD
  * from msgq.visionipc.visionipc_pyx cimport CLContext as BaseCLContext
+=======
+ * from cereal.visionipc.visionipc_pyx cimport CLContext as BaseCLContext
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
  * 
  * cdef class CLContext(BaseCLContext):             # <<<<<<<<<<<<<<
  *   pass
  * 
  */
 struct __pyx_obj_9selfdrive_6modeld_6models_15commonmodel_pyx_CLContext {
+<<<<<<< HEAD
   struct __pyx_obj_4msgq_9visionipc_13visionipc_pyx_CLContext __pyx_base;
+=======
+  struct __pyx_obj_6cereal_9visionipc_13visionipc_pyx_CLContext __pyx_base;
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 };
 
 
@@ -2083,7 +2134,11 @@ struct __pyx_memoryviewslice_obj {
 
 
 
+<<<<<<< HEAD
 /* "msgq/visionipc/visionipc_pyx.pxd":11
+=======
+/* "cereal/visionipc/visionipc_pyx.pxd":11
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
  *   cdef cl_context context
  * 
  * cdef class VisionBuf:             # <<<<<<<<<<<<<<
@@ -2091,10 +2146,17 @@ struct __pyx_memoryviewslice_obj {
  * 
  */
 
+<<<<<<< HEAD
 struct __pyx_vtabstruct_4msgq_9visionipc_13visionipc_pyx_VisionBuf {
   PyObject *(*create)(VisionBuf *);
 };
 static struct __pyx_vtabstruct_4msgq_9visionipc_13visionipc_pyx_VisionBuf *__pyx_vtabptr_4msgq_9visionipc_13visionipc_pyx_VisionBuf;
+=======
+struct __pyx_vtabstruct_6cereal_9visionipc_13visionipc_pyx_VisionBuf {
+  PyObject *(*create)(VisionBuf *);
+};
+static struct __pyx_vtabstruct_6cereal_9visionipc_13visionipc_pyx_VisionBuf *__pyx_vtabptr_6cereal_9visionipc_13visionipc_pyx_VisionBuf;
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
 
 /* "selfdrive/modeld/models/commonmodel_pyx.pyx":21
@@ -3304,9 +3366,15 @@ static PyObject *__pyx_f_9selfdrive_6modeld_6models_15commonmodel_pyx_5CLMem_cre
 
 /* Module declarations from "libcpp" */
 
+<<<<<<< HEAD
 /* Module declarations from "msgq.visionipc.visionipc" */
 
 /* Module declarations from "msgq.visionipc.visionipc_pyx" */
+=======
+/* Module declarations from "cereal.visionipc.visionipc" */
+
+/* Module declarations from "cereal.visionipc.visionipc_pyx" */
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
 /* Module declarations from "libc.stdio" */
 
@@ -3598,7 +3666,11 @@ static PyObject *__pyx_pf_9selfdrive_6modeld_6models_15commonmodel_pyx_5CLMem___
 static PyObject *__pyx_pf_9selfdrive_6modeld_6models_15commonmodel_pyx_5CLMem_2__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_9selfdrive_6modeld_6models_15commonmodel_pyx_CLMem *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state); /* proto */
 static int __pyx_pf_9selfdrive_6modeld_6models_15commonmodel_pyx_10ModelFrame___cinit__(struct __pyx_obj_9selfdrive_6modeld_6models_15commonmodel_pyx_ModelFrame *__pyx_v_self, struct __pyx_obj_9selfdrive_6modeld_6models_15commonmodel_pyx_CLContext *__pyx_v_context); /* proto */
 static void __pyx_pf_9selfdrive_6modeld_6models_15commonmodel_pyx_10ModelFrame_2__dealloc__(struct __pyx_obj_9selfdrive_6modeld_6models_15commonmodel_pyx_ModelFrame *__pyx_v_self); /* proto */
+<<<<<<< HEAD
 static PyObject *__pyx_pf_9selfdrive_6modeld_6models_15commonmodel_pyx_10ModelFrame_4prepare(struct __pyx_obj_9selfdrive_6modeld_6models_15commonmodel_pyx_ModelFrame *__pyx_v_self, struct __pyx_obj_4msgq_9visionipc_13visionipc_pyx_VisionBuf *__pyx_v_buf, __Pyx_memviewslice __pyx_v_projection, struct __pyx_obj_9selfdrive_6modeld_6models_15commonmodel_pyx_CLMem *__pyx_v_output); /* proto */
+=======
+static PyObject *__pyx_pf_9selfdrive_6modeld_6models_15commonmodel_pyx_10ModelFrame_4prepare(struct __pyx_obj_9selfdrive_6modeld_6models_15commonmodel_pyx_ModelFrame *__pyx_v_self, struct __pyx_obj_6cereal_9visionipc_13visionipc_pyx_VisionBuf *__pyx_v_buf, __Pyx_memviewslice __pyx_v_projection, struct __pyx_obj_9selfdrive_6modeld_6models_15commonmodel_pyx_CLMem *__pyx_v_output); /* proto */
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 static PyObject *__pyx_pf_9selfdrive_6modeld_6models_15commonmodel_pyx_10ModelFrame_6__reduce_cython__(CYTHON_UNUSED struct __pyx_obj_9selfdrive_6modeld_6models_15commonmodel_pyx_ModelFrame *__pyx_v_self); /* proto */
 static PyObject *__pyx_pf_9selfdrive_6modeld_6models_15commonmodel_pyx_10ModelFrame_8__setstate_cython__(CYTHON_UNUSED struct __pyx_obj_9selfdrive_6modeld_6models_15commonmodel_pyx_ModelFrame *__pyx_v_self, CYTHON_UNUSED PyObject *__pyx_v___pyx_state); /* proto */
 static PyObject *__pyx_tp_new_9selfdrive_6modeld_6models_15commonmodel_pyx_CLContext(PyTypeObject *t, PyObject *a, PyObject *k); /*proto*/
@@ -3653,8 +3725,13 @@ typedef struct {
   #endif
   #if CYTHON_USE_MODULE_STATE
   #endif
+<<<<<<< HEAD
   PyTypeObject *__pyx_ptype_4msgq_9visionipc_13visionipc_pyx_CLContext;
   PyTypeObject *__pyx_ptype_4msgq_9visionipc_13visionipc_pyx_VisionBuf;
+=======
+  PyTypeObject *__pyx_ptype_6cereal_9visionipc_13visionipc_pyx_CLContext;
+  PyTypeObject *__pyx_ptype_6cereal_9visionipc_13visionipc_pyx_VisionBuf;
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
   #if CYTHON_USE_MODULE_STATE
   #endif
   #if CYTHON_USE_MODULE_STATE
@@ -3940,8 +4017,13 @@ static int __pyx_m_clear(PyObject *m) {
   #ifdef __Pyx_FusedFunction_USED
   Py_CLEAR(clear_module_state->__pyx_FusedFunctionType);
   #endif
+<<<<<<< HEAD
   Py_CLEAR(clear_module_state->__pyx_ptype_4msgq_9visionipc_13visionipc_pyx_CLContext);
   Py_CLEAR(clear_module_state->__pyx_ptype_4msgq_9visionipc_13visionipc_pyx_VisionBuf);
+=======
+  Py_CLEAR(clear_module_state->__pyx_ptype_6cereal_9visionipc_13visionipc_pyx_CLContext);
+  Py_CLEAR(clear_module_state->__pyx_ptype_6cereal_9visionipc_13visionipc_pyx_VisionBuf);
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
   Py_CLEAR(clear_module_state->__pyx_ptype_7cpython_4type_type);
   Py_CLEAR(clear_module_state->__pyx_ptype_5numpy_dtype);
   Py_CLEAR(clear_module_state->__pyx_ptype_5numpy_flatiter);
@@ -4185,8 +4267,13 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
   #ifdef __Pyx_FusedFunction_USED
   Py_VISIT(traverse_module_state->__pyx_FusedFunctionType);
   #endif
+<<<<<<< HEAD
   Py_VISIT(traverse_module_state->__pyx_ptype_4msgq_9visionipc_13visionipc_pyx_CLContext);
   Py_VISIT(traverse_module_state->__pyx_ptype_4msgq_9visionipc_13visionipc_pyx_VisionBuf);
+=======
+  Py_VISIT(traverse_module_state->__pyx_ptype_6cereal_9visionipc_13visionipc_pyx_CLContext);
+  Py_VISIT(traverse_module_state->__pyx_ptype_6cereal_9visionipc_13visionipc_pyx_VisionBuf);
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
   Py_VISIT(traverse_module_state->__pyx_ptype_7cpython_4type_type);
   Py_VISIT(traverse_module_state->__pyx_ptype_5numpy_dtype);
   Py_VISIT(traverse_module_state->__pyx_ptype_5numpy_flatiter);
@@ -4456,8 +4543,13 @@ static int __pyx_m_traverse(PyObject *m, visitproc visit, void *arg) {
 #endif
 #if CYTHON_USE_MODULE_STATE
 #endif
+<<<<<<< HEAD
 #define __pyx_ptype_4msgq_9visionipc_13visionipc_pyx_CLContext __pyx_mstate_global->__pyx_ptype_4msgq_9visionipc_13visionipc_pyx_CLContext
 #define __pyx_ptype_4msgq_9visionipc_13visionipc_pyx_VisionBuf __pyx_mstate_global->__pyx_ptype_4msgq_9visionipc_13visionipc_pyx_VisionBuf
+=======
+#define __pyx_ptype_6cereal_9visionipc_13visionipc_pyx_CLContext __pyx_mstate_global->__pyx_ptype_6cereal_9visionipc_13visionipc_pyx_CLContext
+#define __pyx_ptype_6cereal_9visionipc_13visionipc_pyx_VisionBuf __pyx_mstate_global->__pyx_ptype_6cereal_9visionipc_13visionipc_pyx_VisionBuf
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 #if CYTHON_USE_MODULE_STATE
 #endif
 #if CYTHON_USE_MODULE_STATE
@@ -20859,7 +20951,11 @@ PyObject *const *__pyx_args, Py_ssize_t __pyx_nargs, PyObject *__pyx_kwds
 PyObject *__pyx_args, PyObject *__pyx_kwds
 #endif
 ) {
+<<<<<<< HEAD
   struct __pyx_obj_4msgq_9visionipc_13visionipc_pyx_VisionBuf *__pyx_v_buf = 0;
+=======
+  struct __pyx_obj_6cereal_9visionipc_13visionipc_pyx_VisionBuf *__pyx_v_buf = 0;
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
   __Pyx_memviewslice __pyx_v_projection = { 0, 0, { 0 }, { 0 }, { 0 } };
   struct __pyx_obj_9selfdrive_6modeld_6models_15commonmodel_pyx_CLMem *__pyx_v_output = 0;
   #if !CYTHON_METH_FASTCALL
@@ -20936,7 +21032,11 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
       values[1] = __Pyx_Arg_FASTCALL(__pyx_args, 1);
       values[2] = __Pyx_Arg_FASTCALL(__pyx_args, 2);
     }
+<<<<<<< HEAD
     __pyx_v_buf = ((struct __pyx_obj_4msgq_9visionipc_13visionipc_pyx_VisionBuf *)values[0]);
+=======
+    __pyx_v_buf = ((struct __pyx_obj_6cereal_9visionipc_13visionipc_pyx_VisionBuf *)values[0]);
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
     __pyx_v_projection = __Pyx_PyObject_to_MemoryviewSlice_ds_float(values[1], PyBUF_WRITABLE); if (unlikely(!__pyx_v_projection.memview)) __PYX_ERR(1, 37, __pyx_L3_error)
     __pyx_v_output = ((struct __pyx_obj_9selfdrive_6modeld_6models_15commonmodel_pyx_CLMem *)values[2]);
   }
@@ -20957,7 +21057,11 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   __Pyx_RefNannyFinishContext();
   return NULL;
   __pyx_L4_argument_unpacking_done:;
+<<<<<<< HEAD
   if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_buf), __pyx_ptype_4msgq_9visionipc_13visionipc_pyx_VisionBuf, 1, "buf", 0))) __PYX_ERR(1, 37, __pyx_L1_error)
+=======
+  if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_buf), __pyx_ptype_6cereal_9visionipc_13visionipc_pyx_VisionBuf, 1, "buf", 0))) __PYX_ERR(1, 37, __pyx_L1_error)
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
   if (unlikely(!__Pyx_ArgTypeTest(((PyObject *)__pyx_v_output), __pyx_ptype_9selfdrive_6modeld_6models_15commonmodel_pyx_CLMem, 1, "output", 0))) __PYX_ERR(1, 37, __pyx_L1_error)
   __pyx_r = __pyx_pf_9selfdrive_6modeld_6models_15commonmodel_pyx_10ModelFrame_4prepare(((struct __pyx_obj_9selfdrive_6modeld_6models_15commonmodel_pyx_ModelFrame *)__pyx_v_self), __pyx_v_buf, __pyx_v_projection, __pyx_v_output);
 
@@ -20977,7 +21081,11 @@ PyObject *__pyx_args, PyObject *__pyx_kwds
   return __pyx_r;
 }
 
+<<<<<<< HEAD
 static PyObject *__pyx_pf_9selfdrive_6modeld_6models_15commonmodel_pyx_10ModelFrame_4prepare(struct __pyx_obj_9selfdrive_6modeld_6models_15commonmodel_pyx_ModelFrame *__pyx_v_self, struct __pyx_obj_4msgq_9visionipc_13visionipc_pyx_VisionBuf *__pyx_v_buf, __Pyx_memviewslice __pyx_v_projection, struct __pyx_obj_9selfdrive_6modeld_6models_15commonmodel_pyx_CLMem *__pyx_v_output) {
+=======
+static PyObject *__pyx_pf_9selfdrive_6modeld_6models_15commonmodel_pyx_10ModelFrame_4prepare(struct __pyx_obj_9selfdrive_6modeld_6models_15commonmodel_pyx_ModelFrame *__pyx_v_self, struct __pyx_obj_6cereal_9visionipc_13visionipc_pyx_VisionBuf *__pyx_v_buf, __Pyx_memviewslice __pyx_v_projection, struct __pyx_obj_9selfdrive_6modeld_6models_15commonmodel_pyx_CLMem *__pyx_v_output) {
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
   struct mat3 __pyx_v_cprojection;
   float *__pyx_v_data;
   PyObject *__pyx_r = NULL;
@@ -21407,7 +21515,11 @@ static PyObject *__pyx_pf_9selfdrive_6modeld_6models_15commonmodel_pyx_10ModelFr
 }
 
 static PyObject *__pyx_tp_new_9selfdrive_6modeld_6models_15commonmodel_pyx_CLContext(PyTypeObject *t, PyObject *a, PyObject *k) {
+<<<<<<< HEAD
   PyObject *o = __Pyx_PyType_GetSlot(__pyx_ptype_4msgq_9visionipc_13visionipc_pyx_CLContext, tp_new, newfunc)(t, a, k);
+=======
+  PyObject *o = __Pyx_PyType_GetSlot(__pyx_ptype_6cereal_9visionipc_13visionipc_pyx_CLContext, tp_new, newfunc)(t, a, k);
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
   if (unlikely(!o)) return 0;
   if (unlikely(__pyx_pw_9selfdrive_6modeld_6models_15commonmodel_pyx_9CLContext_1__cinit__(o, __pyx_empty_tuple, NULL) < 0)) goto bad;
   return o;
@@ -23292,11 +23404,19 @@ static int __Pyx_modinit_type_init_code(void) {
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__Pyx_modinit_type_init_code", 0);
   /*--- Type init code ---*/
+<<<<<<< HEAD
   __pyx_t_1 = PyImport_ImportModule("msgq.visionipc.visionipc_pyx"); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 1, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_ptype_4msgq_9visionipc_13visionipc_pyx_CLContext = __Pyx_ImportType_3_0_8(__pyx_t_1, "msgq.visionipc.visionipc_pyx", "CLContext", sizeof(struct __pyx_obj_4msgq_9visionipc_13visionipc_pyx_CLContext), __PYX_GET_STRUCT_ALIGNMENT_3_0_8(struct __pyx_obj_4msgq_9visionipc_13visionipc_pyx_CLContext),__Pyx_ImportType_CheckSize_Warn_3_0_8); if (!__pyx_ptype_4msgq_9visionipc_13visionipc_pyx_CLContext) __PYX_ERR(1, 1, __pyx_L1_error)
   #if CYTHON_USE_TYPE_SPECS
   __pyx_t_2 = PyTuple_Pack(1, (PyObject *)__pyx_ptype_4msgq_9visionipc_13visionipc_pyx_CLContext); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 16, __pyx_L1_error)
+=======
+  __pyx_t_1 = PyImport_ImportModule("cereal.visionipc.visionipc_pyx"); if (unlikely(!__pyx_t_1)) __PYX_ERR(1, 1, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_ptype_6cereal_9visionipc_13visionipc_pyx_CLContext = __Pyx_ImportType_3_0_8(__pyx_t_1, "cereal.visionipc.visionipc_pyx", "CLContext", sizeof(struct __pyx_obj_6cereal_9visionipc_13visionipc_pyx_CLContext), __PYX_GET_STRUCT_ALIGNMENT_3_0_8(struct __pyx_obj_6cereal_9visionipc_13visionipc_pyx_CLContext),__Pyx_ImportType_CheckSize_Warn_3_0_8); if (!__pyx_ptype_6cereal_9visionipc_13visionipc_pyx_CLContext) __PYX_ERR(1, 1, __pyx_L1_error)
+  #if CYTHON_USE_TYPE_SPECS
+  __pyx_t_2 = PyTuple_Pack(1, (PyObject *)__pyx_ptype_6cereal_9visionipc_13visionipc_pyx_CLContext); if (unlikely(!__pyx_t_2)) __PYX_ERR(1, 16, __pyx_L1_error)
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
   __Pyx_GOTREF(__pyx_t_2);
   __pyx_ptype_9selfdrive_6modeld_6models_15commonmodel_pyx_CLContext = (PyTypeObject *) __Pyx_PyType_FromModuleAndSpec(__pyx_m, &__pyx_type_9selfdrive_6modeld_6models_15commonmodel_pyx_CLContext_spec, __pyx_t_2);
   __Pyx_XDECREF(__pyx_t_2); __pyx_t_2 = 0;
@@ -23306,8 +23426,13 @@ static int __Pyx_modinit_type_init_code(void) {
   __pyx_ptype_9selfdrive_6modeld_6models_15commonmodel_pyx_CLContext = &__pyx_type_9selfdrive_6modeld_6models_15commonmodel_pyx_CLContext;
   #endif
   #if !CYTHON_COMPILING_IN_LIMITED_API
+<<<<<<< HEAD
   __pyx_ptype_9selfdrive_6modeld_6models_15commonmodel_pyx_CLContext->tp_dealloc = __pyx_ptype_4msgq_9visionipc_13visionipc_pyx_CLContext->tp_dealloc;
   __pyx_ptype_9selfdrive_6modeld_6models_15commonmodel_pyx_CLContext->tp_base = __pyx_ptype_4msgq_9visionipc_13visionipc_pyx_CLContext;
+=======
+  __pyx_ptype_9selfdrive_6modeld_6models_15commonmodel_pyx_CLContext->tp_dealloc = __pyx_ptype_6cereal_9visionipc_13visionipc_pyx_CLContext->tp_dealloc;
+  __pyx_ptype_9selfdrive_6modeld_6models_15commonmodel_pyx_CLContext->tp_base = __pyx_ptype_6cereal_9visionipc_13visionipc_pyx_CLContext;
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
   #endif
   #if !CYTHON_USE_TYPE_SPECS
   if (__Pyx_PyType_Ready(__pyx_ptype_9selfdrive_6modeld_6models_15commonmodel_pyx_CLContext) < 0) __PYX_ERR(1, 16, __pyx_L1_error)
@@ -23534,10 +23659,17 @@ static int __Pyx_modinit_type_import_code(void) {
   int __pyx_clineno = 0;
   __Pyx_RefNannySetupContext("__Pyx_modinit_type_import_code", 0);
   /*--- Type import code ---*/
+<<<<<<< HEAD
   __pyx_t_1 = PyImport_ImportModule("msgq.visionipc.visionipc_pyx"); if (unlikely(!__pyx_t_1)) __PYX_ERR(3, 11, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
   __pyx_ptype_4msgq_9visionipc_13visionipc_pyx_VisionBuf = __Pyx_ImportType_3_0_8(__pyx_t_1, "msgq.visionipc.visionipc_pyx", "VisionBuf", sizeof(struct __pyx_obj_4msgq_9visionipc_13visionipc_pyx_VisionBuf), __PYX_GET_STRUCT_ALIGNMENT_3_0_8(struct __pyx_obj_4msgq_9visionipc_13visionipc_pyx_VisionBuf),__Pyx_ImportType_CheckSize_Warn_3_0_8); if (!__pyx_ptype_4msgq_9visionipc_13visionipc_pyx_VisionBuf) __PYX_ERR(3, 11, __pyx_L1_error)
   __pyx_vtabptr_4msgq_9visionipc_13visionipc_pyx_VisionBuf = (struct __pyx_vtabstruct_4msgq_9visionipc_13visionipc_pyx_VisionBuf*)__Pyx_GetVtable(__pyx_ptype_4msgq_9visionipc_13visionipc_pyx_VisionBuf); if (unlikely(!__pyx_vtabptr_4msgq_9visionipc_13visionipc_pyx_VisionBuf)) __PYX_ERR(3, 11, __pyx_L1_error)
+=======
+  __pyx_t_1 = PyImport_ImportModule("cereal.visionipc.visionipc_pyx"); if (unlikely(!__pyx_t_1)) __PYX_ERR(3, 11, __pyx_L1_error)
+  __Pyx_GOTREF(__pyx_t_1);
+  __pyx_ptype_6cereal_9visionipc_13visionipc_pyx_VisionBuf = __Pyx_ImportType_3_0_8(__pyx_t_1, "cereal.visionipc.visionipc_pyx", "VisionBuf", sizeof(struct __pyx_obj_6cereal_9visionipc_13visionipc_pyx_VisionBuf), __PYX_GET_STRUCT_ALIGNMENT_3_0_8(struct __pyx_obj_6cereal_9visionipc_13visionipc_pyx_VisionBuf),__Pyx_ImportType_CheckSize_Warn_3_0_8); if (!__pyx_ptype_6cereal_9visionipc_13visionipc_pyx_VisionBuf) __PYX_ERR(3, 11, __pyx_L1_error)
+  __pyx_vtabptr_6cereal_9visionipc_13visionipc_pyx_VisionBuf = (struct __pyx_vtabstruct_6cereal_9visionipc_13visionipc_pyx_VisionBuf*)__Pyx_GetVtable(__pyx_ptype_6cereal_9visionipc_13visionipc_pyx_VisionBuf); if (unlikely(!__pyx_vtabptr_6cereal_9visionipc_13visionipc_pyx_VisionBuf)) __PYX_ERR(3, 11, __pyx_L1_error)
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
   __Pyx_DECREF(__pyx_t_1); __pyx_t_1 = 0;
   __pyx_t_1 = PyImport_ImportModule(__Pyx_BUILTIN_MODULE_NAME); if (unlikely(!__pyx_t_1)) __PYX_ERR(4, 9, __pyx_L1_error)
   __Pyx_GOTREF(__pyx_t_1);
@@ -24391,7 +24523,11 @@ if (!__Pyx_RefNanny) {
   __Pyx_DECREF(__pyx_t_7); __pyx_t_7 = 0;
 
   /* "selfdrive/modeld/models/commonmodel_pyx.pyx":4
+<<<<<<< HEAD
  * # cython: c_string_encoding=ascii, language_level=3
+=======
+ * # cython: c_string_encoding=ascii
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
  * 
  * import numpy as np             # <<<<<<<<<<<<<<
  * cimport numpy as cnp
@@ -24492,7 +24628,11 @@ if (!__Pyx_RefNanny) {
 
   /* "selfdrive/modeld/models/commonmodel_pyx.pyx":1
  * # distutils: language = c++             # <<<<<<<<<<<<<<
+<<<<<<< HEAD
  * # cython: c_string_encoding=ascii, language_level=3
+=======
+ * # cython: c_string_encoding=ascii
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
  * 
  */
   __pyx_t_7 = __Pyx_PyDict_NewPresized(0); if (unlikely(!__pyx_t_7)) __PYX_ERR(1, 1, __pyx_L1_error)

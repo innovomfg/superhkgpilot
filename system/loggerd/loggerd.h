@@ -4,7 +4,11 @@
 
 #include "cereal/messaging/messaging.h"
 #include "cereal/services.h"
+<<<<<<< HEAD
 #include "msgq/visionipc/visionipc_client.h"
+=======
+#include "cereal/visionipc/visionipc_client.h"
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 #include "system/camerad/cameras/camera_common.h"
 #include "system/hardware/hw.h"
 #include "common/params.h"

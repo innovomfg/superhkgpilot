@@ -311,7 +311,10 @@ FW_VERSIONS = {
       b'\x00\x00d\xd3\x1f@ \t',
     ],
     (Ecu.engine, 0x7e0, None): [
+<<<<<<< HEAD
       b'\xa7"@0\x07',
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
       b'\xa7"@p\x07',
       b'\xa7)\xa0q\x07',
       b'\xba"@@\x07',
@@ -319,7 +322,10 @@ FW_VERSIONS = {
     ],
     (Ecu.transmission, 0x7e1, None): [
       b'\x1a\xf6F`\x00',
+<<<<<<< HEAD
       b'\xda\xf2`p\x00',
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
       b'\xda\xf2`\x80\x00',
       b'\xda\xfd\xe0\x80\x00',
       b'\xdc\xf2@`\x00',

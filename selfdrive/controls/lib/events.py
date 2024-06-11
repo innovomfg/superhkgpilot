@@ -51,7 +51,11 @@ class Events:
   def __init__(self):
     self.events: list[int] = []
     self.static_events: list[int] = []
+<<<<<<< HEAD
     self.event_counters = dict.fromkeys(EVENTS.keys(), 0)
+=======
+    self.events_prev = dict.fromkeys(EVENTS.keys(), 0)
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
   @property
   def names(self) -> list[int]:
@@ -66,7 +70,11 @@ class Events:
     bisect.insort(self.events, event_name)
 
   def clear(self) -> None:
+<<<<<<< HEAD
     self.event_counters = {k: (v + 1 if k in self.events else 0) for k, v in self.event_counters.items()}
+=======
+    self.events_prev = {k: (v + 1 if k in self.events else 0) for k, v in self.events_prev.items()}
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
     self.events = self.static_events.copy()
 
   def contains(self, event_type: str) -> bool:
@@ -85,7 +93,11 @@ class Events:
           if not isinstance(alert, Alert):
             alert = alert(*callback_args)
 
+<<<<<<< HEAD
           if DT_CTRL * (self.event_counters[e] + 1) >= alert.creation_delay:
+=======
+          if DT_CTRL * (self.events_prev[e] + 1) >= alert.creation_delay:
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
             alert.alert_type = f"{EVENT_NAME[e]}/{et}"
             alert.event_type = et
             ret.append(alert)
@@ -989,11 +1001,14 @@ EVENTS: dict[int, dict[str, Alert | AlertCallbackType]] = {
     ET.NO_ENTRY: NoEntryAlert("Cruise Fault: Restart the Car"),
   },
 
+<<<<<<< HEAD
   EventName.espActive: {
     ET.SOFT_DISABLE: soft_disable_alert("Electronic Stability Control Active"),
     ET.NO_ENTRY: NoEntryAlert("Electronic Stability Control Active"),
   },
 
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
   EventName.controlsMismatch: {
     ET.IMMEDIATE_DISABLE: ImmediateDisableAlert("Controls Mismatch"),
     ET.NO_ENTRY: NoEntryAlert("Controls Mismatch"),
@@ -1141,9 +1156,12 @@ EVENTS: dict[int, dict[str, Alert | AlertCallbackType]] = {
     ET.PERMANENT: torque_nn_load_alert,
   },
 
+<<<<<<< HEAD
   EventName.hyundaiRadarTracksAvailable: {
     ET.PERMANENT: NormalPermanentAlert("Radar tracks available. Restart the car to initialize")
   }
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 }
 
 

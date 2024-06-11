@@ -7,12 +7,18 @@ from dataclasses import replace
 import capnp
 
 from cereal import car
+<<<<<<< HEAD
 from panda.python.uds import SERVICE_TYPE
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 from openpilot.common.numpy_fast import clip, interp
 from openpilot.common.utils import Freezable
 from openpilot.selfdrive.car.docs_definitions import CarDocs
 
+<<<<<<< HEAD
 DT_CTRL = 0.01  # car state and control loop timestep (s)
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
 # kg of standard extra cargo to count for drive, gas, etc...
 STD_CARGO_KG = 136.
@@ -45,6 +51,7 @@ def create_button_events(cur_btn: int, prev_btn: int, buttons_dict: dict[int, ca
   return events
 
 
+<<<<<<< HEAD
 class ButtonEvents:
   def __init__(self) -> None:
     self.is_mads: bool = False
@@ -67,6 +74,12 @@ class ButtonEvents:
       self.is_mads = not self.is_mads
 
     return events
+=======
+def create_mads_event(mads_event_lock: bool) -> capnp.lib.capnp._DynamicStructBuilder:
+  be = car.CarState.ButtonEvent(pressed=mads_event_lock)
+  be.type = ButtonType.altButton1
+  return be
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
 
 def gen_empty_fingerprint():
@@ -218,7 +231,11 @@ def create_gas_interceptor_command(packer, gas_amount, idx):
     values["GAS_COMMAND"] = gas_amount * 255.
     values["GAS_COMMAND2"] = gas_amount * 255.
 
+<<<<<<< HEAD
   dat = packer.make_can_msg("GAS_COMMAND", 0, values)[1]
+=======
+  dat = packer.make_can_msg("GAS_COMMAND", 0, values)[2]
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
   checksum = crc8_pedal(dat[:-1])
   values["CHECKSUM_PEDAL"] = checksum
@@ -226,6 +243,7 @@ def create_gas_interceptor_command(packer, gas_amount, idx):
   return packer.make_can_msg("GAS_COMMAND", 0, values)
 
 
+<<<<<<< HEAD
 def apply_center_deadzone(error, deadzone):
   if (error > - deadzone) and (error < deadzone):
     error = 0.
@@ -259,6 +277,10 @@ def make_tester_present_msg(addr, bus, subaddr=None, suppress_response=False):
 
   dat.extend([0x0] * (8 - len(dat)))
   return make_can_msg(addr, bytes(dat), bus)
+=======
+def make_can_msg(addr, dat, bus):
+  return [addr, 0, dat, bus]
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
 
 def get_safety_config(safety_model, safety_param = None):

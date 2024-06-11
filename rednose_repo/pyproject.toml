@@ -7,6 +7,7 @@ target-version="py311"
 select = ["E", "F", "W", "PIE", "C4", "ISC", "RUF100", "A"]
 ignore = ["W292", "E741", "E402", "C408", "ISC003"]
 flake8-implicit-str-concat.allow-multiline=false
+<<<<<<< HEAD
 
 [tool.ruff.lint.flake8-tidy-imports.banned-api]
 "pytest.main".msg = "pytest.main requires special handling that is easy to mess up!"
@@ -14,3 +15,5 @@ flake8-implicit-str-concat.allow-multiline=false
 
 [tool.pytest.ini_options]
 addopts = "--durations=10 -n auto"
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)

@@ -10,7 +10,11 @@ ALL_SERVICES = list(SERVICE_LIST.keys())
 def raw_live_logreader(services: list[str] = ALL_SERVICES, addr: str = '127.0.0.1') -> RawLogIterable:
   if addr != "127.0.0.1":
     os.environ["ZMQ"] = "1"
+<<<<<<< HEAD
     messaging.reset_context()
+=======
+    messaging.context = messaging.Context()
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
   poller = messaging.Poller()
 

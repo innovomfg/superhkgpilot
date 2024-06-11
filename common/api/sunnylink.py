@@ -13,7 +13,11 @@ from openpilot.common.api.base import BaseApi
 API_HOST = os.getenv('SUNNYLINK_API_HOST', 'https://stg.api.sunnypilot.ai')
 UNREGISTERED_SUNNYLINK_DONGLE_ID = "UnregisteredDevice"
 MAX_RETRIES = 6
+<<<<<<< HEAD
 CRASH_LOG_DIR = '/data/community/crashes'
+=======
+
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
 class SunnylinkApi(BaseApi):
   def __init__(self, dongle_id):
@@ -22,11 +26,19 @@ class SunnylinkApi(BaseApi):
     self.spinner = None
     self.params = Params()
 
+<<<<<<< HEAD
   def api_get(self, endpoint, method='GET', timeout=10, access_token=None, **kwargs):
     if not self.params.get_bool("SunnylinkEnabled"):
       return None
 
     return super().api_get(endpoint, method, timeout, access_token, **kwargs)
+=======
+  def api_get(self, endpoint, method='GET', timeout=10, **kwargs):
+    if not self.params.get_bool("SunnylinkEnabled"):
+      return None
+
+    return super().api_get(endpoint, method, timeout, **kwargs)
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
   def resume_queued(self, timeout=10, **kwargs):
     sunnylinkId, commaId = self._resolve_dongle_ids()
@@ -82,17 +94,27 @@ class SunnylinkApi(BaseApi):
     privkey_path = Path(Paths.persist_root()+"/comma/id_rsa")
     pubkey_path = Path(Paths.persist_root()+"/comma/id_rsa.pub")
 
+<<<<<<< HEAD
     start_time = time.monotonic()
     successful_registration = False
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
     if not pubkey_path.is_file():
       sunnylink_dongle_id = UNREGISTERED_SUNNYLINK_DONGLE_ID
       self._status_update("Public key not found, setting dongle ID to unregistered.")
     else:
+<<<<<<< HEAD
       Params().put("LastSunnylinkPingTime", "0")  # Reset the last ping time to 0 if we are trying to register
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
       with pubkey_path.open() as f1, privkey_path.open() as f2:
         public_key = f1.read()
         private_key = f2.read()
 
+<<<<<<< HEAD
+=======
+      start_time = time.monotonic()
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
       backoff = 1
       while True:
         register_token = jwt.encode({'register': True, 'exp': datetime.utcnow() + timedelta(hours=1)}, private_key, algorithm='RS256')
@@ -104,6 +126,7 @@ class SunnylinkApi(BaseApi):
 
           resp = self.api_get("v2/pilotauth/", method='POST', timeout=15, imei=imei1, imei2=imei2, serial=serial, comma_dongle_id=comma_dongle_id, public_key=public_key, register_token=register_token)
 
+<<<<<<< HEAD
           if resp is None:
             raise Exception("Unable to register device, request was None")
 
@@ -133,6 +156,19 @@ class SunnylinkApi(BaseApi):
           with open(f'{CRASH_LOG_DIR}/error.txt', 'a') as f:
             f.write(f"[{datetime.now()}] sunnylink: {str(e)}\n")
 
+=======
+          if resp.status_code != 200:
+            raise Exception(f"Failed to register with sunnylink. Status code: {resp.status_code}")
+          else:
+            dongleauth = json.loads(resp.text)
+            sunnylink_dongle_id = dongleauth["device_id"]
+            if sunnylink_dongle_id:
+              self._status_update("Device registered successfully.")
+              break
+        except Exception as e:
+          if verbose:
+            self._status_update(f"Waiting {backoff}s before retry, Exception occurred during registration: [{str(e)}]")
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
           backoff = min(backoff * 2, 60)
           time.sleep(backoff)
 
@@ -141,6 +177,7 @@ class SunnylinkApi(BaseApi):
           time.sleep(3)
           break
 
+<<<<<<< HEAD
     self.params.put("SunnylinkDongleId", sunnylink_dongle_id or UNREGISTERED_SUNNYLINK_DONGLE_ID)
 
     # Set the last ping time to the current time since we were just talking to the API
@@ -150,6 +187,10 @@ class SunnylinkApi(BaseApi):
     # Disable sunnylink if registration was not successful
     if not successful_registration:
       Params().put_bool("SunnylinkEnabled", False)
+=======
+    if sunnylink_dongle_id:
+      self.params.put("SunnylinkDongleId", sunnylink_dongle_id)
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
     self.spinner = None
     return sunnylink_dongle_id

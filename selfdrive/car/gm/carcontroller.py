@@ -1,4 +1,5 @@
 from cereal import car
+<<<<<<< HEAD
 import cereal.messaging as messaging
 from openpilot.common.params import Params
 from openpilot.common.conversions import Conversions as CV
@@ -9,6 +10,16 @@ from openpilot.selfdrive.car.gm import gmcan
 from openpilot.selfdrive.car.gm.values import DBC, CanBus, CarControllerParams, CruiseButtons
 from openpilot.selfdrive.car.interfaces import CarControllerBase
 from selfdrive.controls.lib.drive_helpers import GM_V_CRUISE_MIN
+=======
+from openpilot.common.conversions import Conversions as CV
+from openpilot.common.numpy_fast import interp
+from openpilot.common.realtime import DT_CTRL
+from opendbc.can.packer import CANPacker
+from openpilot.selfdrive.car import apply_driver_steer_torque_limits
+from openpilot.selfdrive.car.gm import gmcan
+from openpilot.selfdrive.car.gm.values import DBC, CanBus, CarControllerParams, CruiseButtons
+from openpilot.selfdrive.car.interfaces import CarControllerBase
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
 VisualAlert = car.CarControl.HUDControl.VisualAlert
 NetworkLocation = car.CarParams.NetworkLocation
@@ -22,11 +33,19 @@ MIN_STEER_MSG_INTERVAL_MS = 15
 
 class CarController(CarControllerBase):
   def __init__(self, dbc_name, CP, VM):
+<<<<<<< HEAD
     super().__init__(dbc_name, CP, VM)
+=======
+    self.CP = CP
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
     self.start_time = 0.
     self.apply_steer_last = 0
     self.apply_gas = 0
     self.apply_brake = 0
+<<<<<<< HEAD
+=======
+    self.frame = 0
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
     self.last_steer_frame = 0
     self.last_button_frame = 0
     self.cancel_counter = 0
@@ -40,6 +59,7 @@ class CarController(CarControllerBase):
     self.packer_obj = CANPacker(DBC[self.CP.carFingerprint]['radar'])
     self.packer_ch = CANPacker(DBC[self.CP.carFingerprint]['chassis'])
 
+<<<<<<< HEAD
     self.sm = messaging.SubMaster(['longitudinalPlanSP'])
     self.param_s = Params()
     self.is_metric = self.param_s.get_bool("IsMetric")
@@ -70,6 +90,8 @@ class CarController(CarControllerBase):
     self.m_tsc = 0
     self.steady_speed = 0
 
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
   def update(self, CC, CS, now_nanos):
     actuators = CC.actuators
     hud_control = CC.hudControl
@@ -78,6 +100,7 @@ class CarController(CarControllerBase):
     if hud_v_cruise > 70:
       hud_v_cruise = 0
 
+<<<<<<< HEAD
     if not self.CP.pcmCruiseSpeed:
       self.sm.update(0)
 
@@ -112,6 +135,11 @@ class CarController(CarControllerBase):
 
       self.slc_active_stock = slc_active
 
+=======
+    # Send CAN commands.
+    can_sends = []
+
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
     # Steering (Active: 50Hz, inactive: 10Hz)
     steer_step = self.params.STEER_STEP if CC.latActive else self.params.INACTIVE_STEER_STEP
 
@@ -212,6 +240,7 @@ class CarController(CarControllerBase):
           self.last_button_frame = self.frame
           can_sends.append(gmcan.create_buttons(self.packer_pt, CanBus.CAMERA, CS.buttons_counter, CruiseButtons.CANCEL))
 
+<<<<<<< HEAD
       if not (CC.cruiseControl.cancel or CC.cruiseControl.resume) and not self.CP.pcmCruiseSpeed and CS.out.cruiseState.enabled:
         self.cruise_button = self.get_cruise_buttons(CS, CC.vCruise)
         if self.cruise_button is not None:
@@ -221,6 +250,8 @@ class CarController(CarControllerBase):
           if self.frame % 12 < 6:  # thanks to mochi86420 for the magic numbers
             can_sends.extend([gmcan.create_buttons(self.packer_pt, CanBus.CAMERA, (CS.buttons_counter + 2) % 4, self.cruise_button)] * 3)
 
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
     if self.CP.networkLocation == NetworkLocation.fwdCamera:
       # Silence "Take Steering" alert sent by camera, forward PSCMStatus with HandsOffSWlDetectionStatus=1
       if self.frame % 10 == 0:
@@ -234,6 +265,7 @@ class CarController(CarControllerBase):
 
     self.frame += 1
     return new_actuators, can_sends
+<<<<<<< HEAD
 
   # multikyd methods, sunnyhaibin logic
   def get_cruise_buttons_status(self, CS):
@@ -351,3 +383,5 @@ class CarController(CarControllerBase):
 
       cruise_button = self.get_button_control(CS, self.final_speed_kph, v_cruise_kph_prev)  # MPH/KPH based button presses
     return cruise_button
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)

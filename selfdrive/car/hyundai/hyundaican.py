@@ -41,7 +41,11 @@ def create_lkas11(packer, frame, CP, apply_steer, steer_req,
                            CAR.HYUNDAI_SANTA_FE_PHEV_2022, CAR.KIA_STINGER_2022, CAR.KIA_K5_HEV_2020, CAR.KIA_CEED,
                            CAR.HYUNDAI_AZERA_6TH_GEN, CAR.HYUNDAI_AZERA_HEV_6TH_GEN, CAR.HYUNDAI_CUSTIN_1ST_GEN,
                            CAR.HYUNDAI_ELANTRA_2022_NON_SCC, CAR.GENESIS_G70_2021_NON_SCC, CAR.KIA_SELTOS_2023_NON_SCC,
+<<<<<<< HEAD
                            CAR.HYUNDAI_BAYON_1ST_GEN_NON_SCC, CAR.KIA_CEED_PHEV_2022_NON_SCC):
+=======
+                           CAR.HYUNDAI_BAYON_1ST_GEN_NON_SCC):
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
     values["CF_Lkas_LdwsActivemode"] = int(left_lane) + (int(right_lane) << 1)
     values["CF_Lkas_LdwsOpt_USM"] = 2
 
@@ -81,7 +85,11 @@ def create_lkas11(packer, frame, CP, apply_steer, steer_req,
     # Genesis and Optima fault when forwarding while engaged
     values["CF_Lkas_LdwsActivemode"] = 2
 
+<<<<<<< HEAD
   dat = packer.make_can_msg("LKAS11", 0, values)[1]
+=======
+  dat = packer.make_can_msg("LKAS11", 0, values)[2]
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
   if CP.flags & HyundaiFlags.CHECKSUM_CRC8:
     # CRC Checksum as seen on 2019 Hyundai Santa Fe
@@ -130,8 +138,13 @@ def create_lfahda_mfc(packer, enabled, lat_active, lateral_paused, blinking_icon
   }
   return packer.make_can_msg("LFAHDA_MFC", 0, values)
 
+<<<<<<< HEAD
 def create_acc_commands(packer, enabled, accel_raw, accel_val, lower_jerk, upper_jerk, idx, hud_control, set_speed, stopping, long_override, use_fca,
                         CS, escc, CP, lead_distance, cb_lower, cb_upper):
+=======
+def create_acc_commands(packer, enabled, accel, upper_jerk, idx, hud_control, set_speed, stopping, long_override, use_fca,
+                        CS, escc, CP, lead_distance):
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
   commands = []
 
   scc11_values = {
@@ -150,8 +163,13 @@ def create_acc_commands(packer, enabled, accel_raw, accel_val, lower_jerk, upper
   scc12_values = {
     "ACCMode": 2 if enabled and long_override else 1 if enabled else 0,
     "StopReq": 1 if stopping else 0,
+<<<<<<< HEAD
     "aReqRaw": accel_raw,
     "aReqValue": accel_val,  # stock ramps up and down respecting jerk limit until it reaches aReqRaw
+=======
+    "aReqRaw": accel,
+    "aReqValue": accel,  # stock ramps up and down respecting jerk limit until it reaches aReqRaw
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
     "CR_VSM_Alive": idx % 0xF,
   }
 
@@ -166,16 +184,27 @@ def create_acc_commands(packer, enabled, accel_raw, accel_val, lower_jerk, upper
       scc12_values["CF_VSM_DecCmdAct"] = CS.escc_aeb_dec_cmd_act
       scc12_values["CR_VSM_DecCmd"] = CS.escc_aeb_dec_cmd
 
+<<<<<<< HEAD
   scc12_dat = packer.make_can_msg("SCC12", 0, scc12_values)[1]
+=======
+  scc12_dat = packer.make_can_msg("SCC12", 0, scc12_values)[2]
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
   scc12_values["CR_VSM_ChkSum"] = 0x10 - sum(sum(divmod(i, 16)) for i in scc12_dat) % 0x10
 
   commands.append(packer.make_can_msg("SCC12", 0, scc12_values))
 
   scc14_values = {
+<<<<<<< HEAD
     "ComfortBandUpper": cb_upper, # stock usually is 0 but sometimes uses higher values
     "ComfortBandLower": cb_lower, # stock usually is 0 but sometimes uses higher values
     "JerkUpperLimit": upper_jerk, # stock usually is 1.0 but sometimes uses higher values
     "JerkLowerLimit": lower_jerk, # stock usually is 0.5 but sometimes uses higher values
+=======
+    "ComfortBandUpper": 0.0, # stock usually is 0 but sometimes uses higher values
+    "ComfortBandLower": 0.0, # stock usually is 0 but sometimes uses higher values
+    "JerkUpperLimit": upper_jerk, # stock usually is 1.0 but sometimes uses higher values
+    "JerkLowerLimit": 5.0, # stock usually is 0.5 but sometimes uses higher values
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
     "ACCMode": 2 if enabled and long_override else 1 if enabled else 4, # stock will always be 4 instead of 0 after first disengage
     "ObjGap": get_object_gap(lead_distance), # 5: >30, m, 4: 25-30 m, 3: 20-25 m, 2: < 20 m, 0: no lead
   }
@@ -197,7 +226,11 @@ def create_acc_commands(packer, enabled, accel_raw, accel_val, lower_jerk, upper
         "FCA_DrvSetStatus": 1,
         "FCA_Status": 1,  # AEB disabled
       }
+<<<<<<< HEAD
     fca11_dat = packer.make_can_msg("FCA11", 0, fca11_values)[1]
+=======
+    fca11_dat = packer.make_can_msg("FCA11", 0, fca11_values)[2]
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
     fca11_values["CR_FCA_ChkSum"] = hyundai_checksum(fca11_dat[:7])
     commands.append(packer.make_can_msg("FCA11", 0, fca11_values))
 
@@ -207,7 +240,11 @@ def create_acc_opt(packer, escc, CS, CP):
   commands = []
 
   scc13_values = {
+<<<<<<< HEAD
     "SCCDrvModeRValue": 3,
+=======
+    "SCCDrvModeRValue": 2,
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
     "SCC_Equip": 1,
     "Lead_Veh_Dep_Alert_USM": 2,
   }

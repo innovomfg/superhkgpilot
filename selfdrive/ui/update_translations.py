@@ -25,6 +25,11 @@ def generate_translations_include():
 
 
 def update_translations(vanish: bool = False, translation_files: None | list[str] = None, translations_dir: str = TRANSLATIONS_DIR):
+<<<<<<< HEAD
+=======
+  generate_translations_include()
+
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
   if translation_files is None:
     with open(LANGUAGES_FILE) as f:
       translation_files = json.load(f).values()
@@ -46,5 +51,8 @@ if __name__ == "__main__":
   parser.add_argument("--vanish", action="store_true", help="Remove translations with source text no longer found")
   args = parser.parse_args()
 
+<<<<<<< HEAD
   generate_translations_include()
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
   update_translations(args.vanish)

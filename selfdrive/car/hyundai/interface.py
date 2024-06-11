@@ -1,15 +1,13 @@
-import cereal.messaging as messaging
 from cereal import car
 from panda import Panda
 from openpilot.common.params import Params
-from openpilot.selfdrive.car.sunnypilot.fingerprinting import can_fingerprint, get_one_can
 from openpilot.selfdrive.car.hyundai.enable_radar_tracks import enable_radar_tracks
 from openpilot.selfdrive.car.hyundai.hyundaicanfd import CanBus
 from openpilot.selfdrive.car.hyundai.values import HyundaiFlags, HyundaiFlagsSP, CAR, DBC, CANFD_CAR, CAMERA_SCC_CAR, CANFD_RADAR_SCC_CAR, \
                                          CANFD_UNSUPPORTED_LONGITUDINAL_CAR, NON_SCC_CAR, EV_CAR, HYBRID_CAR, LEGACY_SAFETY_MODE_CAR, \
                                          UNSUPPORTED_LONGITUDINAL_CAR, Buttons
 from openpilot.selfdrive.car.hyundai.radar_interface import RADAR_START_ADDR
-from openpilot.selfdrive.car import create_button_events, get_safety_config
+from openpilot.selfdrive.car import create_button_events, get_safety_config, create_mads_event
 from openpilot.selfdrive.car.interfaces import CarInterfaceBase
 from openpilot.selfdrive.car.disable_ecu import disable_ecu
 
@@ -88,15 +86,16 @@ class CarInterface(CarInterfaceBase):
     ret.steerLimitTimer = 0.4
     CarInterfaceBase.configure_torque_tune(candidate, ret.lateralTuning)
 
-    if candidate == CAR.KIA_OPTIMA_G4_FL:
-      ret.steerActuatorDelay = 0.2
-
     # *** longitudinal control ***
     if candidate in CANFD_CAR:
+      ret.longitudinalTuning.kpV = [0.1]
+      ret.longitudinalTuning.kiV = [0.0]
       ret.experimentalLongitudinalAvailable = candidate not in (CANFD_UNSUPPORTED_LONGITUDINAL_CAR | NON_SCC_CAR)
       if ret.flags & HyundaiFlags.CANFD_CAMERA_SCC and not hda2:
         ret.spFlags |= HyundaiFlagsSP.SP_CAMERA_SCC_LEAD.value
     else:
+      ret.longitudinalTuning.kpV = [0.5]
+      ret.longitudinalTuning.kiV = [0.0]
       ret.experimentalLongitudinalAvailable = candidate not in (UNSUPPORTED_LONGITUDINAL_CAR | NON_SCC_CAR)
       if candidate in CAMERA_SCC_CAR:
         ret.spFlags |= HyundaiFlagsSP.SP_CAMERA_SCC_LEAD.value
@@ -104,20 +103,14 @@ class CarInterface(CarInterfaceBase):
     ret.pcmCruise = not ret.openpilotLongitudinalControl
 
     ret.stoppingControl = True
+    ret.startingState = True
     ret.vEgoStarting = 0.1
-    ret.startAccel = 1.6
-    ret.longitudinalActuatorDelay = 0.5
-
-    if ret.flags & (HyundaiFlags.HYBRID | HyundaiFlags.EV):
-      ret.startingState = False
-      ret.stopAccel = -2.0
-    else:
-      ret.startingState = True
-      ret.stopAccel = -1.0
+    ret.startAccel = 1.0
+    ret.longitudinalActuatorDelayLowerBound = 0.5
+    ret.longitudinalActuatorDelayUpperBound = 0.5
 
     if DBC[ret.carFingerprint]["radar"] is None:
       if ret.spFlags & (HyundaiFlagsSP.SP_ENHANCED_SCC | HyundaiFlagsSP.SP_CAMERA_SCC_LEAD):
-        ret.radarTimeStep = 0.02
         ret.radarUnavailable = False
 
     # *** feature detection ***

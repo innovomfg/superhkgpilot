@@ -1,8 +1,13 @@
 #!/usr/bin/env python3
 from cereal import car
 from panda import Panda
+<<<<<<< HEAD
 from openpilot.selfdrive.car import create_button_events, get_safety_config
 from openpilot.selfdrive.car.chrysler.values import CAR, RAM_HD, RAM_DT, RAM_CARS, ChryslerFlags, ChryslerFlagsSP
+=======
+from openpilot.selfdrive.car import create_button_events, get_safety_config, create_mads_event
+from openpilot.selfdrive.car.chrysler.values import CAR, RAM_HD, RAM_DT, RAM_CARS, ChryslerFlags, ChryslerFlagsSP, BUTTON_STATES
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 from openpilot.selfdrive.car.interfaces import CarInterfaceBase
 
 ButtonType = car.CarState.ButtonEvent.Type
@@ -13,6 +18,10 @@ GearShifter = car.CarState.GearShifter
 class CarInterface(CarInterfaceBase):
   def __init__(self, CP, CarController, CarState):
     super().__init__(CP, CarController, CarState)
+<<<<<<< HEAD
+=======
+    self.buttonStatesPrev = BUTTON_STATES.copy()
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
   @staticmethod
   def _get_params(ret, candidate, fingerprint, car_fw, experimental_long, docs):
@@ -40,8 +49,13 @@ class CarInterface(CarInterfaceBase):
         ret.flags |= ChryslerFlags.HIGHER_MIN_STEERING_SPEED.value
 
     # Chrysler
+<<<<<<< HEAD
     if candidate in (CAR.CHRYSLER_PACIFICA_2018, CAR.CHRYSLER_PACIFICA_2018_HYBRID, CAR.CHRYSLER_PACIFICA_2019_HYBRID,
                      CAR.CHRYSLER_PACIFICA_2020, CAR.DODGE_DURANGO):
+=======
+    if candidate in (CAR.CHRYSLER_PACIFICA_2017_HYBRID, CAR.CHRYSLER_PACIFICA_2018, CAR.CHRYSLER_PACIFICA_2018_HYBRID, \
+                     CAR.CHRYSLER_PACIFICA_2019_HYBRID, CAR.CHRYSLER_PACIFICA_2020, CAR.DODGE_DURANGO):
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
       ret.lateralTuning.init('pid')
       ret.lateralTuning.pid.kpBP, ret.lateralTuning.pid.kiBP = [[9., 20.], [9., 20.]]
       ret.lateralTuning.pid.kpV, ret.lateralTuning.pid.kiV = [[0.15, 0.30], [0.03, 0.05]]
@@ -91,6 +105,7 @@ class CarInterface(CarInterfaceBase):
 
   def _update(self, c):
     ret = self.CS.update(self.cp, self.cp_cam)
+<<<<<<< HEAD
 
     self.CS.button_events = [
       *self.CS.button_events,
@@ -101,6 +116,23 @@ class CarInterface(CarInterfaceBase):
     self.CS.mads_enabled = self.get_sp_cruise_main_state(ret)
 
     self.CS.accEnabled = self.get_sp_v_cruise_non_pcm_state(ret, c.vCruise, self.CS.accEnabled,
+=======
+    self.sp_update_params()
+
+    buttonEvents = create_button_events(self.CS.distance_button, self.CS.prev_distance_button, {1: ButtonType.gapAdjustCruise})
+
+    for button in self.CS.buttonStates:
+      if self.CS.buttonStates[button] != self.buttonStatesPrev[button]:
+        be = car.CarState.ButtonEvent.new_message()
+        be.type = button
+        be.pressed = self.CS.buttonStates[button]
+        buttonEvents.append(be)
+
+    self.CS.mads_enabled = self.get_sp_cruise_main_state(ret, self.CS)
+
+    self.CS.accEnabled = self.get_sp_v_cruise_non_pcm_state(ret, self.CS.accEnabled,
+                                                            buttonEvents, c.vCruise,
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
                                                             enable_buttons=(ButtonType.accelCruise, ButtonType.decelCruise, ButtonType.resumeCruise) if not self.CP.pcmCruiseSpeed else
                                                                            (ButtonType.accelCruise, ButtonType.decelCruise),
                                                             resume_button=(ButtonType.resumeCruise,) if not self.CP.pcmCruiseSpeed else
@@ -110,6 +142,7 @@ class CarInterface(CarInterfaceBase):
       if self.enable_mads:
         if not self.CS.prev_mads_enabled and self.CS.mads_enabled:
           self.CS.madsEnabled = True
+<<<<<<< HEAD
         if any(b.type == ButtonType.altButton1 and b.pressed for b in self.CS.button_events):
           self.CS.madsEnabled = not self.CS.madsEnabled
           self.CS.lkas_disabled = not self.CS.lkas_disabled
@@ -124,6 +157,22 @@ class CarInterface(CarInterfaceBase):
     if self.get_sp_pedal_disengage(ret):
       self.get_sp_cancel_cruise_state()
       ret.cruiseState.enabled = ret.cruiseState.enabled if not self.enable_mads else False if self.CP.pcmCruise else self.CS.accEnabled
+=======
+        if self.CS.prev_lkas_enabled != 1 and self.CS.lkas_enabled == 1:
+          self.CS.madsEnabled = not self.CS.madsEnabled
+          self.CS.lkas_disabled = not self.CS.lkas_disabled
+        self.CS.madsEnabled = self.get_acc_mads(ret.cruiseState.enabled, self.CS.accEnabled, self.CS.madsEnabled)
+    else:
+      self.CS.madsEnabled = False
+    self.CS.madsEnabled = self.get_sp_started_mads(ret, self.CS)
+
+    if not self.CP.pcmCruise or (self.CP.pcmCruise and self.CP.minEnableSpeed > 0) or not self.CP.pcmCruiseSpeed:
+      if any(b.type == ButtonType.cancel for b in buttonEvents):
+        self.CS.madsEnabled, self.CS.accEnabled = self.get_sp_cancel_cruise_state(self.CS.madsEnabled)
+    if self.get_sp_pedal_disengage(ret):
+      self.CS.madsEnabled, self.CS.accEnabled = self.get_sp_cancel_cruise_state(self.CS.madsEnabled)
+      ret.cruiseState.enabled = False if self.CP.pcmCruise else self.CS.accEnabled
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
     if self.CP.pcmCruise and self.CP.minEnableSpeed > 0 and self.CP.pcmCruiseSpeed:
       if ret.gasPressed and not ret.cruiseState.enabled:
@@ -135,17 +184,37 @@ class CarInterface(CarInterfaceBase):
         self.CS.accEnabled = False
       self.CS.accEnabled = ret.cruiseState.enabled or self.CS.accEnabled
 
+<<<<<<< HEAD
     ret = self.get_sp_common_state(ret)
 
     ret.buttonEvents = [
       *self.CS.button_events,
       *self.button_events.create_mads_event(self.CS.madsEnabled, self.CS.out.madsEnabled)  # MADS BUTTON
     ]
+=======
+    ret, self.CS = self.get_sp_common_state(ret, self.CS, gap_button=bool(self.CS.distance_button))
+
+    # MADS BUTTON
+    if self.CS.out.madsEnabled != self.CS.madsEnabled:
+      if self.mads_event_lock:
+        buttonEvents.append(create_mads_event(self.mads_event_lock))
+        self.mads_event_lock = False
+    else:
+      if not self.mads_event_lock:
+        buttonEvents.append(create_mads_event(self.mads_event_lock))
+        self.mads_event_lock = True
+
+    ret.buttonEvents = buttonEvents
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
     # events
     events = self.create_common_events(ret, c, extra_gears=[car.CarState.GearShifter.low], pcm_enable=False)
 
+<<<<<<< HEAD
     events, ret = self.create_sp_events(ret, events)
+=======
+    events, ret = self.create_sp_events(self.CS, ret, events)
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
     # Low speed steer alert hysteresis logic
     if self.CP.carFingerprint in RAM_DT:
@@ -161,8 +230,19 @@ class CarInterface(CarInterfaceBase):
     if self.low_speed_alert:
       events.add(car.CarEvent.EventName.belowSteerSpeed)
 
+<<<<<<< HEAD
     ret.customStockLong = self.update_custom_stock_long()
 
     ret.events = events.to_msg()
 
+=======
+    ret.customStockLong = self.CS.update_custom_stock_long(self.CC.cruise_button, self.CC.final_speed_kph,
+                                                           self.CC.target_speed, self.CC.v_set_dis,
+                                                           self.CC.speed_diff, self.CC.button_type)
+
+    ret.events = events.to_msg()
+
+    self.buttonStatesPrev = self.CS.buttonStates.copy()
+
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
     return ret

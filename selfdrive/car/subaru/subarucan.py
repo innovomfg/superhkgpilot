@@ -284,7 +284,11 @@ def create_es_static_2(packer):
 # *** Subaru Pre-global ***
 
 def subaru_preglobal_checksum(packer, values, addr, checksum_byte=7):
+<<<<<<< HEAD
   dat = packer.make_can_msg(addr, 0, values)[1]
+=======
+  dat = packer.make_can_msg(addr, 0, values)[2]
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
   return (sum(dat[:checksum_byte]) + sum(dat[checksum_byte+1:])) % 256
 
 

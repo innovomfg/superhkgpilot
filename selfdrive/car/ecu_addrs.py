@@ -4,6 +4,7 @@ import time
 
 import cereal.messaging as messaging
 from panda.python.uds import SERVICE_TYPE
+<<<<<<< HEAD
 from openpilot.selfdrive.car import make_tester_present_msg
 from openpilot.selfdrive.car.fw_query_definitions import EcuAddrBusType
 from openpilot.selfdrive.pandad import can_list_to_can_capnp
@@ -11,6 +12,24 @@ from openpilot.common.swaglog import cloudlog
 
 
 def _is_tester_present_response(msg: capnp.lib.capnp._DynamicStructReader, subaddr: int = None) -> bool:
+=======
+from openpilot.selfdrive.car import make_can_msg
+from openpilot.selfdrive.car.fw_query_definitions import EcuAddrBusType
+from openpilot.selfdrive.boardd.boardd import can_list_to_can_capnp
+from openpilot.common.swaglog import cloudlog
+
+
+def make_tester_present_msg(addr, bus, subaddr=None):
+  dat = [0x02, SERVICE_TYPE.TESTER_PRESENT, 0x0]
+  if subaddr is not None:
+    dat.insert(0, subaddr)
+
+  dat.extend([0x0] * (8 - len(dat)))
+  return make_can_msg(addr, bytes(dat), bus)
+
+
+def is_tester_present_response(msg: capnp.lib.capnp._DynamicStructReader, subaddr: int = None) -> bool:
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
   # ISO-TP messages are always padded to 8 bytes
   # tester present response is always a single frame
   dat_offset = 1 if subaddr is not None else 0
@@ -24,7 +43,11 @@ def _is_tester_present_response(msg: capnp.lib.capnp._DynamicStructReader, subad
   return False
 
 
+<<<<<<< HEAD
 def _get_all_ecu_addrs(logcan: messaging.SubSocket, sendcan: messaging.PubSocket, bus: int, timeout: float = 1, debug: bool = True) -> set[EcuAddrBusType]:
+=======
+def get_all_ecu_addrs(logcan: messaging.SubSocket, sendcan: messaging.PubSocket, bus: int, timeout: float = 1, debug: bool = True) -> set[EcuAddrBusType]:
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
   addr_list = [0x700 + i for i in range(256)] + [0x18da00f1 + (i << 8) for i in range(256)]
   queries: set[EcuAddrBusType] = {(addr, None, bus) for addr in addr_list}
   responses = queries
@@ -49,7 +72,11 @@ def get_ecu_addrs(logcan: messaging.SubSocket, sendcan: messaging.PubSocket, que
             continue
 
           subaddr = None if (msg.address, None, msg.src) in responses else msg.dat[0]
+<<<<<<< HEAD
           if (msg.address, subaddr, msg.src) in responses and _is_tester_present_response(msg, subaddr):
+=======
+          if (msg.address, subaddr, msg.src) in responses and is_tester_present_response(msg, subaddr):
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
             if debug:
               print(f"CAN-RX: {hex(msg.address)} - 0x{bytes.hex(msg.dat)}")
               if (msg.address, subaddr, msg.src) in ecu_responses:
@@ -62,19 +89,26 @@ def get_ecu_addrs(logcan: messaging.SubSocket, sendcan: messaging.PubSocket, que
 
 if __name__ == "__main__":
   import argparse
+<<<<<<< HEAD
   from openpilot.common.params import Params
   from openpilot.selfdrive.car.fw_versions import set_obd_multiplexing
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
   parser = argparse.ArgumentParser(description='Get addresses of all ECUs')
   parser.add_argument('--debug', action='store_true')
   parser.add_argument('--bus', type=int, default=1)
+<<<<<<< HEAD
   parser.add_argument('--no-obd', action='store_true')
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
   parser.add_argument('--timeout', type=float, default=1.0)
   args = parser.parse_args()
 
   logcan = messaging.sub_sock('can')
   sendcan = messaging.pub_sock('sendcan')
 
+<<<<<<< HEAD
   # Set up params for pandad
   params = Params()
   params.remove("FirmwareQueryDone")
@@ -91,6 +125,17 @@ if __name__ == "__main__":
   print("Found ECUs on rx addresses:")
   for addr, subaddr, _ in ecu_addrs:
     msg = f"  {hex(addr)}"
+=======
+  time.sleep(1.0)
+
+  print("Getting ECU addresses ...")
+  ecu_addrs = get_all_ecu_addrs(logcan, sendcan, args.bus, args.timeout, debug=args.debug)
+
+  print()
+  print("Found ECUs on addresses:")
+  for addr, subaddr, _ in ecu_addrs:
+    msg = f"  0x{hex(addr)}"
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
     if subaddr is not None:
       msg += f" (sub-address: {hex(subaddr)})"
     print(msg)

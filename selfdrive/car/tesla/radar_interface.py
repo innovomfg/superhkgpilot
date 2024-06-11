@@ -8,6 +8,10 @@ from openpilot.selfdrive.car.interfaces import RadarInterfaceBase
 class RadarInterface(RadarInterfaceBase):
   def __init__(self, CP):
     super().__init__(CP)
+<<<<<<< HEAD
+=======
+    self.CP = CP
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
     if CP.carFingerprint == CAR.TESLA_MODELS_RAVEN:
       messages = [('RadarStatus', 16)]

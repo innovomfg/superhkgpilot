@@ -1,5 +1,9 @@
 # distutils: language = c++
+<<<<<<< HEAD
 # cython: c_string_encoding=ascii, language_level=3
+=======
+# cython: c_string_encoding=ascii
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
 from libcpp cimport bool
 from libcpp.string cimport string

@@ -242,12 +242,22 @@ class CarInterfaceBase(ABC):
     self.mads_ndlob = self.enable_mads and not self.mads_disengage_lateral_on_brake
     self.gear_warning = 0
     self.cruise_cancelled_btn = True
+    self.acc_mads_combo = self.param_s.get_bool("AccMadsCombo")
+    self.is_metric = self.param_s.get_bool("IsMetric")
+    self.below_speed_pause = self.param_s.get_bool("BelowSpeedPause")
+    self.pause_lateral_speed = int(self.param_s.get("PauseLateralSpeed", encoding="utf8"))
     self.prev_acc_mads_combo = False
     self.mads_event_lock = True
+    self.gap_button_counter = 0
+    self.experimental_mode_hold = False
+    self.experimental_mode = self.param_s.get_bool("ExperimentalMode")
+    self._frame = 0
+    self.reverse_dm_cam = self.param_s.get_bool("ReverseDmCam")
+    self.mads_main_toggle = self.param_s.get_bool("MadsCruiseMain")
+    self.lkas_toggle = self.param_s.get_bool("LkasToggle")
     self.last_mads_init = 0.
     self.madsEnabledInit = False
     self.madsEnabledInitPrev = False
-    self.button_events = ButtonEvents()
 
     self.lat_torque_nn_model = None
     eps_firmware = str(next((fw.fwVersion for fw in CP.carFw if fw.ecu == "eps"), ""))
@@ -260,7 +270,7 @@ class CarInterfaceBase(ABC):
     self.lat_torque_nn_model, _ = get_nn_model(_car, eps_firmware)
     return self.lat_torque_nn_model is not None and self.param_s.get_bool("NNFF")
 
-  def apply(self, c: car.CarControl, now_nanos: int) -> tuple[car.CarControl.Actuators, list[SendCan]]:
+  def apply(self, c: car.CarControl, now_nanos: int) -> tuple[car.CarControl.Actuators, list[tuple[int, int, bytes, int]]]:
     return self.CC.update(c, self.CS, now_nanos)
 
   @staticmethod
@@ -287,7 +297,6 @@ class CarInterfaceBase(ABC):
     ret.minSteerSpeed = platform.config.specs.minSteerSpeed
     ret.tireStiffnessFactor = platform.config.specs.tireStiffnessFactor
     ret.flags |= int(platform.config.flags)
-    ret.spFlags |= int(platform.config.spFlags)
 
     ret = cls._get_params(ret, candidate, fingerprint, car_fw, experimental_long, docs)
 
@@ -356,7 +365,7 @@ class CarInterfaceBase(ABC):
     ret.carFingerprint = candidate
 
     # Car docs fields
-    ret.maxLateralAccel = get_torque_params()[candidate]['MAX_LAT_ACCEL_MEASURED']
+    ret.maxLateralAccel = get_torque_params(candidate)['MAX_LAT_ACCEL_MEASURED']
     ret.autoResumeSng = True  # describes whether car can resume from a stop automatically
 
     # standard ALC params
@@ -406,7 +415,7 @@ class CarInterfaceBase(ABC):
 
   @staticmethod
   def sp_configure_custom_torque_tune(ret, params):
-    ret.lateralTuning.torque.friction = float(params.get("TorqueFriction", encoding="utf8")) * 0.001
+    ret.lateralTuning.torque.friction = float(params.get("TorqueFriction", encoding="utf8")) * 0.01
     ret.lateralTuning.torque.latAccelFactor = float(params.get("TorqueMaxLatAccel", encoding="utf8")) * 0.01
     return ret
 

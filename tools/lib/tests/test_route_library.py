@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+#!/usr/bin/env python
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 from collections import namedtuple
 
 from openpilot.tools.lib.route import SegmentName

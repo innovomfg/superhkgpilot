@@ -1,7 +1,13 @@
 from cereal import car
 from openpilot.common.numpy_fast import clip, interp
+<<<<<<< HEAD
 from opendbc.can.packer import CANPacker
 from openpilot.selfdrive.car import apply_driver_steer_torque_limits, common_fault_avoidance, make_tester_present_msg
+=======
+from openpilot.common.params import Params
+from opendbc.can.packer import CANPacker
+from openpilot.selfdrive.car import apply_driver_steer_torque_limits, common_fault_avoidance
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 from openpilot.selfdrive.car.interfaces import CarControllerBase
 from openpilot.selfdrive.car.subaru import subarucan
 from openpilot.selfdrive.car.subaru.values import DBC, GLOBAL_ES_ADDR, CanBus, CarControllerParams, SubaruFlags, SubaruFlagsSP
@@ -17,15 +23,30 @@ _SNG_ACC_MAX_DIST = 4.5
 
 class CarController(CarControllerBase):
   def __init__(self, dbc_name, CP, VM):
+<<<<<<< HEAD
     super().__init__(dbc_name, CP, VM)
     self.apply_steer_last = 0
+=======
+    self.CP = CP
+    self.apply_steer_last = 0
+    self.frame = 0
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
     self.cruise_button_prev = 0
     self.steer_rate_counter = 0
 
+<<<<<<< HEAD
     self.subaru_sng = False
     if CP.spFlags & SubaruFlagsSP.SP_SUBARU_SNG:
       self.subaru_sng = True
+=======
+    self.param_s = Params()
+
+    self.subaru_sng = False
+    if CP.spFlags & SubaruFlagsSP.SP_SUBARU_SNG:
+      self.subaru_sng = True
+      self.manual_parking_brake = self.param_s.get_bool("SubaruManualParkingBrakeSng")
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
       self.prev_close_distance = 0
       self.prev_standstill = False
       self.standstill_start = 0
@@ -42,6 +63,12 @@ class CarController(CarControllerBase):
     hud_control = CC.hudControl
     pcm_cancel_cmd = CC.cruiseControl.cancel
 
+<<<<<<< HEAD
+=======
+    if self.frame % 250 == 0 and self.subaru_sng:
+      self.manual_parking_brake = self.param_s.get_bool("SubaruManualParkingBrakeSng")
+
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
     can_sends = []
 
     # *** steering ***
@@ -150,7 +177,11 @@ class CarController(CarControllerBase):
       if self.CP.flags & SubaruFlags.DISABLE_EYESIGHT:
         # Tester present (keeps eyesight disabled)
         if self.frame % 100 == 0:
+<<<<<<< HEAD
           can_sends.append(make_tester_present_msg(GLOBAL_ES_ADDR, CanBus.camera, suppress_response=True))
+=======
+          can_sends.append([GLOBAL_ES_ADDR, 0, b"\x02\x3E\x80\x00\x00\x00\x00\x00", CanBus.camera])
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
         # Create all of the other eyesight messages to keep the rest of the car happy when eyesight is disabled
         if self.frame % 5 == 0:
@@ -183,7 +214,11 @@ class CarController(CarControllerBase):
         and CS.close_distance > self.prev_close_distance):    # distance with lead car is increasing
         self.sng_acc_resume = True
     elif not (self.CP.flags & (SubaruFlags.GLOBAL_GEN2 | SubaruFlags.HYBRID)):
+<<<<<<< HEAD
       if CS.params_list.subaru_manual_parking_brake and self.subaru_sng:
+=======
+      if self.manual_parking_brake:
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
         # Send brake message with non-zero speed in standstill to avoid non-EPB ACC disengage
         if (CC.enabled                                        # ACC active
           and CS.car_follow == 1                              # lead car

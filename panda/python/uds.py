@@ -301,7 +301,11 @@ def get_dtc_status_names(status):
   return result
 
 class CanClient():
+<<<<<<< HEAD
   def __init__(self, can_send: Callable[[int, bytes, int], None], can_recv: Callable[[], list[tuple[int, bytes, int]]],
+=======
+  def __init__(self, can_send: Callable[[int, bytes, int], None], can_recv: Callable[[], list[tuple[int, int, bytes, int]]],
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
                tx_addr: int, rx_addr: int, bus: int, sub_addr: int | None = None, debug: bool = False):
     self.tx = can_send
     self.rx = can_recv
@@ -339,7 +343,11 @@ class CanClient():
           print(f"CAN-RX: drain - {len(msgs)}")
         self.rx_buff.clear()
       else:
+<<<<<<< HEAD
         for rx_addr, rx_data, rx_bus in msgs or []:
+=======
+        for rx_addr, _, rx_data, rx_bus in msgs or []:
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
           if self._recv_filter(rx_bus, rx_addr) and len(rx_data) > 0:
             rx_data = bytes(rx_data)  # convert bytearray to bytes
 

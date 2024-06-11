@@ -87,7 +87,11 @@ function launch {
     ./build.py
   fi
 
+<<<<<<< HEAD
   ./mapd_installer.py; ./manager.py
+=======
+  ./sunnylink.py; ./mapd_installer.py; ./manager.py
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
   # if broken, keep on screen error
   while true; do sleep 1; done

@@ -42,6 +42,10 @@ class Parser:
     raw = outs[name]
     raw = raw.reshape((raw.shape[0], max(in_N, 1), -1))
 
+<<<<<<< HEAD
+=======
+    pred_mu = raw[:,:,:(raw.shape[2] - out_N)//2]
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
     n_values = (raw.shape[2] - out_N)//2
     pred_mu = raw[:,:,:n_values]
     pred_std = np.exp(raw[:,:,n_values: 2*n_values])

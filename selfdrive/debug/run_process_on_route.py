@@ -3,7 +3,12 @@
 import argparse
 
 from openpilot.selfdrive.test.process_replay.process_replay import CONFIGS, replay_process
+<<<<<<< HEAD
 from openpilot.tools.lib.logreader import LogReader, save_log
+=======
+from openpilot.tools.lib.helpers import save_log
+from openpilot.tools.lib.logreader import LogReader
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
 if __name__ == "__main__":
   parser = argparse.ArgumentParser(description="Run process on route and create new logs",

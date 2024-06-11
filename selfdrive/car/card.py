@@ -1,8 +1,12 @@
 #!/usr/bin/env python3
 import os
+<<<<<<< HEAD
 import threading
 import time
 from types import SimpleNamespace
+=======
+import time
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
 import cereal.messaging as messaging
 
@@ -11,6 +15,7 @@ from cereal import car
 from panda import ALTERNATIVE_EXPERIENCE
 
 from openpilot.common.params import Params
+<<<<<<< HEAD
 from openpilot.common.realtime import config_realtime_process, Priority, Ratekeeper
 
 from openpilot.selfdrive.pandad import can_list_to_can_capnp
@@ -18,6 +23,13 @@ from openpilot.selfdrive.car import DT_CTRL
 from openpilot.selfdrive.car.car_helpers import get_car, get_one_can
 from openpilot.selfdrive.car.interfaces import CarInterfaceBase
 from openpilot.selfdrive.car.param_manager import ParamManager
+=======
+from openpilot.common.realtime import config_realtime_process, Priority, Ratekeeper, DT_CTRL
+
+from openpilot.selfdrive.boardd.boardd import can_list_to_can_capnp
+from openpilot.selfdrive.car.car_helpers import get_car, get_one_can
+from openpilot.selfdrive.car.interfaces import CarInterfaceBase
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 from openpilot.selfdrive.controls.lib.events import Events
 
 REPLAY = "REPLAY" in os.environ
@@ -33,7 +45,12 @@ class Car:
     self.sm = messaging.SubMaster(['pandaStates', 'carControl', 'onroadEvents'])
     self.pm = messaging.PubMaster(['sendcan', 'carState', 'carParams', 'carOutput'])
 
+<<<<<<< HEAD
     self.can_rcv_cum_timeout_counter = 0
+=======
+    self.can_rcv_timeout_counter = 0  # consecutive timeout count
+    self.can_rcv_cum_timeout_counter = 0  # cumulative timeout count
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
     self.CC_prev = car.CarControl.new_message()
     self.CS_prev = car.CarState.new_message()
@@ -94,10 +111,13 @@ class Car:
 
     self.events = Events()
 
+<<<<<<< HEAD
     self.param_manager: ParamManager = ParamManager()
     self.param_manager.update(self.params)
     self._params_list: SimpleNamespace = self.param_manager.get_params()
 
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
     # card is driven by can recv, expected at 100Hz
     self.rk = Ratekeeper(100, print_delay_threshold=None)
 
@@ -106,7 +126,11 @@ class Car:
 
     # Update carState from CAN
     can_strs = messaging.drain_sock_raw(self.can_sock, wait_for_one=True)
+<<<<<<< HEAD
     CS = self.CI.update(self.CC_prev, can_strs, self._params_list)
+=======
+    CS = self.CI.update(self.CC_prev, can_strs)
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
     self.sm.update(0)
 
@@ -114,7 +138,16 @@ class Car:
 
     # Check for CAN timeout
     if not can_rcv_valid:
+<<<<<<< HEAD
       self.can_rcv_cum_timeout_counter += 1
+=======
+      self.can_rcv_timeout_counter += 1
+      self.can_rcv_cum_timeout_counter += 1
+    else:
+      self.can_rcv_timeout_counter = 0
+
+    self.can_rcv_timeout = self.can_rcv_timeout_counter >= 5
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
     if can_rcv_valid and REPLAY:
       self.can_log_mono_time = messaging.log_from_bytes(can_strs[0]).logMonoTime
@@ -157,6 +190,10 @@ class Car:
     cs_send = messaging.new_message('carState')
     cs_send.valid = CS.canValid
     cs_send.carState = CS
+<<<<<<< HEAD
+=======
+    cs_send.carState.canRcvTimeout = self.can_rcv_timeout
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
     cs_send.carState.canErrorCounter = self.can_rcv_cum_timeout_counter
     cs_send.carState.cumLagMs = -self.rk.remaining * 1000.
     self.pm.send('carState', cs_send)
@@ -168,7 +205,11 @@ class Car:
       # Initialize CarInterface, once controls are ready
       # TODO: this can make us miss at least a few cycles when doing an ECU knockout
       self.CI.init(self.CP, self.can_sock, self.pm.sock['sendcan'])
+<<<<<<< HEAD
       # signal pandad to switch to car safety mode
+=======
+      # signal boardd to switch to car safety mode
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
       self.params.put_bool_nonblocking("ControlsReady", True)
 
     if self.sm.all_alive(['carControl']):
@@ -194,6 +235,7 @@ class Car:
     self.initialized_prev = initialized
     self.CS_prev = CS.as_reader()
 
+<<<<<<< HEAD
   def sp_params_thread(self, event: threading.Event) -> None:
     while not event.is_set():
       self.param_manager.update(self.params)
@@ -211,6 +253,12 @@ class Car:
     finally:
       event.set()
       thread.join()
+=======
+  def card_thread(self):
+    while True:
+      self.step()
+      self.rk.monitor_time()
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
 
 def main():

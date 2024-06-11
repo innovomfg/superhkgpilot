@@ -1,4 +1,5 @@
 from cereal import car
+<<<<<<< HEAD
 from common.conversions import Conversions as CV
 from openpilot.common.numpy_fast import clip, interp
 from openpilot.selfdrive.car import apply_meas_steer_torque_limits, apply_std_steer_angle_limits, common_fault_avoidance, make_can_msg, make_tester_present_msg, \
@@ -11,6 +12,19 @@ from openpilot.selfdrive.car.toyota.values import CAR, STATIC_DSU_MSGS, NO_STOP_
 from opendbc.can.packer import CANPacker
 
 GearShifter = car.CarState.GearShifter
+=======
+from openpilot.common.numpy_fast import clip, interp
+from openpilot.common.params import Params
+from openpilot.selfdrive.car import apply_meas_steer_torque_limits, apply_std_steer_angle_limits, common_fault_avoidance, \
+                          create_gas_interceptor_command, make_can_msg
+from openpilot.selfdrive.car.interfaces import CarControllerBase
+from openpilot.selfdrive.car.toyota import toyotacan
+from openpilot.selfdrive.car.toyota.values import CAR, STATIC_DSU_MSGS, NO_STOP_TIMER_CAR, TSS2_CAR, \
+                                        MIN_ACC_SPEED, PEDAL_TRANSITION, CarControllerParams, ToyotaFlags, \
+                                        UNSUPPORTED_DSU_CAR
+from opendbc.can.packer import CANPacker
+
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 SteerControlType = car.CarParams.SteerControlType
 VisualAlert = car.CarControl.HUDControl.VisualAlert
 
@@ -27,6 +41,7 @@ MAX_USER_TORQUE = 500
 MAX_LTA_ANGLE = 94.9461  # deg
 MAX_LTA_DRIVER_TORQUE_ALLOWANCE = 150  # slightly above steering pressed allows some resistance when changing lanes
 
+<<<<<<< HEAD
 LEFT_BLINDSPOT = b"\x41"
 RIGHT_BLINDSPOT = b"\x42"
 
@@ -38,6 +53,14 @@ class CarController(CarControllerBase):
   def __init__(self, dbc_name, CP, VM):
     super().__init__(dbc_name, CP, VM)
     self.params = CarControllerParams(self.CP)
+=======
+
+class CarController(CarControllerBase):
+  def __init__(self, dbc_name, CP, VM):
+    self.CP = CP
+    self.params = CarControllerParams(self.CP)
+    self.frame = 0
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
     self.last_steer = 0
     self.last_angle = 0
     self.alert_active = False
@@ -50,6 +73,7 @@ class CarController(CarControllerBase):
     self.gas = 0
     self.accel = 0
 
+<<<<<<< HEAD
     self.left_blindspot_debug_enabled = False
     self.right_blindspot_debug_enabled = False
     self.last_blindspot_frame = 0
@@ -61,6 +85,13 @@ class CarController(CarControllerBase):
   def update(self, CC, CS, now_nanos):
     self._auto_lock_speed = 10 * (CV.KPH_TO_MS if CS.params_list.is_metric else CV.MPH_TO_MS)
 
+=======
+    self.param_s = Params()
+    self._reverse_acc_change = self.param_s.get_bool("ReverseAccChange")
+    self._sng_hack = self.param_s.get_bool("ToyotaSnG")
+
+  def update(self, CC, CS, now_nanos):
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
     actuators = CC.actuators
     hud_control = CC.hudControl
     pcm_cancel_cmd = CC.cruiseControl.cancel
@@ -69,6 +100,7 @@ class CarController(CarControllerBase):
     # *** control msgs ***
     can_sends = []
 
+<<<<<<< HEAD
     # automatic door locking and unlocking logic (@dragonpilot-community)
     # thanks to AlexandreSato & cydia2020
     # https://github.com/AlexandreSato/animalpilot/blob/personal/doors.py
@@ -84,6 +116,8 @@ class CarController(CarControllerBase):
         self._auto_lock_once = True
     self._gear_prev = gear
 
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
     # *** steer torque ***
     new_steer = int(round(actuators.steer * self.params.STEER_MAX))
     apply_steer = apply_meas_steer_torque_limits(new_steer, self.last_steer, CS.out.steeringTorqueEps, self.params)
@@ -160,7 +194,11 @@ class CarController(CarControllerBase):
 
     # on entering standstill, send standstill request
     if CS.out.standstill and not self.last_standstill and (self.CP.carFingerprint not in NO_STOP_TIMER_CAR or self.CP.enableGasInterceptorDEPRECATED) and \
+<<<<<<< HEAD
       not CS.params_list.toyota_sng_hack:
+=======
+      not self._sng_hack:
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
       self.standstill_req = True
     if CS.pcm_acc_status != 8:
       # pcm entered standstill or it's disabled
@@ -175,7 +213,11 @@ class CarController(CarControllerBase):
     # we can spam can to cancel the system even if we are using lat only control
     if (self.frame % 3 == 0 and self.CP.openpilotLongitudinalControl) or pcm_cancel_cmd:
       lead = hud_control.leadVisible or CS.out.vEgo < 12.  # at low speed we always assume the lead is present so ACC can be engaged
+<<<<<<< HEAD
       reverse_acc = 2 if CS.params_list.reverse_acc_change else 1
+=======
+      reverse_acc = 2 if self._reverse_acc_change else 1
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
       # Press distance button until we are at the correct bar length. Only change while enabled to avoid skipping startup popup
       if self.frame % 6 == 0 and self.CP.openpilotLongitudinalControl:
@@ -230,10 +272,14 @@ class CarController(CarControllerBase):
 
     # keep radar disabled
     if self.frame % 20 == 0 and self.CP.flags & ToyotaFlags.DISABLE_RADAR.value:
+<<<<<<< HEAD
       can_sends.append(make_tester_present_msg(0x750, 0, 0xF))
 
     if self.CP.spFlags & ToyotaFlagsSP.SP_ENHANCED_BSM and self.frame > 200:
       can_sends.extend(self.create_enhanced_bsm_messages(CS, 20, True))
+=======
+      can_sends.append([0x750, 0, b"\x0F\x02\x3E\x00\x00\x00\x00\x00", 0])
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
     new_actuators = actuators.as_builder()
     new_actuators.steer = apply_steer / self.params.STEER_MAX
@@ -244,6 +290,7 @@ class CarController(CarControllerBase):
 
     self.frame += 1
     return new_actuators, can_sends
+<<<<<<< HEAD
 
   # Enhanced BSM (@arne182, @rav4kumar)
   def create_enhanced_bsm_messages(self, CS: car.CarState, e_bsm_rate: int = 20, always_on: bool = True):
@@ -286,3 +333,5 @@ class CarController(CarControllerBase):
         # print("bsm poll right")
 
     return can_sends
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)

@@ -379,19 +379,36 @@ class Tici(HardwareBase):
 
     # *** CPU config ***
 
+<<<<<<< HEAD
     # offline big cluster, leave core 4 online for pandad
     for i in range(4, 8):
+=======
+    # offline big cluster, leave core 4 online for boardd
+    for i in range(5, 8):
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
       val = '0' if powersave_enabled else '1'
       sudo_write(val, f'/sys/devices/system/cpu/cpu{i}/online')
 
     for n in ('0', '4'):
+<<<<<<< HEAD
       if powersave_enabled and n == '4':
         continue
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
       gov = 'ondemand' if powersave_enabled else 'performance'
       sudo_write(gov, f'/sys/devices/system/cpu/cpufreq/policy{n}/scaling_governor')
 
     # *** IRQ config ***
 
+<<<<<<< HEAD
+=======
+    # boardd core
+    affine_irq(4, "spi_geni")         # SPI
+    affine_irq(4, "xhci-hcd:usb3")    # aux panda USB (or potentially anything else on USB)
+    if "tici" in self.get_device_type():
+      affine_irq(4, "xhci-hcd:usb1")  # internal panda USB (also modem)
+
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
     # GPU
     affine_irq(5, "kgsl-3d0")
 
@@ -412,7 +429,11 @@ class Tici(HardwareBase):
     if self.amplifier is not None:
       self.amplifier.initialize_configuration(self.get_device_type())
 
+<<<<<<< HEAD
     # Allow hardwared to write engagement status to kmsg
+=======
+    # Allow thermald to write engagement status to kmsg
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
     os.system("sudo chmod a+w /dev/kmsg")
 
     # Ensure fan gpio is enabled so fan runs until shutdown, also turned on at boot by the ABL
@@ -449,6 +470,7 @@ class Tici(HardwareBase):
     sudo_write("N", "/sys/kernel/debug/msm_vidc/clock_scaling")
     sudo_write("Y", "/sys/kernel/debug/msm_vidc/disable_thermal_mitigation")
 
+<<<<<<< HEAD
     # pandad core
     affine_irq(3, "spi_geni")         # SPI
     if "tici" in self.get_device_type():
@@ -461,6 +483,8 @@ class Tici(HardwareBase):
     except subprocess.CalledProcessException as e:
       print(str(e))
 
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
   def configure_modem(self):
     sim_id = self.get_sim_info().get('sim_id', '')
 
@@ -563,10 +587,15 @@ class Tici(HardwareBase):
 
   def reset_internal_panda(self):
     gpio_init(GPIO.STM_RST_N, True)
+<<<<<<< HEAD
     gpio_init(GPIO.STM_BOOT0, True)
 
     gpio_set(GPIO.STM_RST_N, 1)
     gpio_set(GPIO.STM_BOOT0, 0)
+=======
+
+    gpio_set(GPIO.STM_RST_N, 1)
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
     time.sleep(1)
     gpio_set(GPIO.STM_RST_N, 0)
 

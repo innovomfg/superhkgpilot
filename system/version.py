@@ -1,13 +1,23 @@
 #!/usr/bin/env python3
 from dataclasses import dataclass
+<<<<<<< HEAD
 from functools import cache
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 import json
 import os
 import pathlib
 import subprocess
 
+<<<<<<< HEAD
 from openpilot.common.basedir import BASEDIR
 from openpilot.common.swaglog import cloudlog
+=======
+
+from openpilot.common.basedir import BASEDIR
+from openpilot.common.swaglog import cloudlog
+from openpilot.common.utils import cache
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 from openpilot.common.git import get_commit, get_origin, get_branch, get_short_branch, get_commit_date
 
 RELEASE_BRANCHES = ['release3-staging', 'release3', 'nightly']
@@ -18,7 +28,10 @@ BUILD_METADATA_FILENAME = "build.json"
 
 training_version: bytes = b"0.2.0"
 terms_version: bytes = b"2"
+<<<<<<< HEAD
 terms_version_sp: bytes = b"1.0"
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
 
 def get_version(path: str = BASEDIR) -> str:
@@ -180,7 +193,10 @@ if __name__ == "__main__":
 
   params = Params()
   params.put("TermsVersion", terms_version)
+<<<<<<< HEAD
   params.put("TermsVersionSunnypilot", terms_version_sp)
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
   params.put("TrainingVersion", training_version)
 
   print(get_build_metadata())

@@ -71,8 +71,13 @@ class LanePlanner:
 
     desire_state = md.meta.desireState
     if len(desire_state):
+<<<<<<< HEAD
       self.l_lane_change_prob = desire_state[log.Desire.laneChangeLeft]
       self.r_lane_change_prob = desire_state[log.Desire.laneChangeRight]
+=======
+      self.l_lane_change_prob = desire_state[log.LateralPlan.Desire.laneChangeLeft]
+      self.r_lane_change_prob = desire_state[log.LateralPlan.Desire.laneChangeRight]
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
   def get_d_path(self, v_ego, path_t, path_xyz):
     # Reduce reliance on lanelines that are too far apart or

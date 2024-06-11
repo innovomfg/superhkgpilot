@@ -79,11 +79,19 @@ if __name__ == "__main__":
   args = parser.parse_args()
 
   try:
+<<<<<<< HEAD
     check_output(["pidof", "pandad"])
     print("pandad is running, please kill openpilot before running this script! (aborted)")
     sys.exit(1)
   except CalledProcessError as e:
     if e.returncode != 1: # 1 == no process found (pandad not running)
+=======
+    check_output(["pidof", "boardd"])
+    print("boardd is running, please kill openpilot before running this script! (aborted)")
+    sys.exit(1)
+  except CalledProcessError as e:
+    if e.returncode != 1: # 1 == no process found (boardd not running)
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
       raise e
 
   confirm = input("power on the vehicle keeping the engine off (press start button twice) then type OK to continue: ").upper().strip()

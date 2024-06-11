@@ -4,9 +4,15 @@ from cereal import car
 from openpilot.common.conversions import Conversions as CV
 from openpilot.common.numpy_fast import mean
 from openpilot.common.filter_simple import FirstOrderFilter
+<<<<<<< HEAD
 from opendbc.can.can_define import CANDefine
 from opendbc.can.parser import CANParser
 from openpilot.selfdrive.car import DT_CTRL
+=======
+from openpilot.common.realtime import DT_CTRL
+from opendbc.can.can_define import CANDefine
+from opendbc.can.parser import CANParser
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 from openpilot.selfdrive.car.interfaces import CarStateBase
 from openpilot.selfdrive.car.toyota.values import ToyotaFlags, ToyotaFlagsSP, CAR, DBC, STEER_THRESHOLD, NO_STOP_TIMER_CAR, \
                                                   TSS2_CAR, RADAR_ACC_CAR, EPS_SCALE, UNSUPPORTED_DSU_CAR
@@ -69,6 +75,7 @@ class CarState(CarStateBase):
       self.zss_angle_offset = 0.
       self.zss_threshold_count = 0
 
+<<<<<<< HEAD
     self._left_blindspot = False
     self._left_blindspot_d1 = 0
     self._left_blindspot_d2 = 0
@@ -81,6 +88,8 @@ class CarState(CarStateBase):
 
     self.frame = 0
 
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
   def update(self, cp, cp_cam):
     ret = car.CarState.new_message()
 
@@ -257,12 +266,17 @@ class CarState(CarStateBase):
       else:
         self.distance_button = cp.vl["SDSU"]["FD_BUTTON"]
 
+<<<<<<< HEAD
     if self.CP.spFlags & ToyotaFlagsSP.SP_ENHANCED_BSM and self.frame > 199:
       ret.leftBlindspot, ret.rightBlindspot = self.sp_get_enhanced_bsm(cp)
 
     self._update_traffic_signals(cp_cam)
     ret.cruiseState.speedLimit = self._calculate_speed_limit()
     self.frame += 1
+=======
+    self._update_traffic_signals(cp_cam)
+    ret.cruiseState.speedLimit = self._calculate_speed_limit()
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
     return ret
 
@@ -344,6 +358,7 @@ class CarState(CarStateBase):
       return self._spdval1 * CV.MPH_TO_MS
     return 0
 
+<<<<<<< HEAD
   # Enhanced BSM (@arne182, @rav4kumar)
   def sp_get_enhanced_bsm(self, cp):
     # Let's keep all the commented out code for easy debug purposes in the future.
@@ -381,6 +396,8 @@ class CarState(CarStateBase):
 
     return self._left_blindspot, self._right_blindspot
 
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
   @staticmethod
   def get_can_parser(CP):
     messages = [
@@ -437,9 +454,12 @@ class CarState(CarStateBase):
     if CP.spFlags & ToyotaFlagsSP.SP_ZSS:
       messages.append(("SECONDARY_STEER_ANGLE", 0))
 
+<<<<<<< HEAD
     if CP.spFlags & ToyotaFlagsSP.SP_ENHANCED_BSM:
       messages.append(("DEBUG", 65))
 
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
     return CANParser(DBC[CP.carFingerprint]["pt"], messages, 0)
 
   @staticmethod

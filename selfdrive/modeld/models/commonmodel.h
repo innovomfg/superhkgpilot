@@ -13,11 +13,28 @@
 #endif
 
 #include "common/mat.h"
+<<<<<<< HEAD
 #include "selfdrive/modeld/transforms/loadyuv.h"
 #include "selfdrive/modeld/transforms/transform.h"
 
 float sigmoid(float input);
 
+=======
+#include "cereal/messaging/messaging.h"
+#include "selfdrive/modeld/transforms/loadyuv.h"
+#include "selfdrive/modeld/transforms/transform.h"
+
+const bool send_raw_pred = getenv("SEND_RAW_PRED") != NULL;
+
+void softmax(const float* input, float* output, size_t len);
+float sigmoid(float input);
+
+template<class T, size_t size>
+constexpr const kj::ArrayPtr<const T> to_kj_array_ptr(const std::array<T, size> &arr) {
+  return kj::ArrayPtr(arr.data(), arr.size());
+}
+
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 class ModelFrame {
 public:
   ModelFrame(cl_device_id device_id, cl_context context);

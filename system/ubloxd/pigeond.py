@@ -6,7 +6,11 @@ import serial
 import struct
 import requests
 import urllib.parse
+<<<<<<< HEAD
 from datetime import datetime, UTC
+=======
+from datetime import datetime
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
 from cereal import messaging
 from openpilot.common.params import Params
@@ -196,7 +200,11 @@ def initialize_pigeon(pigeon: TTYPigeon) -> bool:
         cloudlog.error(f"failed to restore almanac backup, status: {restore_status}")
 
       # sending time to ublox
+<<<<<<< HEAD
       t_now = datetime.now(UTC).replace(tzinfo=None)
+=======
+      t_now = datetime.utcnow()
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
       if t_now >= datetime(2021, 6, 1):
         cloudlog.warning("Sending current time to ublox")
 

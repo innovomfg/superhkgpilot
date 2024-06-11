@@ -85,7 +85,11 @@ class Request:
   auxiliary: bool = False
   # FW responses from these queries will not be used for fingerprinting
   logging: bool = False
+<<<<<<< HEAD
   # pandad toggles OBD multiplexing on/off as needed
+=======
+  # boardd toggles OBD multiplexing on/off as needed
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
   obd_multiplexing: bool = True
 
 

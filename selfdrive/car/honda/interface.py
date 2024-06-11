@@ -77,13 +77,26 @@ class CarInterface(CarInterfaceBase):
     ret.lateralTuning.pid.kf = 0.00006  # conservative feed-forward
 
     if candidate in HONDA_BOSCH:
+<<<<<<< HEAD
       ret.longitudinalActuatorDelay = 0.5 # s
+=======
+      ret.longitudinalTuning.kpV = [0.25]
+      ret.longitudinalTuning.kiV = [0.05]
+      ret.longitudinalActuatorDelayUpperBound = 0.5 # s
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
       if candidate in HONDA_BOSCH_RADARLESS:
         ret.stopAccel = CarControllerParams.BOSCH_ACCEL_MIN  # stock uses -4.0 m/s^2 once stopped but limited by safety model
     else:
       # default longitudinal tuning for all hondas
+<<<<<<< HEAD
       ret.longitudinalTuning.kiBP = [0., 5., 35.]
       ret.longitudinalTuning.kiV = [1.2, 0.8, 0.5]
+=======
+      ret.longitudinalTuning.kpBP = [0., 5., 35.]
+      ret.longitudinalTuning.kpV = [1.2, 0.8, 0.5]
+      ret.longitudinalTuning.kiBP = [0., 35.]
+      ret.longitudinalTuning.kiV = [0.18, 0.12]
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
     eps_modified = False
     for fw in car_fw:
@@ -174,6 +187,14 @@ class CarInterface(CarInterfaceBase):
       ret.lateralParams.torqueBP, ret.lateralParams.torqueV = [[0, 239], [0, 239]]
       ret.lateralTuning.pid.kiBP, ret.lateralTuning.pid.kpBP = [[0.,20], [0.,20]]
       ret.lateralTuning.pid.kpV, ret.lateralTuning.pid.kiV = [[0.4,0.3], [0,0]]
+<<<<<<< HEAD
+=======
+      tire_stiffness_factor = 0.8467
+      ret.longitudinalTuning.kpBP = [0., 5., 35.]
+      ret.longitudinalTuning.kpV = [2.4, 1.6, 0.8]
+      ret.longitudinalTuning.kiBP = [0., 35.]
+      ret.longitudinalTuning.kiV = [0.2, 0.16]
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
     elif candidate in (CAR.HONDA_ODYSSEY, CAR.HONDA_ODYSSEY_CHN):
       ret.lateralTuning.pid.kpV, ret.lateralTuning.pid.kiV = [[0.28], [0.08]]
@@ -261,20 +282,34 @@ class CarInterface(CarInterfaceBase):
   # returns a car.CarState
   def _update(self, c):
     ret = self.CS.update(self.cp, self.cp_cam, self.cp_body)
+<<<<<<< HEAD
 
     self.CS.button_events = [
+=======
+    self.sp_update_params()
+
+    buttonEvents = [
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
       *create_button_events(self.CS.cruise_buttons, self.CS.prev_cruise_buttons, BUTTONS_DICT),
       *create_button_events(self.CS.cruise_setting, self.CS.prev_cruise_setting, SETTINGS_BUTTONS_DICT),
     ]
 
+<<<<<<< HEAD
     self.CS.mads_enabled = self.get_sp_cruise_main_state(ret)
 
     self.CS.accEnabled = self.get_sp_v_cruise_non_pcm_state(ret, c.vCruise, self.CS.accEnabled)
+=======
+    self.CS.mads_enabled = self.get_sp_cruise_main_state(ret, self.CS)
+
+    self.CS.accEnabled = self.get_sp_v_cruise_non_pcm_state(ret, self.CS.accEnabled,
+                                                            buttonEvents, c.vCruise)
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
     if ret.cruiseState.available:
       if self.enable_mads:
         if not self.CS.prev_mads_enabled and self.CS.mads_enabled:
           self.CS.madsEnabled = True
+<<<<<<< HEAD
         if any(b.type == ButtonType.altButton1 and b.pressed for b in self.CS.button_events):
           self.CS.madsEnabled = not self.CS.madsEnabled
         self.CS.madsEnabled = self.get_acc_mads(ret, self.CS.madsEnabled)
@@ -306,13 +341,42 @@ class CarInterface(CarInterfaceBase):
       *self.CS.button_events,
       *self.button_events.create_mads_event(self.CS.madsEnabled, self.CS.out.madsEnabled)  # MADS BUTTON
     ]
+=======
+        if self.CS.prev_cruise_setting != 1 and self.CS.cruise_setting == 1:
+          self.CS.madsEnabled = not self.CS.madsEnabled
+        self.CS.madsEnabled = self.get_acc_mads(ret.cruiseState.enabled, self.CS.accEnabled, self.CS.madsEnabled)
+    else:
+      self.CS.madsEnabled = False
+
+    if not self.CP.pcmCruise or (self.CP.pcmCruise and self.CP.minEnableSpeed > 0) or not self.CP.pcmCruiseSpeed:
+      if any(b.type == ButtonType.cancel for b in buttonEvents):
+        self.CS.madsEnabled, self.CS.accEnabled = self.get_sp_cancel_cruise_state(self.CS.madsEnabled)
+    if self.get_sp_pedal_disengage(ret):
+      self.CS.madsEnabled, self.CS.accEnabled = self.get_sp_cancel_cruise_state(self.CS.madsEnabled)
+      ret.cruiseState.enabled = False if self.CP.pcmCruise else self.CS.accEnabled
+
+    if self.CP.pcmCruise and self.CP.minEnableSpeed > 0 and self.CP.pcmCruiseSpeed:
+      if ret.gasPressed and not ret.cruiseState.enabled:
+        self.CS.accEnabled = False
+      self.CS.accEnabled = self.CS.pcm_cruise_enabled
+
+    ret, self.CS = self.get_sp_common_state(ret, self.CS,
+                                            min_enable_speed_pcm=(self.CP.pcmCruise and self.CP.minEnableSpeed > 0 and self.CP.pcmCruiseSpeed),
+                                            gap_button=(self.CS.cruise_setting == 3))
+
+    ret.buttonEvents = buttonEvents
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
     # events
     events = self.create_common_events(ret, c, extra_gears=[GearShifter.sport, GearShifter.low], pcm_enable=False)
     if self.CP.pcmCruise and ret.vEgo < self.CP.minEnableSpeed and not self.CS.madsEnabled:
       events.add(EventName.belowEngageSpeed)
 
+<<<<<<< HEAD
     events, ret = self.create_sp_events(ret, events)
+=======
+    events, ret = self.create_sp_events(self.CS, ret, events)
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
     #if self.CP.pcmCruise:
     #  # we engage when pcm is active (rising edge)
@@ -329,7 +393,13 @@ class CarInterface(CarInterfaceBase):
     if self.CS.CP.minEnableSpeed > 0 and ret.vEgo < 0.001:
       events.add(EventName.manualRestart)
 
+<<<<<<< HEAD
     ret.customStockLong = self.update_custom_stock_long()
+=======
+    ret.customStockLong = self.CS.update_custom_stock_long(self.CC.cruise_button, self.CC.final_speed_kph,
+                                                           self.CC.target_speed, self.CC.v_set_dis,
+                                                           self.CC.speed_diff, self.CC.button_type)
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
     ret.events = events.to_msg()
 

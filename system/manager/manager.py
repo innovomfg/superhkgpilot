@@ -8,7 +8,10 @@ import traceback
 from cereal import custom
 import cereal.messaging as messaging
 import openpilot.system.sentry as sentry
+<<<<<<< HEAD
 from openpilot.common.api.sunnylink import UNREGISTERED_SUNNYLINK_DONGLE_ID
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 from openpilot.common.params import Params, ParamKeyType
 from openpilot.common.text_window import TextWindow
 from openpilot.system.hardware import HARDWARE, PC
@@ -19,7 +22,11 @@ from openpilot.system.manager.process_config import managed_processes
 from openpilot.system.athena.registration import register, UNREGISTERED_DONGLE_ID, is_registered_device
 from openpilot.common.swaglog import cloudlog, add_file_handler
 from openpilot.system.hardware.hw import Paths
+<<<<<<< HEAD
 from openpilot.system.version import get_build_metadata, terms_version, terms_version_sp, training_version
+=======
+from openpilot.system.version import get_build_metadata, terms_version, training_version
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
 
 def manager_init() -> None:
@@ -43,7 +50,10 @@ def manager_init() -> None:
     ("OpenpilotEnabledToggle", "1"),
     ("LongitudinalPersonality", str(custom.LongitudinalPersonalitySP.standard)),
 
+<<<<<<< HEAD
     ("AccelPersonality", str(custom.AccelerationPersonality.stock)),
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
     ("AccMadsCombo", "1"),
     ("AutoLaneChangeTimer", "0"),
     ("AutoLaneChangeBsmDelay", "1"),
@@ -65,11 +75,15 @@ def manager_init() -> None:
     ("DisengageLateralOnBrake", "0"),
     ("DrivingModelGeneration", "0"),
     ("DynamicLaneProfile", "1"),
+<<<<<<< HEAD
     ("DynamicPersonality", "0"),
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
     ("EnableMads", "1"),
     ("EnhancedScc", "0"),
     ("FeatureStatus", "1"),
     ("HandsOnWheelMonitoring", "0"),
+<<<<<<< HEAD
     ("HasAcceptedTermsSP", "0"),
     ("HideVEgoUi", "0"),
     ("HyundaiCruiseMainDefault", "0"),
@@ -81,14 +95,28 @@ def manager_init() -> None:
     ("MapdVersion", f"{VERSION}"),
     ("MaxTimeOffroad", "9"),
     ("NNFF", "0"),
+=======
+    ("HideVEgoUi", "0"),
+    ("LastSpeedLimitSignTap", "0"),
+    ("LkasToggle", "0"),
+    ("MadsIconToggle", "1"),
+    ("MapboxFullScreen", "0"),
+    ("MapdVersion", f"{VERSION}"),
+    ("MaxTimeOffroad", "9"),
+    ("NNFF", "0"),
+    ("NNFFNoLateralJerk", "0"),
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
     ("OnroadScreenOff", "-2"),
     ("OnroadScreenOffBrightness", "50"),
     ("OnroadScreenOffEvent", "1"),
     ("OnroadSettings", "1"),
     ("PathOffset", "0"),
     ("PauseLateralSpeed", "0"),
+<<<<<<< HEAD
     ("PCMVCruiseOverride", "0"),
     ("PCMVCruiseOverrideSpeed", "30"),
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
     ("ReverseAccChange", "0"),
     ("ScreenRecorder", "1"),
     ("ShowDebugUI", "1"),
@@ -102,11 +130,17 @@ def manager_init() -> None:
     ("StandStillTimer", "0"),
     ("StockLongToyota", "0"),
     ("TorqueDeadzoneDeg", "0"),
+<<<<<<< HEAD
     ("TorqueFriction", "10"),
     ("TorqueMaxLatAccel", "250"),
     ("ToyotaAutoLockBySpeed", "0"),
     ("ToyotaAutoUnlockByShifter", "0"),
     ("ToyotaEnhancedBsm", "0"),
+=======
+    ("TorqueFriction", "1"),
+    ("TorqueLateralJerk", "0"),
+    ("TorqueMaxLatAccel", "250"),
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
     ("TrueVEgoUi", "0"),
     ("TurnSpeedControl", "0"),
     ("TurnVisionControl", "0"),
@@ -117,6 +151,7 @@ def manager_init() -> None:
     ("OSMDownloadProgress", "{}"),
     ("SidebarTemperatureOptions", "0"),
     ("SunnylinkEnabled", "1"),
+<<<<<<< HEAD
     ("SunnylinkDongleId", f"{UNREGISTERED_SUNNYLINK_DONGLE_ID}"),
     ("CustomDrivingModel", "0"),
     ("DrivingModelGeneration", "4"),
@@ -126,6 +161,14 @@ def manager_init() -> None:
   ]
   if not PC:
     default_params.append(("LastUpdateTime", datetime.datetime.now(datetime.UTC).replace(tzinfo=None).isoformat().encode('utf8')))
+=======
+    ("CustomDrivingModel", "0"),
+    ("DrivingModelGeneration", "4"),
+    ("LastSunnylinkPingTime", "0"),
+  ]
+  if not PC:
+    default_params.append(("LastUpdateTime", datetime.datetime.utcnow().isoformat().encode('utf8')))
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
   if params.get_bool("RecordFrontLock"):
     params.put_bool("RecordFront", True)
@@ -150,7 +193,10 @@ def manager_init() -> None:
   # set version params
   params.put("Version", build_metadata.openpilot.version)
   params.put("TermsVersion", terms_version)
+<<<<<<< HEAD
   params.put("TermsVersionSunnypilot", terms_version_sp)
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
   params.put("TrainingVersion", training_version)
   params.put("GitCommit", build_metadata.openpilot.git_commit)
   params.put("GitCommitDate", build_metadata.openpilot.git_commit_date)
@@ -249,7 +295,11 @@ def manager_thread() -> None:
     elif not started and started_prev:
       params.clear_all(ParamKeyType.CLEAR_ON_OFFROAD_TRANSITION)
 
+<<<<<<< HEAD
     # update onroad params, which drives pandad's safety setter thread
+=======
+    # update onroad params, which drives boardd's safety setter thread
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
     if started != started_prev:
       write_onroad_params(started, params)
 

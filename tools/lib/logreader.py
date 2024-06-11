@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
 import bz2
+<<<<<<< HEAD
 from functools import cache, partial
+=======
+from functools import partial
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 import multiprocessing
 import capnp
 import enum
@@ -10,7 +14,10 @@ import sys
 import tqdm
 import urllib.parse
 import warnings
+<<<<<<< HEAD
 import zstandard as zstd
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
 from collections.abc import Callable, Iterable, Iterator
 from urllib.parse import parse_qs, urlparse
@@ -27,6 +34,7 @@ LogIterable = Iterable[LogMessage]
 RawLogIterable = Iterable[bytes]
 
 
+<<<<<<< HEAD
 def save_log(dest, log_msgs, compress=True):
   dat = b"".join(msg.as_builder().to_bytes() for msg in log_msgs)
 
@@ -39,6 +47,8 @@ def save_log(dest, log_msgs, compress=True):
     f.write(dat)
 
 
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 class _LogFileReader:
   def __init__(self, fn, canonicalize=True, only_union_types=False, sort_by_time=False, dat=None):
     self.data_version = None
@@ -47,8 +57,13 @@ class _LogFileReader:
     ext = None
     if not dat:
       _, ext = os.path.splitext(urllib.parse.urlparse(fn).path)
+<<<<<<< HEAD
       if ext not in ('', '.bz2', '.zst'):
         # old rlogs weren't compressed
+=======
+      if ext not in ('', '.bz2'):
+        # old rlogs weren't bz2 compressed
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
         raise Exception(f"unknown extension {ext}")
 
       with FileReader(fn) as f:
@@ -56,6 +71,7 @@ class _LogFileReader:
 
     if ext == ".bz2" or dat.startswith(b'BZh9'):
       dat = bz2.decompress(dat)
+<<<<<<< HEAD
     elif ext == ".zst" or dat.startswith(b'\x28\xB5\x2F\xFD'):
       # https://github.com/facebook/zstd/blob/dev/doc/zstd_compression_format.md#zstandard-frames
       dat = zstd.decompress(dat)
@@ -71,6 +87,20 @@ class _LogFileReader:
 
     if sort_by_time:
       self._ents.sort(key=lambda x: x.logMonoTime)
+=======
+
+    ents = capnp_log.Event.read_multiple_bytes(dat)
+
+    _ents = []
+    try:
+      for e in ents:
+        _ents.append(e)
+    except capnp.KjException:
+      warnings.warn("Corrupted events detected", RuntimeWarning, stacklevel=1)
+
+    self._ents = list(sorted(_ents, key=lambda x: x.logMonoTime) if sort_by_time else _ents)
+    self._ts = [x.logMonoTime for x in self._ents]
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
   def __iter__(self) -> Iterator[capnp._DynamicStructReader]:
     for ent in self._ents:
@@ -99,14 +129,18 @@ Source = Callable[[SegmentRange, ReadMode], LogPaths]
 
 InternalUnavailableException = Exception("Internal source not available")
 
+<<<<<<< HEAD
 
 @cache
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 def default_valid_file(fn: LogPath) -> bool:
   return fn is not None and file_exists(fn)
 
 
 def auto_strategy(rlog_paths: LogPaths, qlog_paths: LogPaths, interactive: bool, valid_file: ValidFileCallable) -> LogPaths:
   # auto select logs based on availability
+<<<<<<< HEAD
   missing_rlogs = [rlog is None or not valid_file(rlog) for rlog in rlog_paths].count(True)
   if missing_rlogs != 0:
     if interactive:
@@ -114,6 +148,14 @@ def auto_strategy(rlog_paths: LogPaths, qlog_paths: LogPaths, interactive: bool,
         return rlog_paths
     else:
       cloudlog.warning(f"{missing_rlogs}/{len(rlog_paths)} rlogs were not found, falling back to qlogs for those segments...")
+=======
+  if any(rlog is None or not valid_file(rlog) for rlog in rlog_paths) and all(qlog is not None and valid_file(qlog) for qlog in qlog_paths):
+    if interactive:
+      if input("Some rlogs were not found, would you like to fallback to qlogs for those segments? (y/n) ").lower() != "y":
+        return rlog_paths
+    else:
+      cloudlog.warning("Some rlogs were not found, falling back to qlogs for those segments...")
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
     return [rlog if valid_file(rlog) else (qlog if valid_file(qlog) else None)
             for (rlog, qlog) in zip(rlog_paths, qlog_paths, strict=True)]
@@ -145,24 +187,36 @@ def comma_api_source(sr: SegmentRange, mode: ReadMode) -> LogPaths:
   return apply_strategy(mode, rlog_paths, qlog_paths, valid_file=valid_file)
 
 
+<<<<<<< HEAD
 def internal_source(sr: SegmentRange, mode: ReadMode, file_ext: str = "bz2") -> LogPaths:
+=======
+def internal_source(sr: SegmentRange, mode: ReadMode) -> LogPaths:
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
   if not internal_source_available():
     raise InternalUnavailableException
 
   def get_internal_url(sr: SegmentRange, seg, file):
+<<<<<<< HEAD
     return f"cd:/{sr.dongle_id}/{sr.log_id}/{seg}/{file}.{file_ext}"
 
   # TODO: list instead of using static URLs to support routes with multiple file extensions
+=======
+    return f"cd:/{sr.dongle_id}/{sr.timestamp}/{seg}/{file}.bz2"
+
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
   rlog_paths = [get_internal_url(sr, seg, "rlog") for seg in sr.seg_idxs]
   qlog_paths = [get_internal_url(sr, seg, "qlog") for seg in sr.seg_idxs]
 
   return apply_strategy(mode, rlog_paths, qlog_paths)
 
 
+<<<<<<< HEAD
 def internal_source_zst(sr: SegmentRange, mode: ReadMode, file_ext: str = "zst") -> LogPaths:
   return internal_source(sr, mode, file_ext)
 
 
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 def openpilotci_source(sr: SegmentRange, mode: ReadMode) -> LogPaths:
   rlog_paths = [get_url(sr.route_name, seg, "rlog") for seg in sr.seg_idxs]
   qlog_paths = [get_url(sr.route_name, seg, "qlog") for seg in sr.seg_idxs]
@@ -186,8 +240,12 @@ def get_invalid_files(files):
 
 def check_source(source: Source, *args) -> LogPaths:
   files = source(*args)
+<<<<<<< HEAD
   assert len(files) > 0, "No files on source"
   assert next(get_invalid_files(files), False) is False, "Some files are invalid"
+=======
+  assert next(get_invalid_files(files), False) is False
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
   return files
 
 
@@ -195,8 +253,13 @@ def auto_source(sr: SegmentRange, mode=ReadMode.RLOG) -> LogPaths:
   if mode == ReadMode.SANITIZED:
     return comma_car_segments_source(sr, mode)
 
+<<<<<<< HEAD
   SOURCES: list[Source] = [internal_source, internal_source_zst, openpilotci_source, comma_api_source, comma_car_segments_source,]
   exceptions = {}
+=======
+  SOURCES: list[Source] = [internal_source, openpilotci_source, comma_api_source, comma_car_segments_source,]
+  exceptions = []
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
   # for automatic fallback modes, auto_source needs to first check if rlogs exist for any source
   if mode in [ReadMode.AUTO, ReadMode.AUTO_INTERACTIVE]:
@@ -211,10 +274,16 @@ def auto_source(sr: SegmentRange, mode=ReadMode.RLOG) -> LogPaths:
     try:
       return check_source(source, sr, mode)
     except Exception as e:
+<<<<<<< HEAD
       exceptions[source.__name__] = e
 
   raise Exception("auto_source could not find any valid source, exceptions for sources:\n  - " +
                   "\n  - ".join([f"{k}: {repr(v)}" for k, v in exceptions.items()]))
+=======
+      exceptions.append(e)
+
+  raise Exception(f"auto_source could not find any valid source, exceptions for sources: {exceptions}")
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
 
 def parse_useradmin(identifier: str):

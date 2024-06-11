@@ -147,6 +147,19 @@ class VolkswagenFlagsSP(IntFlag):
   SP_CC_ONLY_NO_RADAR = 2
 
 
+<<<<<<< HEAD
+=======
+BUTTON_STATES = {
+  "accelCruise": False,
+  "decelCruise": False,
+  "cancel": False,
+  "setCruise": False,
+  "resumeCruise": False,
+  "gapAdjustCruise": False
+}
+
+
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 @dataclass
 class VolkswagenMQBPlatformConfig(PlatformConfig):
   dbc_dict: DbcDict = field(default_factory=lambda: dbc_dict('vw_mqb_2010', None))
@@ -195,7 +208,11 @@ class Footnote(Enum):
 @dataclass
 class VWCarDocs(CarDocs):
   package: str = "Adaptive Cruise Control (ACC) & Lane Assist"
+<<<<<<< HEAD
   car_parts: CarParts = field(default_factory=CarParts.common([CarHarness.vw_j533]))
+=======
+  car_parts: CarParts = field(default_factory=CarParts.common([CarHarness.j533]))
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
   def init_make(self, CP: car.CarParams):
     self.footnotes.append(Footnote.VW_EXP_LONG)
@@ -203,7 +220,11 @@ class VWCarDocs(CarDocs):
       self.footnotes.append(Footnote.SKODA_HEATED_WINDSHIELD)
 
     if CP.carFingerprint in (CAR.VOLKSWAGEN_CRAFTER_MK2, CAR.VOLKSWAGEN_TRANSPORTER_T61):
+<<<<<<< HEAD
       self.car_parts = CarParts([Device.threex_angled_mount, CarHarness.vw_j533])
+=======
+      self.car_parts = CarParts([Device.threex_angled_mount, CarHarness.j533])
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
     if abs(CP.minSteerSpeed - CarControllerParams.DEFAULT_MIN_STEER_SPEED) < 1e-3:
       self.min_steer_speed = 0
@@ -251,6 +272,7 @@ class CAR(Platforms):
   )
   VOLKSWAGEN_CRAFTER_MK2 = VolkswagenMQBPlatformConfig(
     [
+<<<<<<< HEAD
       VWCarDocs("Volkswagen Crafter 2017-24", video_link="https://youtu.be/4100gLeabmo"),
       VWCarDocs("Volkswagen e-Crafter 2018-24", video_link="https://youtu.be/4100gLeabmo"),
       VWCarDocs("Volkswagen Grand California 2019-24", video_link="https://youtu.be/4100gLeabmo"),
@@ -259,6 +281,16 @@ class CAR(Platforms):
     ],
     VolkswagenCarSpecs(mass=2100, wheelbase=3.64, minSteerSpeed=50 * CV.KPH_TO_MS),
     chassis_codes={"SY", "SZ", "UY", "UZ"},
+=======
+      VWCarDocs("Volkswagen Crafter 2017-23", video_link="https://youtu.be/4100gLeabmo"),
+      VWCarDocs("Volkswagen e-Crafter 2018-23", video_link="https://youtu.be/4100gLeabmo"),
+      VWCarDocs("Volkswagen Grand California 2019-23", video_link="https://youtu.be/4100gLeabmo"),
+      VWCarDocs("MAN TGE 2017-23", video_link="https://youtu.be/4100gLeabmo"),
+      VWCarDocs("MAN eTGE 2020-23", video_link="https://youtu.be/4100gLeabmo"),
+    ],
+    VolkswagenCarSpecs(mass=2100, wheelbase=3.64, minSteerSpeed=50 * CV.KPH_TO_MS),
+    chassis_codes={"SY", "SZ"},
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
     wmis={WMI.VOLKSWAGEN_COMMERCIAL, WMI.MAN},
   )
   VOLKSWAGEN_GOLF_MK7 = VolkswagenMQBPlatformConfig(

@@ -1,12 +1,21 @@
 # distutils: language = c++
+<<<<<<< HEAD
 # cython: c_string_encoding=ascii, language_level=3
+=======
+# cython: c_string_encoding=ascii
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
 import numpy as np
 cimport numpy as cnp
 from libc.string cimport memcpy
 
+<<<<<<< HEAD
 from msgq.visionipc.visionipc cimport cl_mem
 from msgq.visionipc.visionipc_pyx cimport VisionBuf, CLContext as BaseCLContext
+=======
+from cereal.visionipc.visionipc cimport cl_mem
+from cereal.visionipc.visionipc_pyx cimport VisionBuf, CLContext as BaseCLContext
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 from .commonmodel cimport CL_DEVICE_TYPE_DEFAULT, cl_get_device_id, cl_create_context
 from .commonmodel cimport mat3, sigmoid as cppSigmoid, ModelFrame as cppModelFrame
 

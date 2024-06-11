@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+<<<<<<< HEAD
 from cereal import log
 from openpilot.common.api.sunnylink import SunnylinkApi, UNREGISTERED_SUNNYLINK_DONGLE_ID
 from openpilot.common.params import Params
@@ -40,10 +41,25 @@ def sunnylink_need_register(params=Params()) -> bool:
 
 def register_sunnylink():
   """Register the device with Sunnylink if it is enabled."""
+=======
+
+from openpilot.common.api.sunnylink import SunnylinkApi
+from openpilot.common.params import Params
+from openpilot.common.spinner import Spinner
+from openpilot.system.version import is_prebuilt
+
+
+if __name__ == "__main__":
+  spinner = Spinner()
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
   extra_args = {}
 
   if not Params().get_bool("SunnylinkEnabled"):
     print("Sunnylink is not enabled. Exiting.")
+<<<<<<< HEAD
+=======
+    spinner.close()
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
     exit(0)
 
   if not is_prebuilt():
@@ -52,6 +68,7 @@ def register_sunnylink():
       "timeout": 60
     }
 
+<<<<<<< HEAD
   sunnylink_id = SunnylinkApi(None).register_device(None, **extra_args)
   print(f"SunnyLinkId: {sunnylink_id}")
 
@@ -63,3 +80,8 @@ def main():
 
 if __name__ == "__main__":
   main()
+=======
+  sunnylink_id = SunnylinkApi(None).register_device(spinner, **extra_args)
+  print(f"SunnyLinkId: {sunnylink_id}")
+  spinner.close()
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)

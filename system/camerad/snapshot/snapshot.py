@@ -6,7 +6,11 @@ import numpy as np
 from PIL import Image
 
 import cereal.messaging as messaging
+<<<<<<< HEAD
 from msgq.visionipc import VisionIpcClient, VisionStreamType
+=======
+from cereal.visionipc import VisionIpcClient, VisionStreamType
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 from openpilot.common.params import Params
 from openpilot.common.realtime import DT_MDL
 from openpilot.system.hardware import PC
@@ -83,7 +87,11 @@ def snapshot():
   front_camera_allowed = params.get_bool("RecordFront")
   params.put_bool("IsTakingSnapshot", True)
   set_offroad_alert("Offroad_IsTakingSnapshot", True)
+<<<<<<< HEAD
   time.sleep(2.0)  # Give hardwared time to read the param, or if just started give camerad time to start
+=======
+  time.sleep(2.0)  # Give thermald time to read the param, or if just started give camerad time to start
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
   # Check if camerad is already started
   try:

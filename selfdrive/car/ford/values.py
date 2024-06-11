@@ -1,6 +1,9 @@
 import copy
 import re
+<<<<<<< HEAD
 from collections import namedtuple
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 from dataclasses import dataclass, field, replace
 from enum import Enum, IntFlag
 
@@ -12,7 +15,10 @@ from openpilot.selfdrive.car.docs_definitions import CarFootnote, CarHarness, Ca
 from openpilot.selfdrive.car.fw_query_definitions import FwQueryConfig, LiveFwVersions, OfflineFwVersions, Request, StdQueries, p16
 
 Ecu = car.CarParams.Ecu
+<<<<<<< HEAD
 Button = namedtuple('Button', ['event_type', 'can_addr', 'can_msg', 'values'])
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
 
 class CarControllerParams:
@@ -52,6 +58,19 @@ class FordFlagsSP(IntFlag):
   SP_ENHANCED_LAT_CONTROL = 1
 
 
+<<<<<<< HEAD
+=======
+BUTTON_STATES = {
+  "accelCruise": False,
+  "decelCruise": False,
+  "cancel": False,
+  "setCruise": False,
+  "resumeCruise": False,
+  "gapAdjustCruise": False
+}
+
+
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 class RADAR:
   DELPHI_ESR = 'ford_fusion_2018_adas'
   DELPHI_MRR = 'FORD_CADS'
@@ -151,6 +170,7 @@ class CAR(Platforms):
   )
 
 
+<<<<<<< HEAD
 BUTTONS = [
   Button(car.CarState.ButtonEvent.Type.accelCruise, "Steering_Data_FD1", "CcAslButtnSetIncPress", [1]),
   Button(car.CarState.ButtonEvent.Type.decelCruise, "Steering_Data_FD1", "CcAslButtnSetDecPress", [1]),
@@ -160,6 +180,8 @@ BUTTONS = [
 ]
 
 
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 # FW response contains a combined software and part number
 # A-Z except no I, O or W
 # e.g. NZ6A-14C204-AAA

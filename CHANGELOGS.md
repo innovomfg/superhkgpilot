@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 sunnypilot - 0.9.8.0 (2024-xx-xx)
 ========================
 * Always on driver monitoring toggle
@@ -72,6 +73,18 @@ sunnypilot - 0.9.7.1 (2024-06-13)
 ************************
 * UPDATED: Synced with commaai's openpilot
   * master commit f8cb04e (June 10, 2024)
+=======
+sunnypilot - 0.9.7.0 (2024-06-11)
+========================
+* New driving model
+* Adjust driving personality with the follow distance button
+* Added toggle to enable driver monitoring even when openpilot is not engaged
+* Support for hybrid variants of supported Ford models
+* Fingerprinting without the OBD-II port on all cars
+************************
+* UPDATED: Synced with commaai's openpilot
+  * master commit ce2a686 (June 1, 2024)
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 * NEW❗: sunnylink (Alpha early access)
   * NEW❗: Config/Settings Backup
     * Remotely back up and restore sunnypilot settings easily
@@ -119,11 +132,19 @@ sunnypilot - 0.9.7.1 (2024-06-13)
     * Recertified Herbalist (March 01, 2024) - CHLR
   * Legacy Driving Models with Navigate on openpilot (NoO) support
     * Includes Duck Amigo and all preceding models
+<<<<<<< HEAD
 * UPDATED: Bumping mapd by [@pfeiferj](https://github.com/pfeiferj) to version [v1.9.0](https://github.com/pfeiferj/mapd/releases/tag/v1.9.0) thanks to pfeiferj!
+=======
+* UPDATED: Bumping mapd by [@pfeiferj](https://github.com/pfeiferj) to version [v1.9.0](https://github.com/pfeiferj/mapd/releases/tag/v1.9.0).
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 * UPDATED: Reset Mapbox Access Token -> Reset Access Tokens for Map Services
   * Reset self-service access tokens for Mapbox, Amap, and Google Maps
 * UPDATED: Upstream native support for Gap Adjust Cruise
 * UPDATED: Neural Network Lateral Control (NNLC)
+<<<<<<< HEAD
+=======
+  * FIXED: Hotfix for "lazy" steering performance in tighter curves thanks to twilsonco!
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
   * Due to upstream changes with platform simplifications, most platforms will match and fallback to combined platform model
   * This will be updated when the new mapping of platforms are restructured (thanks @twilsonco 😉)
 * UI Updates
@@ -131,6 +152,12 @@ sunnypilot - 0.9.7.1 (2024-06-13)
     * NEW❗: Metrics is now being displayed below the chevron instead of above
     * NEW❗: Display both Distance and Speed simultaneously
     * NEW❗: View sunnylink connectivity status on the left sidebar!
+<<<<<<< HEAD
+=======
+* Ford F-150 2022-23 support
+* Ford F-150 Lightning 2021-23 support
+* Ford Mustang Mach-E 2021-23 support
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
 sunnypilot - 0.9.6.2 (2024-05-29)
 ========================

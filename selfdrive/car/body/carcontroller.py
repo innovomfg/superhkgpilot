@@ -1,7 +1,12 @@
 import numpy as np
 
+<<<<<<< HEAD
 from opendbc.can.packer import CANPacker
 from openpilot.selfdrive.car import DT_CTRL
+=======
+from openpilot.common.realtime import DT_CTRL
+from opendbc.can.packer import CANPacker
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 from openpilot.selfdrive.car.body import bodycan
 from openpilot.selfdrive.car.body.values import SPEED_FROM_RPM
 from openpilot.selfdrive.car.interfaces import CarControllerBase
@@ -17,7 +22,11 @@ MAX_TURN_INTEGRATOR = 0.1  # meters
 
 class CarController(CarControllerBase):
   def __init__(self, dbc_name, CP, VM):
+<<<<<<< HEAD
     super().__init__(dbc_name, CP, VM)
+=======
+    self.frame = 0
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
     self.packer = CANPacker(dbc_name)
 
     # PIDs

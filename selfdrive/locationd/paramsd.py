@@ -5,6 +5,7 @@ import json
 import numpy as np
 
 import cereal.messaging as messaging
+<<<<<<< HEAD
 from cereal import car, log
 from openpilot.common.params import Params
 from openpilot.common.realtime import config_realtime_process, DT_MDL
@@ -14,6 +15,16 @@ from openpilot.selfdrive.car.chrysler.values import ChryslerFlagsSP
 from openpilot.selfdrive.locationd.models.car_kf import CarKalman, ObservationKind, States
 from openpilot.selfdrive.locationd.models.constants import GENERATED_DIR
 from openpilot.selfdrive.locationd.helpers import rotate_std
+=======
+from cereal import car
+from cereal import log
+from openpilot.common.params import Params
+from openpilot.common.realtime import config_realtime_process, DT_MDL
+from openpilot.common.numpy_fast import clip
+from openpilot.selfdrive.car.chrysler.values import ChryslerFlagsSP
+from openpilot.selfdrive.locationd.models.car_kf import CarKalman, ObservationKind, States
+from openpilot.selfdrive.locationd.models.constants import GENERATED_DIR
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 from openpilot.common.swaglog import cloudlog
 
 
@@ -41,9 +52,12 @@ class ParamsLearner:
     self.kf.filter.set_global("stiffness_rear", CP.tireStiffnessRear)
 
     self.active = False
+<<<<<<< HEAD
     self.calibrated = False
 
     self.calib_from_device = np.eye(3)
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
     self.speed = 0.0
     self.yaw_rate = 0.0
@@ -53,6 +67,7 @@ class ParamsLearner:
     self.roll_valid = False
 
   def handle_log(self, t, which, msg):
+<<<<<<< HEAD
     if which == 'livePose':
       angular_velocity_device = np.array([msg.angularVelocityDevice.x, msg.angularVelocityDevice.y, msg.angularVelocityDevice.z])
       angular_velocity_device_std = np.array([msg.angularVelocityDevice.xStd, msg.angularVelocityDevice.yStd, msg.angularVelocityDevice.zStd])
@@ -63,6 +78,14 @@ class ParamsLearner:
 
       localizer_roll = msg.orientationNED.x
       localizer_roll_std = np.radians(1) if np.isnan(msg.orientationNED.xStd) else msg.orientationNED.xStd
+=======
+    if which == 'liveLocationKalman':
+      self.yaw_rate = msg.angularVelocityCalibrated.value[2]
+      self.yaw_rate_std = msg.angularVelocityCalibrated.std[2]
+
+      localizer_roll = msg.orientationNED.value[0]
+      localizer_roll_std = np.radians(1) if np.isnan(msg.orientationNED.std[0]) else msg.orientationNED.std[0]
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
       self.roll_valid = (localizer_roll_std < ROLL_STD_MAX) and (ROLL_MIN < localizer_roll < ROLL_MAX) and msg.sensorsOK
       if self.roll_valid:
         roll = localizer_roll
@@ -74,7 +97,11 @@ class ParamsLearner:
         roll_std = np.radians(10.0)
       self.roll = clip(roll, self.roll - ROLL_MAX_DELTA, self.roll + ROLL_MAX_DELTA)
 
+<<<<<<< HEAD
       yaw_rate_valid = msg.angularVelocityDevice.valid and self.calibrated
+=======
+      yaw_rate_valid = msg.angularVelocityCalibrated.valid
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
       yaw_rate_valid = yaw_rate_valid and 0 < self.yaw_rate_std < 10  # rad/s
       yaw_rate_valid = yaw_rate_valid and abs(self.yaw_rate) < 1  # rad/s
 
@@ -101,11 +128,14 @@ class ParamsLearner:
         self.kf.predict_and_observe(t, ObservationKind.STIFFNESS, np.array([[stiffness]]))
         self.kf.predict_and_observe(t, ObservationKind.STEER_RATIO, np.array([[steer_ratio]]))
 
+<<<<<<< HEAD
     elif which == 'liveCalibration':
       self.calibrated  = msg.calStatus == log.LiveCalibrationData.Status.calibrated
       device_from_calib = rot_from_euler(np.array(msg.rpyCalib))
       self.calib_from_device = device_from_calib.T
 
+=======
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
     elif which == 'carState':
       self.steering_angle = msg.steeringAngleDeg
       self.speed = msg.vEgo
@@ -138,12 +168,21 @@ def main():
   REPLAY = bool(int(os.getenv("REPLAY", "0")))
 
   pm = messaging.PubMaster(['liveParameters'])
+<<<<<<< HEAD
   sm = messaging.SubMaster(['livePose', 'liveCalibration', 'carState'], poll='livePose')
+=======
+  sm = messaging.SubMaster(['liveLocationKalman', 'carState'], poll='liveLocationKalman')
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 
   params_reader = Params()
   # wait for stats about the car to come in from controls
   cloudlog.info("paramsd is waiting for CarParams")
+<<<<<<< HEAD
   CP = messaging.log_from_bytes(params_reader.get("CarParams", block=True), car.CarParams)
+=======
+  with car.CarParams.from_bytes(params_reader.get("CarParams", block=True)) as msg:
+    CP = msg
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
   cloudlog.info("paramsd got CarParams")
 
   min_sr, max_sr = 0.5 * CP.steerRatio, 2.0 * CP.steerRatio
@@ -203,7 +242,11 @@ def main():
           t = sm.logMonoTime[which] * 1e-9
           learner.handle_log(t, which, sm[which])
 
+<<<<<<< HEAD
     if sm.updated['livePose']:
+=======
+    if sm.updated['liveLocationKalman']:
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
       x = learner.kf.x
       P = np.sqrt(learner.kf.P.diagonal())
       if not all(map(math.isfinite, x)):

@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+#!/usr/bin/env python3
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 import os
 import pytest
 import signal

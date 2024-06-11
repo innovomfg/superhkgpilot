@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+=======
+#!/usr/bin/env python3
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 import time
 import numpy as np
 import os
@@ -8,7 +12,11 @@ import http.server
 import cereal.messaging as messaging
 
 from typing import Any
+<<<<<<< HEAD
 from msgq.visionipc import VisionIpcClient, VisionStreamType
+=======
+from cereal.visionipc import VisionIpcClient, VisionStreamType
+>>>>>>> 8b9791041 (sunnypilot v2024.06.11-2039)
 from openpilot.common.mock.generators import LLK_DECIMATION, LOCATION1, LOCATION2, generate_liveLocationKalman
 from openpilot.selfdrive.test.helpers import with_processes
 
