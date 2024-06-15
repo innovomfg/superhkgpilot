@@ -15,6 +15,7 @@ Ecu = car.CarParams.Ecu
 class CarControllerParams:
   ACCEL_MIN = -3.5 # m/s
   ACCEL_MAX = 2.0 # m/s
+  ACCEL_MAX = 3.5 # m/s
 
   def __init__(self, CP, vEgoRaw=100.):
     self.STEER_DELTA_UP = 3
@@ -23,6 +24,7 @@ class CarControllerParams:
     self.STEER_DRIVER_MULTIPLIER = 2
     self.STEER_DRIVER_FACTOR = 1
     self.STEER_THRESHOLD = 150
+    self.STEER_THRESHOLD = 350
     self.STEER_STEP = 1  # 100 Hz
 
     if CP.carFingerprint in CANFD_CAR:
@@ -40,10 +42,12 @@ class CarControllerParams:
                                CAR.HYUNDAI_IONIQ_EV_LTD, CAR.HYUNDAI_SANTA_FE_PHEV_2022, CAR.HYUNDAI_SONATA_LF, CAR.KIA_FORTE, CAR.KIA_NIRO_PHEV,
                                CAR.KIA_OPTIMA_H, CAR.KIA_OPTIMA_H_G4_FL, CAR.KIA_SORENTO):
       self.STEER_MAX = 255
+      self.STEER_MAX = 384
 
     # these cars have significantly more torque than most HKG; limit to 70% of max
     elif CP.flags & HyundaiFlags.ALT_LIMITS:
       self.STEER_MAX = 270
+      self.STEER_MAX = 384
       self.STEER_DELTA_UP = 2
       self.STEER_DELTA_DOWN = 3
 
@@ -547,6 +551,8 @@ class CAR(Platforms):
     [HyundaiCarDocs("Genesis G80 2018-19", "All", car_parts=CarParts.common([CarHarness.hyundai_h]))],
     CarSpecs(mass=2060, wheelbase=3.01, steerRatio=16.5),
     flags=HyundaiFlags.LEGACY,
+    CarSpecs(mass=2060, wheelbase=3.01, steerRatio=16.5 * 1.15),
+    flags=HyundaiFlags.MANDO_RADAR,
   )
   GENESIS_G90 = HyundaiPlatformConfig(
     [HyundaiCarDocs("Genesis G90 2017-20", "All", car_parts=CarParts.common([CarHarness.hyundai_c]))],

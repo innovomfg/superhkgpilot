@@ -34,6 +34,7 @@ EventName = car.CarEvent.EventName
 
 MAX_CTRL_SPEED = (V_CRUISE_MAX + 4) * CV.KPH_TO_MS
 ACCEL_MAX = 2.0
+ACCEL_MAX = 3.5
 ACCEL_MIN = -3.5
 FRICTION_THRESHOLD = 0.3
 
@@ -383,6 +384,7 @@ class CarInterfaceBase(ABC):
     ret.stoppingDecelRate = 0.8 # brake_travel/s while trying to stop
     ret.vEgoStopping = 0.5
     ret.vEgoStarting = 0.5
+    ret.vEgoStarting = 0.2
     ret.stoppingControl = True
     ret.longitudinalTuning.kf = 1.
     ret.longitudinalTuning.kpBP = [0.]
@@ -392,6 +394,9 @@ class CarInterfaceBase(ABC):
     # TODO estimate car specific lag, use .15s for now
     ret.longitudinalActuatorDelay = 0.15
     ret.steerLimitTimer = 1.0
+    ret.longitudinalActuatorDelayLowerBound = 0.05
+    ret.longitudinalActuatorDelayUpperBound = 0.05
+    ret.steerLimitTimer = 2.5
     return ret
 
   @staticmethod

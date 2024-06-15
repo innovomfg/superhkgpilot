@@ -97,6 +97,7 @@ class CarInterface(CarInterfaceBase):
         ret.spFlags |= HyundaiFlagsSP.SP_CAMERA_SCC_LEAD.value
     else:
       ret.longitudinalTuning.kpV = [0.5]
+      ret.longitudinalTuning.kpV = [0.3]
       ret.longitudinalTuning.kiV = [0.0]
       ret.experimentalLongitudinalAvailable = candidate not in (UNSUPPORTED_LONGITUDINAL_CAR | NON_SCC_CAR)
       if candidate in CAMERA_SCC_CAR:
@@ -110,6 +111,8 @@ class CarInterface(CarInterfaceBase):
     ret.startAccel = 1.0
     ret.longitudinalActuatorDelayLowerBound = 0.5
     ret.longitudinalActuatorDelayUpperBound = 0.5
+    ret.longitudinalActuatorDelayLowerBound = 0.05
+    ret.longitudinalActuatorDelayUpperBound = 0.05
 
     if DBC[ret.carFingerprint]["radar"] is None:
       if ret.spFlags & (HyundaiFlagsSP.SP_ENHANCED_SCC | HyundaiFlagsSP.SP_CAMERA_SCC_LEAD):
