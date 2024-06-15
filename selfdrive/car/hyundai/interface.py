@@ -82,8 +82,6 @@ class CarInterface(CarInterfaceBase):
       if 0x53E in fingerprint[2]:
         ret.spFlags |= HyundaiFlagsSP.SP_LKAS12.value
 
-    ret.steerActuatorDelay = 0.1  # Default delay
-    ret.steerLimitTimer = 0.4
     ret.steerActuatorDelay = 0.0  # Default delay
     ret.steerLimitTimer = 2.5
     CarInterfaceBase.configure_torque_tune(candidate, ret.lateralTuning)
@@ -96,7 +94,6 @@ class CarInterface(CarInterfaceBase):
       if ret.flags & HyundaiFlags.CANFD_CAMERA_SCC and not hda2:
         ret.spFlags |= HyundaiFlagsSP.SP_CAMERA_SCC_LEAD.value
     else:
-      ret.longitudinalTuning.kpV = [0.5]
       ret.longitudinalTuning.kpV = [0.3]
       ret.longitudinalTuning.kiV = [0.0]
       ret.experimentalLongitudinalAvailable = candidate not in (UNSUPPORTED_LONGITUDINAL_CAR | NON_SCC_CAR)
@@ -109,8 +106,6 @@ class CarInterface(CarInterfaceBase):
     ret.startingState = True
     ret.vEgoStarting = 0.1
     ret.startAccel = 1.0
-    ret.longitudinalActuatorDelayLowerBound = 0.5
-    ret.longitudinalActuatorDelayUpperBound = 0.5
     ret.longitudinalActuatorDelayLowerBound = 0.05
     ret.longitudinalActuatorDelayUpperBound = 0.05
 
