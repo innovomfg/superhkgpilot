@@ -19,7 +19,7 @@ class CarControllerParams:
   def __init__(self, CP, vEgoRaw=100.):
     self.STEER_DELTA_UP = 3
     self.STEER_DELTA_DOWN = 7
-    self.STEER_DRIVER_ALLOWANCE = 75
+    self.STEER_DRIVER_ALLOWANCE = 50
     self.STEER_DRIVER_MULTIPLIER = 1
     self.STEER_DRIVER_FACTOR = 1
     self.STEER_THRESHOLD = 350
