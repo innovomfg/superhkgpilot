@@ -28,8 +28,8 @@ from openpilot.selfdrive.modeld.constants import ModelConstants
 # friction in the steering wheel that needs to be overcome to
 # move it at all, this is compensated for too.
 
-LOW_SPEED_X = [0, 15, 25, 35]
-LOW_SPEED_Y = [12, 3, 1, 0]
+LOW_SPEED_X = [0, 18, 30, 40]
+LOW_SPEED_Y = [17, 7, 4, 3]
 LOW_SPEED_Y_NN = [12, 3, 1, 0]
 
 LAT_PLAN_MIN_IDX = 5
