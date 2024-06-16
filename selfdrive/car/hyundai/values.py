@@ -22,7 +22,7 @@ class CarControllerParams:
     self.STEER_DRIVER_ALLOWANCE = 30
     self.STEER_DRIVER_MULTIPLIER = 1
     self.STEER_DRIVER_FACTOR = 1
-    self.STEER_THRESHOLD = 500
+    self.STEER_THRESHOLD = 350
     self.STEER_STEP = 1  # 100 Hz
 
     if CP.carFingerprint in CANFD_CAR:
@@ -49,7 +49,7 @@ class CarControllerParams:
 
     # Default for most HKG
     else:
-      self.STEER_MAX = 384
+      self.STEER_MAX = 400
 
 
 class HyundaiFlags(IntFlag):
