@@ -8,7 +8,7 @@ R = 6373000.0  # approximate radius of earth in meters
 TO_RADIANS = math.pi / 180
 TO_DEGREES = 180 / math.pi
 TARGET_JERK = -0.6  # m/s^3 There's some jounce limits that are not consistent so we're fudging this some
-TARGET_ACCEL = -1.2  # m/s^2 should match up with the long planner limit
+TARGET_ACCEL = -0.5  # m/s^2 should match up with the long planner limit
 TARGET_OFFSET = 1.0  # seconds - This controls how soon before the curve you reach the target velocity. It also helps
                      # reach the target velocity when innacuracies in the distance modeling logic would cause overshoot.
                      # The value is multiplied against the target velocity to determine the additional distance. This is
@@ -96,7 +96,7 @@ class TurnSpeedController:
       target_velocities = json.loads(self.mem_params.get("MapTargetVelocities"))
     except: return 0.0
 
-    min_dist = 1000
+    min_dist = 850
     min_idx = 0
     distances = []
 
@@ -134,7 +134,7 @@ class TurnSpeedController:
       max_d = 0
       if tv > min_accel_v:
         # calculate time needed based on target jerk
-        a = 0.5 * TARGET_JERK
+        a = 0.7 * TARGET_JERK
         b = a_ego
         c = v_ego - tv
         t_a = -1 * ((b**2 - 4 * a * c) ** 0.5 + b) / 2 * a

@@ -19,10 +19,10 @@ class CarControllerParams:
   def __init__(self, CP, vEgoRaw=100.):
     self.STEER_DELTA_UP = 3
     self.STEER_DELTA_DOWN = 7
-    self.STEER_DRIVER_ALLOWANCE = 50
-    self.STEER_DRIVER_MULTIPLIER = 2
+    self.STEER_DRIVER_ALLOWANCE = 100
+    self.STEER_DRIVER_MULTIPLIER = 1
     self.STEER_DRIVER_FACTOR = 1
-    self.STEER_THRESHOLD = 350
+    self.STEER_THRESHOLD = 500
     self.STEER_STEP = 1  # 100 Hz
 
     if CP.carFingerprint in CANFD_CAR:
@@ -49,7 +49,7 @@ class CarControllerParams:
 
     # Default for most HKG
     else:
-      self.STEER_MAX = 384
+      self.STEER_MAX = 400
 
 
 class HyundaiFlags(IntFlag):
@@ -307,7 +307,7 @@ class CAR(Platforms):
       HyundaiCarDocs("Hyundai Palisade 2020-22", "All", video_link="https://youtu.be/TAnDqjF4fDY?t=456", car_parts=CarParts.common([CarHarness.hyundai_h])),
       HyundaiCarDocs("Kia Telluride 2020-22", "All", car_parts=CarParts.common([CarHarness.hyundai_h])),
     ],
-    CarSpecs(mass=2100, wheelbase=2.9, steerRatio=19.7, tireStiffnessFactor=0.68),
+    CarSpecs(mass=2100, wheelbase=2.9, steerRatio=17.94, tireStiffnessFactor=0.88),
     flags=HyundaiFlags.MANDO_RADAR | HyundaiFlags.CHECKSUM_CRC8,
   )
   HYUNDAI_VELOSTER = HyundaiPlatformConfig(
