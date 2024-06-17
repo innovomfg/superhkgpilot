@@ -21,7 +21,7 @@ class CarControllerParams:
     self.STEER_DELTA_DOWN = 7
     self.STEER_DRIVER_ALLOWANCE = 50
     self.STEER_DRIVER_MULTIPLIER = 2
-    self.STEER_DRIVER_FACTOR = 0.5
+    self.STEER_DRIVER_FACTOR = 1
     self.STEER_THRESHOLD = 350
     self.STEER_STEP = 1  # 100 Hz
 
