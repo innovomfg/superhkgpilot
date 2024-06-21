@@ -307,7 +307,7 @@ class CAR(Platforms):
       HyundaiCarDocs("Hyundai Palisade 2020-22", "All", video_link="https://youtu.be/TAnDqjF4fDY?t=456", car_parts=CarParts.common([CarHarness.hyundai_h])),
       HyundaiCarDocs("Kia Telluride 2020-22", "All", car_parts=CarParts.common([CarHarness.hyundai_h])),
     ],
-    CarSpecs(mass=2100, wheelbase=2.9, steerRatio=17.94, tireStiffnessFactor=0.88),
+    CarSpecs(mass=2200, wheelbase=2.9, steerRatio=19.3, tireStiffnessFactor=0.68),
     flags=HyundaiFlags.MANDO_RADAR | HyundaiFlags.CHECKSUM_CRC8,
   )
   HYUNDAI_VELOSTER = HyundaiPlatformConfig(
@@ -545,7 +545,7 @@ class CAR(Platforms):
   )
   GENESIS_G80 = HyundaiPlatformConfig(
     [HyundaiCarDocs("Genesis G80 2018-19", "All", car_parts=CarParts.common([CarHarness.hyundai_h]))],
-    CarSpecs(mass=2060, wheelbase=3.01, steerRatio=16.5 * 1.15),
+    CarSpecs(mass=2100, wheelbase=3.01, steerRatio=18.2),
     flags=HyundaiFlags.MANDO_RADAR,
   )
   GENESIS_G90 = HyundaiPlatformConfig(
