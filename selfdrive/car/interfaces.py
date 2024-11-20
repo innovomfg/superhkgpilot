@@ -245,7 +245,7 @@ class CarInterfaceBase(ABC):
     self.prev_acc_mads_combo = False
     self.mads_event_lock = True
     self.last_mads_init = 0.
-    self.madsEnabledInit = False
+    self.madsEnabledInit = True
     self.madsEnabledInitPrev = False
     self.button_events = ButtonEvents()
 
